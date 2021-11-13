@@ -1,0 +1,8 @@
+spring:
+  web:
+    resources:
+      static-locations: classpath:/resources/,classpath:/static/,classpath:/config/,classpath:/mapper/
+
+server:
+  servlet:
+    context-path: /api
