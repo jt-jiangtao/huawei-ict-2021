@@ -1,0 +1,51 @@
+apply plugin: 'com.huawei.ohos.hap'
+apply plugin: 'com.huawei.ohos.decctest'
+apply plugin: 'com.huawei.agconnect'
+//For instructions on signature configuration, see https://developer.harmonyos.com/cn/docs/documentation/doc-guides/ide_debug_device-0000001053822404#section1112183053510
+def jsOutputDir = project.file("src/main/js/default/generated").toString()
+
+ohos {
+    signingConfigs {
+        debug {
+            storeFile file('F:\\huawei-ict-other\\debug_key\\debug.p12')
+            storePassword '00000019B9BC9CEC8B69FD965487D7DE1C3D72AFDD0590DE3692FAB976941ACB02CF951F2221505897'
+            keyAlias = 'debug'
+            keyPassword '000000196EF248B1CE63691A805AB214D9A3572B3F7FDA37AA494983E50C4E89A200EBDA130058352D'
+            signAlg = 'SHA256withECDSA'
+            profile file('F:\\huawei-ict-other\\debug_key\\debug_v1Debug.p7b')
+            certpath file('F:\\huawei-ict-other\\debug_key\\debug_v1.cer')
+        }
+    }
+    compileOptions {
+        f2pautogenEnabled true // 此处为启用js2java-codegen工具的开关
+    }
+    compileSdkVersion 7
+    defaultConfig {
+        compatibleSdkVersion 5
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["jsOutputDir": jsOutputDir] // JS模板代码生成赋值
+            }
+        }
+    }
+    showInServiceCenter true
+    buildTypes {
+        release {
+            proguardOpt {
+                proguardEnabled false
+                rulesFiles 'proguard-rules.pro'
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    testImplementation 'junit:junit:4.13.1'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.200'
+    implementation 'com.huawei.agconnect:agconnect-core-harmony:1.0.0.300'
+    implementation 'com.huawei.hms:jsb-ohos-adapter:5.3.0.303'
+}
+decc {
+    supportType = ['html', 'xml']
+}

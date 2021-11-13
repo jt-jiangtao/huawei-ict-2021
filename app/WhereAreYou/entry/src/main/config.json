@@ -1,0 +1,146 @@
+{
+  "app": {
+    "bundleName": "com.cyj.whereareyou",
+    "vendor": "cyj",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+    "default": {
+      "allowComponentsProxy": true
+    }
+  },
+  "module": {
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "com.huawei.hms.client.appid",
+          "value": "104924337"
+        },
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.Light.NoTitleBar",
+          "extra": ""
+        }
+      ]
+    },
+    "package": "com.cyj.whereareyou",
+    "name": ".MyApplication",
+    "mainAbility": "com.cyj.whereareyou.page.MainAbility",
+    "deviceType": [
+      "phone"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry",
+      "installationFree": false
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "visible": true,
+        "name": "com.cyj.whereareyou.page.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "formsEnabled": true,
+        "label": "$string:entry_MainAbility",
+        "type": "page",
+        "forms": [
+          {
+            "jsComponentName": "widget",
+            "isDefault": true,
+            "scheduledUpdateTime": "10:30",
+            "defaultDimension": "2*2",
+            "name": "widget",
+            "description": "This is a service widget",
+            "colorMode": "auto",
+            "type": "JS",
+            "supportDimensions": [
+              "2*2"
+            ],
+            "updateEnabled": true,
+            "updateDuration": 1
+          }
+        ],
+        "launchType": "singleton"
+      },
+      {
+        "name": "com.cyj.whereareyou.service.OpenUIService",
+        "icon": "$media:icon",
+        "description": "$string:openuiservice_description",
+        "type": "service",
+        "launchType": "singleton"
+      },
+      {
+        "orientation": "unspecified",
+        "name": "com.cyj.whereareyou.page.TakePhotoAbility",
+        "icon": "$media:icon",
+        "description": "$string:takephotoability_description",
+        "label": "$string:entry_TakePhotoAbility",
+        "type": "page",
+        "launchType": "singleton"
+      },
+      {
+        "orientation": "unspecified",
+        "name": "com.cyj.whereareyou.page.SelectImageAbility",
+        "icon": "$media:icon",
+        "description": "$string:selectimageability_description",
+        "label": "$string:entry_SelectImageAbility",
+        "type": "page",
+        "launchType": "singleton"
+      }
+    ],
+    "js": [
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "default",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        }
+      },
+      {
+        "pages": [
+          "pages/index/index"
+        ],
+        "name": "widget",
+        "window": {
+          "designWidth": 720,
+          "autoDesignWidth": true
+        },
+        "type": "form"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.CAMERA"
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE"
+      },
+      {
+        "name": "ohos.permission.READ_USER_STORAGE"
+      },
+      {
+        "name": "ohos.permission.MICROPHONE"
+      },
+      {
+        "name": "ohos.permission.LOCATION"
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+<div class="container">
+    <text class="title">
+        {{ $t('strings.hello') }} {{ title }}
+    </text>
+    <button style="width: 100px;height: 80px;text-align: center;" @click="login">login</button>
+    <image src="{{ image_url }}"/>
+</div>

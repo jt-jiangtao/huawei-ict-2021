@@ -1,0 +1,60 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "widget_ability_description",
+      "value": "This is a WidgetAbility"
+    },
+    {
+      "name": "mainability2_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "entry_MainAbility2",
+      "value": "entry_MainAbility2"
+    },
+    {
+      "name": "takephotoability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "takephotoability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_TakePhotoAbility",
+      "value": "entry_TakePhotoAbility"
+    },
+    {
+      "name": "openuiservice_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "dataability_description",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "openserver_description",
+      "value": "hap sample empty service"
+    },
+    {
+      "name": "selectimageability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "selectimageability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_SelectImageAbility",
+      "value": "entry_SelectImageAbility"
+    }
+  ]
+}
