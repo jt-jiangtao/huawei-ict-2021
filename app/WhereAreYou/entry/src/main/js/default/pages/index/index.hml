@@ -1,7 +1,18 @@
+<element src="../homePage/home/home.hml" name="home"></element>
+<element src="../homePage/my/my.hml" name="my"></element>
+<element src="../homePage/article/article.hml" name="article"></element>
 <div class="container">
-    <text class="title">
-        {{ $t('strings.hello') }} {{ title }}
-    </text>
-    <button style="width: 100px;height: 80px;text-align: center;" @click="login">login</button>
-    <image src="{{ image_url }}"/>
+    <tabs class="tabs" onchange="changeTabIndex">
+        <tab-content>
+            <div><home></home></div>
+            <div><article></article></div>
+            <div><my></my></div>
+        </tab-content>
+        <tab-bar class="tab-bar" mode="fixed">
+            <div class="tab-item" for="{{ tabbardata }}">
+                <image class="tab-item-image" src="{{$item.show?$item.selectedImg:$item.img}}"></image>
+                <text class="tab-text" style="color:{{$item.show?$item.selectedColor:$item.color}}">{{$item.title}}</text>
+            </div>
+        </tab-bar>
+    </tabs>
 </div>

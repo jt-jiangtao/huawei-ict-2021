@@ -1,0 +1,157 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+}
+
+.head{
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
+}
+
+.head .head-left{
+    height: 100%;
+    weights: 1;
+    width: 85%;
+}
+
+.head .head-right{
+    height: 100%;
+    width: 80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+}
+
+.head .head-right .setting-icon{
+    width: 18px;
+    object-fit: contain;
+    height: 18px;
+}
+
+.head .head-right .notification-icon{
+    width: 22px;
+    object-fit: contain;
+    height: 22px;
+}
+
+.user{
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 #80afbbcc;
+    margin: 8px 15px 10px 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user image {
+    width: 60px;
+    height: 60px;
+    border-radius: 20px;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
+.user .username-tags{
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user .username-tags .username{
+    display: flex;
+    justify-content: center;
+    height: 40%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.user .username-tags .tags{
+    margin-top: 5px;
+    height: 45%;
+    display: flex;
+    align-items: center;
+}
+
+.user .username-tags .tags text{
+    border-radius: 5px;
+    font-size: 11px;
+    background-color: #1a000000;
+    padding: 2px 4px;
+    display: flex;
+    background-color: #cc9acd32;
+    color: white;
+    margin-right: 5px;
+}
+
+.my-publish{
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 #80afbbcc;
+    margin: 0 15px 10px 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.my-publish .title{
+    font-size: 16px;
+    font-weight: 500
+}
+
+.publish-wrapper-info{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 8px;
+    height: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.publish-wrapper-info .publish-item{
+    height: 50px;
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 0 1px 0 #4dafbbcc;
+    padding: 6px 8px;
+}
+
+.publish-wrapper-info .publish-item .publish-item-title{
+    font-size: 11px;
+}
+
+.publish-wrapper-info .publish-item .publish-item-number{
+    margin-top: 5px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.tools{
+    width: 100%;
+    height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px 0 #80afbbcc;
+    margin: 0 15px 10px 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

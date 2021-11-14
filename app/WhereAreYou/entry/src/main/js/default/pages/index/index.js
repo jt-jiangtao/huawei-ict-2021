@@ -1,44 +1,46 @@
-import { HuaweiIdAuthParamsHelper, HuaweiIdAuthManager, OPENID,  PROFILE, GAMES } from '@hmscore/hms-jsb-account'
-import CODE from '../../support/request_code.js'
-import FA from '../../support/fa_request.js'
-
 export default {
-    data: {
-        title: "",
-        image_url: ""
+    data() {
+        return {
+            tabbardata: [
+                {
+                    i: 0,
+                    title: '首页',
+                    color:'#18181a',
+                    selectedColor:'#0087f9',
+                    img: '/common/Icon/head.png',
+                    selectedImg: '/common/Icon/head_selected.png',
+                    show: true,
+                },
+                {
+                    i: 1,
+                    title: '文章',
+                    color:'#18181a',
+                    selectedColor:'#0087f9',
+                    img: '/common/Icon/article.png',
+                    selectedImg: '/common/Icon/article_selected.png',
+                    show: false,
+                },
+                {
+                    i: 2,
+                    title: '我的',
+                    color:'#18181a',
+                    selectedColor:'#0087f9',
+                    img: '/common/Icon/my.png',
+                    selectedImg: '/common/Icon/my_selected.png',
+                    show: false,
+                }
+            ]
+        }
     },
     onInit() {
-        this.title = this.$t('strings.world');
     },
-    login(){
-        this.request(CODE.SELECT_IMAGE)
-    },
-    request: async function(request_code) {
-        var actionData = {};
-        actionData.firstNum = 1024;
-        actionData.secondNum = 2048;
-
-        var action = {};
-        action.bundleName = 'com.cyj.whereareyou';
-        action.abilityName = 'com.cyj.whereareyou.service.OpenUIService';
-        action.messageCode = request_code;
-        action.data = actionData;
-        action.abilityType = FA.ABILITY_TYPE_EXTERNAL;
-        action.syncOption = FA.ACTION_SYNC;
-
-        let that = this
-        var result = await FeatureAbility.subscribeAbilityEvent(action, function(callbackData) {
-            var callbackJson = JSON.parse(callbackData);
-            console.info('eventData is: ' + JSON.stringify(callbackJson.data));
-            that.image_url = callbackJson.data.abilityEvent
-        })
-
-        var ret = JSON.parse(result);
-        if (ret.code == 0) {
-            this.title = JSON.stringify(ret.abilityResult);
-            console.info('plus result is:' + JSON.stringify(ret.abilityResult));
-        } else {
-            console.error('plus error code:' + JSON.stringify(ret.code));
+    changeTabIndex(e) {
+        for (let i = 0; i < this.tabbardata.length; i++) {
+            let element = this.tabbardata[i];
+            element.show = false;
+            if (i === e.index) {
+                element.show = true;
+            }
         }
     }
 }

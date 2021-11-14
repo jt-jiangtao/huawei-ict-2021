@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="head">
+        <div class="head-left">
+
+        </div>
+        <div class="head-right">
+            <image class="setting-icon" src="/common/Icon/setting.png"/>
+            <image class="notification-icon" src="/common/Icon/notification.png"/>
+        </div>
+    </div>
+    <list>
+        <list-item clickeffect="false">
+            <div class="user">
+                <image src="/common/Icon/default-head.png"/>
+                <div class="username-tags">
+                    <text class="username">jiangtao</text>
+                    <div class="tags">
+                        <text>已认证</text>
+                    </div>
+                </div>
+            </div>
+        </list-item>
+        <list-item  clickeffect="false">
+            <div class="my-publish">
+                <text class="title">我的发布</text>
+                <div class="publish-wrapper-info">
+                    <div class="findChild publish-item">
+                        <text class="publish-item-title">找孩子</text>
+                        <text class="publish-item-number">0</text>
+                    </div>
+                    <div class="findParent publish-item">
+                        <text class="publish-item-title">找父母</text>
+                        <text class="publish-item-number">0</text>
+                    </div>
+                    <div class="urgency publish-item">
+                        <text class="publish-item-title">紧急通知</text>
+                        <text class="publish-item-number">0</text>
+                    </div>
+                </div>
+            </div>
+        </list-item>
+    </list>
+</div>

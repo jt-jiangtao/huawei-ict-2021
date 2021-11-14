@@ -55,6 +55,18 @@
     {
       "name": "entry_SelectImageAbility",
       "value": "entry_SelectImageAbility"
+    },
+    {
+      "name": "locationability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "locationability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_LocationAbility",
+      "value": "entry_LocationAbility"
     }
   ]
 }

@@ -8,7 +8,7 @@
     "routerEvent": {
       "action": "router",
       "bundleName": "com.cyj.whereareyou",
-      "abilityName": "com.cyj.whereareyou.MainAbility",
+      "abilityName": "com.cyj.whereareyou.page.MainAbility",
       "params": {
         "message": "add detail"
       }

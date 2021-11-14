@@ -119,7 +119,7 @@ public class MainAbility extends AceAbility {
     private void requestPermissions() {
         String[] permissions = {
                 SystemPermission.WRITE_USER_STORAGE, SystemPermission.READ_USER_STORAGE, SystemPermission.CAMERA,
-                SystemPermission.MICROPHONE, SystemPermission.LOCATION
+                SystemPermission.MICROPHONE, SystemPermission.LOCATION, SystemPermission.INTERNET
         };
         requestPermissionsFromUser(Arrays.stream(permissions)
                 .filter(permission -> verifySelfPermission(permission) != IBundleManager.PERMISSION_GRANTED).toArray(String[]::new), 0);

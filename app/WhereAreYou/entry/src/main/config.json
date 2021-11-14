@@ -105,7 +105,16 @@
     "js": [
       {
         "pages": [
-          "pages/index/index"
+          "pages/index/index",
+          "pages/login/login",
+          "pages/homePage/article/article",
+          "pages/homePage/home/home",
+          "pages/homePage/my/my",
+          "pages/publish/findParent/findParent",
+          "pages/publish/findChild/findChild",
+          "pages/publish/urgencyPublish/urgencyPublish",
+          "pages/articleDetail/articleDetail",
+          "pages/infoDetail/infoDetail"
         ],
         "name": "default",
         "window": {
@@ -140,6 +149,9 @@
       },
       {
         "name": "ohos.permission.LOCATION"
+      },
+      {
+        "name": "ohos.permission.INTERNET"
       }
     ]
   }

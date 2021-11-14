@@ -45,6 +45,7 @@ dependencies {
     ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.200'
     implementation 'com.huawei.agconnect:agconnect-core-harmony:1.0.0.300'
     implementation 'com.huawei.hms:jsb-ohos-adapter:5.3.0.303'
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
 }
 decc {
     supportType = ['html', 'xml']

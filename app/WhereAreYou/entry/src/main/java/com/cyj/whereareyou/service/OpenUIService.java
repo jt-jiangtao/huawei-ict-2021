@@ -60,11 +60,17 @@ public class OpenUIService extends Ability {
                     break;
                 }
                 case RequestCode.SELECT_IMAGE:{
+//                    try {
+                        // com.cyj.whereareyou_BD3e0i84+lXq7K0FahISwXH1jfj4WymmltwtXFMbIxPc5Mp/XMGDRX14TXN7eSj+hQGbnKLKvKwWHUlmlkZI/X8=
+//                        getApplicationContext().getBundleManager().getBundleInfo(getBundleName(), 0).getAppId();
+//                    } catch (RemoteException e) {
+//                        e.printStackTrace();
+//                    }
+
                     remoteObjectHandlers.add(data.readRemoteObject());
                     HiLog.info(LABEL, "OPENING");
                     Intent intent = new Intent();
                     Operation operation = new Intent.OperationBuilder()
-//                            .withAction("android.media.action.IMAGE_CAPTURE")
                             .withDeviceId("")
                             .withBundleName("com.cyj.whereareyou")
                             .withAbilityName("com.cyj.whereareyou.page.SelectImageAbility")
@@ -73,7 +79,19 @@ public class OpenUIService extends Ability {
                     startAbility(intent);
                     break;
                 }
-
+                case RequestCode.LOCATION:{
+                    remoteObjectHandlers.add(data.readRemoteObject());
+                    HiLog.info(LABEL, "OPENING");
+                    Intent intent = new Intent();
+                    Operation operation = new Intent.OperationBuilder()
+                            .withDeviceId("")
+                            .withBundleName("com.cyj.whereareyou")
+                            .withAbilityName("com.cyj.whereareyou.page.LocationAbility")
+                            .build();
+                    intent.setOperation(operation);
+                    startAbility(intent);
+                    break;
+                }
             }
             return true;
         }

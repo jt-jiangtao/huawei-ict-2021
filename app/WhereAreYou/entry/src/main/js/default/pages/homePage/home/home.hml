@@ -1,0 +1,120 @@
+<div class="container" id="container">
+    <div class="header">
+        <image class="notification" src="/common/Icon/notification.png" />
+        <div class="div-search">
+            <image class="image-search" src="/common/Icon/search.png"></image>
+            <text>孩子走丢怎么办?</text>
+        </div>
+        <div class="add-wrapper">
+            <image class="publish" onclick="onTextClick" src="/common/Icon/add.png" />
+            <menu id="apiMenu" onselected="onMenuSelected">
+                <option value="1">找孩子</option>
+                <option value="2">找父母</option>
+                <option value="3">紧急消息</option>
+            </menu>
+        </div>
+    </div>
+    <list class="list" clickeffect="false">
+        <list-item class="list-swipers" clickeffect="false">
+            <swiper autoplay="true" class="swipers">
+                <image class="banner-image" src="/common/pic/1.jpg"></image>
+                <image class="banner-image" src="/common/pic/2.jpeg"></image>
+                <image class="banner-image" src="/common/pic/3.jpeg"></image>
+                <image class="banner-image" src="/common/pic/4.jpeg"></image>
+            </swiper>
+        </list-item>
+        <list-item clickeffect="false">
+            <grid-container>
+                <grid-row class="list-row">
+                    <grid-col class="list-col">
+                        <image class="child" src="/common/Icon/list_child.png"/>
+                        <text>找孩子</text>
+                    </grid-col>
+                    <grid-col  class="list-col">
+                        <image class="parent" src="/common/Icon/list_parent.png"/>
+                        <text>找父母</text>
+                    </grid-col>
+                    <grid-col class="list-col">
+                        <image class="em" src="/common/Icon/list_em.png"/>
+                        <text>紧急通知</text>
+                    </grid-col>
+                    <grid-col  class="list-col">
+                        <image class="article" src="/common/Icon/list_article.png"/>
+                        <text>文章</text>
+                    </grid-col>
+                </grid-row>
+            </grid-container>
+        </list-item>
+        <list-item class="divider-list-item">
+            <div class="divider-wrapper">
+                <divider class="divider" vertical="false"></divider>
+                <text>求助</text>
+                <divider class="divider" vertical="false"></divider>
+            </div>
+        </list-item>
+        <list-item class="content-wrapper" clickeffect="false">
+            <div class="content">
+                <div class="left">
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/1.png"/>
+                        <div class="content-text">
+                            <text>姓名: 李之安易</text>
+                            <text>失踪时间: 9-24</text>
+                        </div>
+                    </div>
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/2.jpg"/>
+                        <div class="content-text">
+                            <text>姓名: 刘选琼</text>
+                            <text>年龄: 12</text>
+                        </div>
+                    </div>
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/3.jpg"/>
+                        <div class="content-text">
+                            <text>姓名: 金歆然</text>
+                            <text>年龄: 2</text>
+                        </div>
+                    </div>
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/4.png"/>
+                        <div class="content-text">
+                            <text>姓名: 邓王琴</text>
+                            <text>年龄: 13</text>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/4.png"/>
+                        <div class="content-text">
+                            <text>姓名: 邓王琴</text>
+                            <text>年龄: 13</text>
+                        </div>
+                    </div>
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/3.jpg"/>
+                        <div class="content-text">
+                            <text>姓名: 金歆然</text>
+                            <text>年龄: 2</text>
+                        </div>
+                    </div>
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/1.png"/>
+                        <div class="content-text">
+                            <text>姓名: 李之安易</text>
+                            <text>失踪时间: 9-24</text>
+                        </div>
+                    </div>
+                    <div class="content-item" onclick="redirectToDetail">
+                        <image src="/common/images/2.jpg"/>
+                        <div class="content-text">
+                            <text>姓名: 刘选琼</text>
+                            <text>年龄: 12</text>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </list-item>
+    </list>
+</div>

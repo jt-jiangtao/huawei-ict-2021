@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="head">
+        <image src="/common/Icon/left.png" onclick="back"/>
+        <text class="title">紧急事件</text>
+        <text class="send">发布</text>
+    </div>
+    <list>
+        <list-item class="list-item" clickeffect="false">
+            <div class="child-info" style="margin-top: 15px;">
+                <text class="title">基本信息</text>
+                <div class="row">
+                    <label class="label" target="name">姓名</label>
+                    <input class="input" id="name" type="text"></input>
+                </div>
+                <div class="row">
+                    <label class="label" target="age">年龄</label>
+                    <input class="input" id="age" type="number"></input>
+                </div>
+                <div class="row">
+                    <label class="label label-sex" target="age">性别</label>
+                    <select class="select-sex" @change="changeFruit">
+                        <option value="男">
+                            男
+                        </option>
+                        <option value="女" selected="true">
+                            女
+                        </option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label class="label-picker" target="age">走失时间</label>
+                    <picker id="picker_datetime"
+                            type="datetime"
+                            value="{{datetimevalue}}"
+                            hours="24"
+                            lunarswitch="true"
+                            onchange="datetimeonchange"
+                            class="pickerdatetime"></picker>
+                </div>
+                <div class="row">
+                    <label class="label" target="age">走失地点</label>
+                    <input class="input" id="age" type="number"></input>
+                </div>
+                <div class="row">
+                    <label class="label label-sex" target="age">是否报案</label>
+                    <select class="select-sex" @change="changeFruit">
+                        <option value="是">
+                            是
+                        </option>
+                        <option value="否" selected="true">
+                            否
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="child-info">
+                <text class="title">孩子照片</text>
+
+            </div>
+            <div class="child-info">
+                <text class="title">详细特征</text>
+                <textarea class="description" id="name" type="text"></textarea>
+            </div>
+            <div class="child-info">
+                <text class="title">事件描述</text>
+                <textarea class="description" id="name" type="text"></textarea>
+            </div>
+            <div class="child-info">
+                <text class="title">联系信息</text>
+                <div class="row">
+                    <label class="label label-sex" target="age">关系</label>
+                    <select class="select-sex" @change="changeFruit">
+                        <option value="父亲" selected="true">
+                            父亲
+                        </option>
+                        <option value="母亲" selected="false">
+                            母亲
+                        </option>
+                        <option value="爷爷" selected="false">
+                            爷爷
+                        </option>
+                        <option value="奶奶" selected="false">
+                            奶奶
+                        </option>
+                        <option value="其它" selected="false">
+                            其它
+                        </option>
+                    </select>
+                </div>
+                <div class="row">
+                    <label class="label" target="age">姓名</label>
+                    <input class="input" id="age" type="number"></input>
+                </div>
+                <div class="row">
+                    <label class="label" target="age">联系方式</label>
+                    <input class="input" id="age" type="number"></input>
+                </div>
+                <div class="row">
+                    <label class="label" target="age">家庭住址</label>
+                    <input class="input" id="age" type="number"></input>
+                </div>
+            </div>
+        </list-item>
+    </list>
+</div>
