@@ -19,7 +19,7 @@ public class ArticlesController {
     private ArticlesService articlesService;
 
     @GetMapping("/get_simple_info")
-    public Object getSimpleInfo() throws Exception {
+    public Object getSimpleInfo() {
         return articlesService.selectArticlesSimpleIntroduceInfo();
     }
 
