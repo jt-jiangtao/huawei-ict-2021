@@ -33,5 +33,6 @@
         <mapper resource="mapper/ArticlesMapper.xml"/>
         <mapper resource="mapper/SwiperMapper.xml"/>
         <mapper resource="mapper/PublishMapper.xml"/>
+        <mapper resource="mapper/UserMapper.xml"/>
     </mappers>
 </configuration>
