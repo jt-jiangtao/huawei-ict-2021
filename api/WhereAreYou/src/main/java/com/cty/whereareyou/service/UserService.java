@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public interface UserService {
 
-    boolean login(String code);
+    Object login(String code);
 
     boolean existUser(String id);
 

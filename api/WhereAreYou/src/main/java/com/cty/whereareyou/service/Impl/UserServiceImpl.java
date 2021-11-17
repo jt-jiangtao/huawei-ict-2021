@@ -5,6 +5,7 @@ import com.cty.whereareyou.entity.huaweiserverreturn.UserInfo;
 import com.cty.whereareyou.mapper.UserMapper;
 import com.cty.whereareyou.service.HuaweiInteractionService;
 import com.cty.whereareyou.service.UserService;
+import com.cty.whereareyou.utils.JWTUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author: jiangtao
@@ -35,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean login(String code) {
+    public Object login(String code) {
         TokenReturn tokenReturn = huaweiInteractionService.getAccessToken(code);
         if (tokenReturn.getAccessToken() == null) return false;
         UserInfo userInfo = huaweiInteractionService.getUserInfo(tokenReturn.getAccessToken(), 1);
@@ -47,7 +50,10 @@ public class UserServiceImpl implements UserService {
             boolean status = insertUser(tokenReturn.getRefreshToken(), userInfo.getDisplayName(), userInfo.getHeadPictureURL(), userInfo.getOpenID());
             if (!status) return false;
         }
-        return true;
+        String token = JWTUtils.createJWT(1000L * 60 * 60 * 24 * 180, userInfo.getOpenID());
+        Map<String,String> map = new HashMap<>();
+        map.put("token", token);
+        return map;
     }
 
     @Override
