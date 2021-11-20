@@ -9,7 +9,10 @@
   },
   "deviceConfig": {
     "default": {
-      "allowComponentsProxy": true
+      "allowComponentsProxy": true,
+      "network": {
+        "cleartextTraffic": true
+      }
     }
   },
   "module": {
@@ -100,6 +103,14 @@
         "label": "$string:entry_SelectImageAbility",
         "type": "page",
         "launchType": "singleton"
+      },
+      {
+        "name": "com.cyj.whereareyou.page.NotificationService",
+        "icon": "$media:icon",
+        "description": "$string:notifacationservice_description",
+        "type": "service",
+        "visible": true,
+        "backgroundModes": ["dataTransfer", "location"]
       }
     ],
     "js": [
@@ -112,7 +123,6 @@
           "pages/homePage/my/my",
           "pages/publish/findParent/findParent",
           "pages/publish/findChild/findChild",
-          "pages/publish/urgencyPublish/urgencyPublish",
           "pages/articleDetail/articleDetail",
           "pages/infoDetail/infoDetail"
         ],
@@ -152,6 +162,16 @@
       },
       {
         "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "reason": "get right",
+        "usedScene": {
+          "ability": [
+            ".NotificationService"
+          ],
+          "when": "inuse"
+        }
       }
     ]
   }

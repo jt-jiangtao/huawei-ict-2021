@@ -67,6 +67,10 @@
     {
       "name": "entry_LocationAbility",
       "value": "entry_LocationAbility"
+    },
+    {
+      "name": "notifacationservice_description",
+      "value": "hap sample empty service"
     }
   ]
 }

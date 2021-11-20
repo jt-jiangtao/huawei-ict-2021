@@ -1,6 +1,7 @@
 package com.cyj.whereareyou.service;
 
 import com.cyj.whereareyou.service.support.RequestCode;
+import com.cyj.whereareyou.websocket.WebsocketClientManager;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
@@ -11,6 +12,8 @@ import ohos.utils.zson.ZSONObject;
 
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;

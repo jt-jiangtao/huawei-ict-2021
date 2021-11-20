@@ -5,10 +5,8 @@ export default {
         eventCallbackMap: {}
     },
     onCreate() {
-        console.info('AceApplication onCreate');
         hmsjsb.init(this.hmsData.eventCallbackMap);
     },
     onDestroy() {
-        console.info('AceApplication onDestroy');
     }
 }

@@ -7,8 +7,7 @@
     <list class="list">
         <list-item clickeffect="false">
             <swiper autoplay="false" class="swipers">
-                <image class="banner-image" src="/common/images/4.png"></image>
-                <image class="banner-image" src="/common/images/1_1.png"></image>
+                <image for="{{item in images}}" tid="{{item.id}}" class="banner-image" src="{{item.imageUrl}}"></image>
             </swiper>
         </list-item>
         <list-item clickeffect="false" style="display: flex;flex-direction: column;">
@@ -25,23 +24,23 @@
                 </div>
                 <div class="content-wrapper">
                     <text class="content-title">姓名</text>
-                    <text class="content">邓王琴</text>
+                    <text class="content">{{detailInfo.name}}</text>
                 </div>
                 <div class="content-wrapper">
                     <text class="content-title">年龄</text>
-                    <text class="content">13</text>
+                    <text class="content">{{detailInfo.age}}</text>
                 </div>
                 <div class="content-wrapper">
                     <text class="content-title">走失时间</text>
-                    <text class="content">2021-06-22 17:00</text>
+                    <text class="content">{{detailInfo.lossTime}}</text>
                 </div>
                 <div class="content-wrapper" style="align-items: flex-start;">
                     <text class="content-title">走失地点</text>
-                    <text class="content">云南省大理白族自治州宾川县金牛镇金达路亚杰家私城南侧</text>
+                    <text class="content">{{detailInfo.lossLocation}}</text>
                 </div>
                 <div class="content-wrapper" style="margin-top: 10px;align-items: flex-start;">
                     <text class="content-title">详细信息</text>
-                    <text class="content">2021年6月22日，邓丽娟报警称其女儿邓王琴（女，13岁，云南省大理州宾川县州城镇人）2021年6月20日外出后未归，出走时衣着不详。请广大市民协助查找。</text>
+                    <text class="content">{{detailInfo.caseDetail}}</text>
                 </div>
             </div>
         </list-item>

@@ -1,5 +1,6 @@
 package com.cyj.whereareyou.page;
 
+import ohos.aafwk.content.Operation;
 import ohos.ace.ability.AceAbility;
 import ohos.aafwk.content.Intent;
 import com.cyj.whereareyou.widget.controller.FormController;
@@ -24,6 +25,15 @@ public class MainAbility extends AceAbility {
     public void onStart(Intent intent) {
         super.onStart(intent);
         requestPermissions();
+
+        Intent intent1 = new Intent();
+        Operation operation = new Intent.OperationBuilder()
+                .withDeviceId("")
+                .withBundleName("com.cyj.whereareyou")
+                .withAbilityName("com.cyj.whereareyou.page.NotificationService")
+                .build();
+        intent1.setOperation(operation);
+        startAbility(intent1);
     }
 
     @Override
@@ -119,7 +129,7 @@ public class MainAbility extends AceAbility {
     private void requestPermissions() {
         String[] permissions = {
                 SystemPermission.WRITE_USER_STORAGE, SystemPermission.READ_USER_STORAGE, SystemPermission.CAMERA,
-                SystemPermission.MICROPHONE, SystemPermission.LOCATION, SystemPermission.INTERNET
+                SystemPermission.MICROPHONE, SystemPermission.LOCATION, SystemPermission.INTERNET, SystemPermission.KEEP_BACKGROUND_RUNNING
         };
         requestPermissionsFromUser(Arrays.stream(permissions)
                 .filter(permission -> verifySelfPermission(permission) != IBundleManager.PERMISSION_GRANTED).toArray(String[]::new), 0);

@@ -1,0 +1,1 @@
+export let baseUrl = "https://api.jiangtao.website/api"

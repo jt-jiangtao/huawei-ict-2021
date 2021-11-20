@@ -10,17 +10,13 @@
             <menu id="apiMenu" onselected="onMenuSelected">
                 <option value="1">找孩子</option>
                 <option value="2">找父母</option>
-                <option value="3">紧急消息</option>
             </menu>
         </div>
     </div>
     <list class="list" clickeffect="false">
         <list-item class="list-swipers" clickeffect="false">
             <swiper autoplay="true" class="swipers">
-                <image class="banner-image" src="/common/pic/1.jpg"></image>
-                <image class="banner-image" src="/common/pic/2.jpeg"></image>
-                <image class="banner-image" src="/common/pic/3.jpeg"></image>
-                <image class="banner-image" src="/common/pic/4.jpeg"></image>
+                <image for="{{ item in swiperInfo }}" tid="{{item.id}}" class="banner-image" src="{{item.picture}}" onclick="redirectToSwiperDetail(item.router)"></image>
             </swiper>
         </list-item>
         <list-item clickeffect="false">
@@ -55,62 +51,22 @@
         <list-item class="content-wrapper" clickeffect="false">
             <div class="content">
                 <div class="left">
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/1.png"/>
+                    <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 == 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
+                        <image src="{{item.images[0]}}"/>
                         <div class="content-text">
-                            <text>姓名: 李之安易</text>
-                            <text>失踪时间: 9-24</text>
+                            <text>姓名: {{item.name}}</text>
+                            <text>失踪地点: {{item.lossLocation}}</text>
+                            <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
                         </div>
-                    </div>
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/2.jpg"/>
-                        <div class="content-text">
-                            <text>姓名: 刘选琼</text>
-                            <text>年龄: 12</text>
                         </div>
-                    </div>
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/3.jpg"/>
-                        <div class="content-text">
-                            <text>姓名: 金歆然</text>
-                            <text>年龄: 2</text>
-                        </div>
-                    </div>
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/4.png"/>
-                        <div class="content-text">
-                            <text>姓名: 邓王琴</text>
-                            <text>年龄: 13</text>
-                        </div>
-                    </div>
                 </div>
                 <div class="right">
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/4.png"/>
+                    <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 != 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
+                        <image src="{{item.images[0]}}"/>
                         <div class="content-text">
-                            <text>姓名: 邓王琴</text>
-                            <text>年龄: 13</text>
-                        </div>
-                    </div>
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/3.jpg"/>
-                        <div class="content-text">
-                            <text>姓名: 金歆然</text>
-                            <text>年龄: 2</text>
-                        </div>
-                    </div>
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/1.png"/>
-                        <div class="content-text">
-                            <text>姓名: 李之安易</text>
-                            <text>失踪时间: 9-24</text>
-                        </div>
-                    </div>
-                    <div class="content-item" onclick="redirectToDetail">
-                        <image src="/common/images/2.jpg"/>
-                        <div class="content-text">
-                            <text>姓名: 刘选琼</text>
-                            <text>年龄: 12</text>
+                            <text>姓名: {{item.name}}</text>
+                            <text>失踪地点: {{item.lossLocation}}</text>
+                            <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
                         </div>
                     </div>
                 </div>

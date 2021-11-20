@@ -45,8 +45,21 @@
     font-weight: 700;
 }
 
+.article .author{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #8c8c8c;
+}
+
+.article .pic{
+    margin-top: 23px;
+    border-radius: 10px;
+}
+
 .article .content{
-    margin-top: 25px;
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
 }

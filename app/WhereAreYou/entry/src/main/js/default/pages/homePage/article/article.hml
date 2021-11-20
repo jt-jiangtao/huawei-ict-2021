@@ -1,67 +1,16 @@
 <div class="container">
     <list class="title">
-        <list-item class="first-item" clickeffect="false">
+        <list-item for="{{item in items}}" class="first-item" clickeffect="false">
             <div class="articles">
-                <text>孩子短时间丢失怎么办?</text>
+                <text>{{item.sortTitle}}</text>
                 <divider class="divider" vertical="false"></divider>
                 <div class="articles-content">
-                    <div class="article" onclick="redirectToDetail">
+                    <div for="{{article in item.items}}" class="article" onclick="redirectToDetail(article.articleId)">
                         <div class="title-author">
-                            <text class="title">应如何增强儿童安全素养?</text>
-                            <text class="author">@你在哪</text>
+                            <text class="title">{{article.articleTitle}}</text>
+                            <text class="author">@{{article.author}}</text>
                         </div>
-                        <image class="article-pic" src="/common/pic/article_image.jpg"/>
-                    </div>
-                    <div class="article" onclick="redirectToDetail">
-                        <div class="title-author">
-                            <text class="title">应如何增强儿童安全素养?</text>
-                            <text class="author">@你在哪</text>
-                        </div>
-                        <image class="article-pic" src="/common/pic/article_image.jpg"/>
-                    </div>
-                </div>
-            </div>
-        </list-item>
-        <list-item clickeffect="false">
-            <div class="articles">
-                <text>如何寻找孩子?</text>
-                <divider class="divider" vertical="false"></divider>
-                <div class="articles-content">
-                    <div class="article" onclick="redirectToDetail">
-                        <div class="title-author">
-                            <text class="title">应如何增强儿童安全素养?</text>
-                            <text class="author">@你在哪</text>
-                        </div>
-                        <image class="article-pic" src="/common/pic/article_image.jpg"/>
-                    </div>
-                    <div class="article" onclick="redirectToDetail">
-                        <div class="title-author">
-                            <text class="title">应如何增强儿童安全素养?</text>
-                            <text class="author">@你在哪</text>
-                        </div>
-                        <image class="article-pic" src="/common/pic/article_image.jpg"/>
-                    </div>
-                </div>
-            </div>
-        </list-item>
-        <list-item clickeffect="false">
-            <div class="articles">
-                <text>如何寻找父母?</text>
-                <divider class="divider" vertical="false"></divider>
-                <div class="articles-content">
-                    <div class="article" onclick="redirectToDetail">
-                        <div class="title-author">
-                            <text class="title">应如何增强儿童安全素养?</text>
-                            <text class="author">@你在哪</text>
-                        </div>
-                        <image class="article-pic" src="/common/pic/article_image.jpg"/>
-                    </div>
-                    <div class="article" onclick="redirectToDetail">
-                        <div class="title-author">
-                            <text class="title">应如何增强儿童安全素养?</text>
-                            <text class="author">@你在哪</text>
-                        </div>
-                        <image class="article-pic" src="/common/pic/article_image.jpg"/>
+                        <image class="{{article.headPicture == '' ? 'article-pic-no-width' : 'article-pic'}}" src="{{article.headPicture}}"/>
                     </div>
                 </div>
             </div>
