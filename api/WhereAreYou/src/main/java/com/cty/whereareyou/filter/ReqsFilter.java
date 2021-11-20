@@ -14,12 +14,13 @@ public class ReqsFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         filterHead(servletRequest, servletResponse);
+        servletRequest.getParameter("token");
         filterChain.doFilter(servletRequest, servletResponse);
         filterTail(servletRequest, servletResponse);
     }
 
     private void filterHead(ServletRequest servletRequest, ServletResponse servletResponse) {
-
+        System.out.println(servletRequest);
     }
 
     private void filterTail(ServletRequest servletRequest, ServletResponse servletResponse) {
