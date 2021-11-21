@@ -1,7 +1,10 @@
 package com.cty.whereareyou.mapper;
 
 import com.cty.whereareyou.entity.article.Article;
+import com.cty.whereareyou.entity.article.ArticleNoContent;
 import com.cty.whereareyou.entity.article.FrontArticlesList;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -19,4 +22,37 @@ public interface ArticlesMapper {
 
     @Select("SELECT * FROM articles WHERE id = #{id};")
     Article selectArticleById(int id);
+
+    @Insert("INSERT INTO article_likes(article_id, user_id) VALUES (#{article}, #{user});")
+    int addLike(String article, String user);
+
+    @Delete("DELETE FROM article_likes WHERE article_id = #{article} AND user_id = #{user};")
+    int removeLike(String article, String user);
+
+    @Select("SELECT COUNT(like_id) as number FROM article_likes WHERE article_id = #{article} AND user_id = #{user};")
+    int isLike(String article, String user);
+
+    @Select("SELECT COUNT(like_id) as number FROM article_likes WHERE article_id = #{article};")
+    int likeNumber(String article);
+
+    @Insert("INSERT INTO article_collect(article_id, user_id) VALUES(#{article}, #{user});")
+    int addCollect(String article, String user);
+
+    @Delete("DELETE FROM article_collect WHERE article_id = #{article} AND user_id = #{user};")
+    int removeCollect(String article, String user);
+
+    @Select("SELECT COUNT(id) as number FROM article_collect WHERE article_id = #{article} AND user_id = #{user};")
+    int isCollect(String article, String user);
+
+    @Select("SELECT COUNT(id) as number FROM article_collect WHERE article_id = #{article};")
+    int collectNumber(String article);
+
+    @Select("SELECT COUNT(id) as number FROM article_collect WHERE user_id = #{user};")
+    int getUserCollectNumber(String user);
+
+    @Select("SELECT article_id as number FROM article_collect WHERE user_id = #{user};")
+    List<Integer> getUserCollect(String user);
+
+    @Select("SELECT id, sort_id, title, author, head_picture FROM articles WHERE id = #{id};")
+    ArticleNoContent selectArticleSimpleInfoById(int id);
 }

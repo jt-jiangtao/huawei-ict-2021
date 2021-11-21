@@ -17,6 +17,8 @@ public interface PublishService {
 
     LossSimpleInfo selectAllSimpleInfo();
 
+    LossSimpleInfo selectByKey(String key);
+
     DetailLossInfo selectDetailLossById(int id);
 
     UserLossSimpleInfo selectAllSimpleInfoByUserOfFindChild(int id);

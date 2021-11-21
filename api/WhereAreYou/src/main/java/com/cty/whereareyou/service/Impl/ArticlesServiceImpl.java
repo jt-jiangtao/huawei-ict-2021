@@ -1,6 +1,8 @@
 package com.cty.whereareyou.service.Impl;
 
+import com.alibaba.fastjson.JSON;
 import com.cty.whereareyou.entity.article.Article;
+import com.cty.whereareyou.entity.article.ArticleNoContent;
 import com.cty.whereareyou.entity.article.FrontArticlesList;
 import com.cty.whereareyou.mapper.ArticlesMapper;
 import com.cty.whereareyou.service.ArticlesService;
@@ -12,7 +14,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * @Author: jiangtao
@@ -42,5 +48,118 @@ public class ArticlesServiceImpl implements ArticlesService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
         return articlesMapper.selectArticleById(id);
+    }
+
+    @Override
+    public Object addLike(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        if (articlesMapper.isLike(article, user) <= 0){
+            map.put("status", articlesMapper.addLike(article, user));
+            sqlSession.commit();
+        }
+        return map;
+    }
+
+    @Override
+    public Object removeLike(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("status", articlesMapper.removeLike(article, user));
+        sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Object isLike(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("status", articlesMapper.isLike(article, user));
+        return map;
+    }
+
+    @Override
+    public Object likeNumber(String article) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("number", articlesMapper.likeNumber(article));
+        return map;
+    }
+
+    @Override
+    public Object addCollect(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        if (articlesMapper.isCollect(article, user) <= 0){
+            map.put("status", articlesMapper.addCollect(article, user));
+            sqlSession.commit();
+        }
+        return map;
+    }
+
+    @Override
+    public Object removeCollect(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("status", articlesMapper.removeCollect(article, user));
+        sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Object isCollect(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("status", articlesMapper.isCollect(article, user));
+        return map;
+    }
+
+    @Override
+    public Object collectNumber(String article) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("number", articlesMapper.collectNumber(article));
+        return map;
+    }
+
+    @Override
+    public Object getUserCollectNumber(String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("number", articlesMapper.getUserCollectNumber(user));
+        return map;
+    }
+
+    @Override
+    public Object getUserCollectInfo(String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        List<Integer> list = articlesMapper.getUserCollect(user);
+        List<ArticleNoContent> list1 = new ArrayList<>();
+        list.forEach(i -> {
+            list1.add(articlesMapper.selectArticleSimpleInfoById(i));
+        });
+        return list1;
+    }
+
+    @Override
+    public Object getArticleLikeCollectInfo(String article, String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ArticlesMapper articlesMapper = sqlSession.getMapper(ArticlesMapper.class);
+        Map<String, Integer> map = new HashMap();
+        map.put("is_like", articlesMapper.isLike(article, user));
+        map.put("is_collect", articlesMapper.isCollect(article, user));
+        map.put("like_num", articlesMapper.likeNumber(article));
+        map.put("collect_num", articlesMapper.collectNumber(article));
+        return map;
     }
 }

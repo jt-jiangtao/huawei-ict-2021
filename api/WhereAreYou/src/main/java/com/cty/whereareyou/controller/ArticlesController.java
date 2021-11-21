@@ -29,4 +29,59 @@ public class ArticlesController {
         if (article == null) return UnifyResponse.build(11201);
         return article;
     }
+
+    @GetMapping("/like/add")
+    public Object addLike(String article, String user) {
+        return articlesService.addLike(article, user);
+    }
+
+    @GetMapping("/like/remove")
+    public Object removeLike(String article, String user) {
+        return articlesService.removeLike(article, user);
+    }
+
+    @GetMapping("/isLike")
+    public Object isLike(String article, String user) {
+        return articlesService.isLike(article, user);
+    }
+
+    @GetMapping("/like/number")
+    public Object likeNumber(String article) {
+        return articlesService.likeNumber(article);
+    }
+
+    @GetMapping("/collect/add")
+    public Object addCollect(String article, String user) {
+        return articlesService.addCollect(article, user);
+    }
+
+    @GetMapping("/collect/remove")
+    public Object removeCollect(String article, String user) {
+        return articlesService.removeCollect(article, user);
+    }
+
+    @GetMapping("/isCollect")
+    public Object isCollect(String article, String user) {
+        return articlesService.isCollect(article, user);
+    }
+
+    @GetMapping("/collect/number")
+    public Object collectNumber(String article) {
+        return articlesService.collectNumber(article);
+    }
+
+    @GetMapping("/collect/user/number")
+    public Object getUserCollectNumber(String user) {
+        return articlesService.getUserCollectNumber(user);
+    }
+
+    @GetMapping("/collect/user/info")
+    public Object getUserCollectInfo(String user) {
+        return articlesService.getUserCollectInfo(user);
+    }
+
+    @GetMapping("/article/lc_info")
+    public Object getArticleLikeCollectInfo(String article, String user){
+        return articlesService.getArticleLikeCollectInfo(article, user);
+    }
 }

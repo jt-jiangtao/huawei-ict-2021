@@ -15,7 +15,7 @@ public class JWTUtils {
     //私匙
     private static String KEY="com.cyj.whereareyou-jiangtao-yijiamu-chengtao";
 
-    public static String createJWT(long ttlMillis,String openID) {
+    public static String createJWT(long ttlMillis,String openID, String imageUrl, String username) {
 
         //指定签名的时候使用的签名算法，也就是header那部分，jjwt已经将这部分内容封装好了。
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -27,6 +27,8 @@ public class JWTUtils {
         //创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
         Map<String, Object> claims = new HashMap<String, Object>();
         claims.put("openId", openID);
+        claims.put("imageUrl", imageUrl);
+        claims.put("username", username);
 
         //生成签名的时候使用的秘钥secret,这个方法本地封装了的，一般可以从本地配置文件中读取，切记这个秘钥不能外露哦。它就是你服务端的私钥，在任何场景都不应该流露出去。一旦客户端得知这个secret, 那就意味着客户端是可以自我签发jwt了。
         String key = KEY;
@@ -103,4 +105,9 @@ public class JWTUtils {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(date);
     }
 
+    public static void main(String[] args) {
+        String token = createJWT(1000 * 30 * 30 * 30, "openID", "url", "username");
+        System.out.println(token);
+        parseJWT(token);
+    }
 }

@@ -15,4 +15,6 @@ public interface UserService {
     boolean updateUserInfo(String refreshToken, String displayName, String headPictureUrl, String openId);
 
     boolean insertUser(String refreshToken, String displayName, String headPictureUrl, String openId);
+
+    Object verify(String token);
 }

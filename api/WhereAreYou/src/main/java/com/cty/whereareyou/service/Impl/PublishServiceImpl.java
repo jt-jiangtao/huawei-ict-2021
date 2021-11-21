@@ -46,6 +46,14 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
+    public LossSimpleInfo selectByKey(String key) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        List<LossSimpleInfo.DatabaseItem> items = publishMapper.selectByKeyWord("%" + key + "%");
+        return new LossSimpleInfo(items);
+    }
+
+    @Override
     public DetailLossInfo selectDetailLossById(int id) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);

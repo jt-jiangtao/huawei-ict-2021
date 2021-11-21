@@ -29,6 +29,12 @@ public class PublishController {
         return publishService.selectAllSimpleInfo();
     }
 
+    // 关键字检索
+    @GetMapping("/key")
+    public Object getLossSimpleInfoByKey(String key){
+        return publishService.selectByKey(key);
+    }
+
     @GetMapping("/detail/{id}")
     public Object getLossDetailInfo(@PathVariable("id") Integer id){
         return publishService.selectDetailLossById(id);

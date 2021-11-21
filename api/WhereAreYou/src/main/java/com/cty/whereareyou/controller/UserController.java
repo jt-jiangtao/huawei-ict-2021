@@ -2,6 +2,7 @@ package com.cty.whereareyou.controller;
 
 import com.cty.whereareyou.service.HuaweiInteractionService;
 import com.cty.whereareyou.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("/login")
+@Slf4j
 public class UserController {
 
     @Autowired
@@ -21,8 +23,15 @@ public class UserController {
     private UserService loginService;
 
     @PostMapping("/log")
-    public Object log(@RequestParam(name = "code") String code){
+    public Object log(String code){
+        log.info(code);
         return loginService.login(code);
     }
+
+    @PostMapping("/verify")
+    public Object verifyToken(String token){
+        return loginService.verify(token);
+    }
+
 
 }

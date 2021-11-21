@@ -6,6 +6,7 @@ import com.cty.whereareyou.mapper.UserMapper;
 import com.cty.whereareyou.service.HuaweiInteractionService;
 import com.cty.whereareyou.service.UserService;
 import com.cty.whereareyou.utils.JWTUtils;
+import io.jsonwebtoken.Claims;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -50,9 +51,12 @@ public class UserServiceImpl implements UserService {
             boolean status = insertUser(tokenReturn.getRefreshToken(), userInfo.getDisplayName(), userInfo.getHeadPictureURL(), userInfo.getOpenID());
             if (!status) return false;
         }
-        String token = JWTUtils.createJWT(1000L * 60 * 60 * 24 * 180, userInfo.getOpenID());
+        String token = JWTUtils.createJWT(1000L * 60 * 60 * 24 * 180, userInfo.getOpenID(), userInfo.getHeadPictureURL(), userInfo.getDisplayName());
         Map<String,String> map = new HashMap<>();
         map.put("token", token);
+        map.put("userId", userInfo.getOpenID());
+        map.put("imageUrl", userInfo.getHeadPictureURL());
+        map.put("username", userInfo.getDisplayName());
         return map;
     }
 
@@ -81,6 +85,20 @@ public class UserServiceImpl implements UserService {
         int status = userMapper.insertUser(refreshToken, displayName, headPictureUrl, openId);
         sqlSession.commit();
         return status == 1;
+    }
+
+    @Override
+    public Object verify(String token) {
+        Map<String, String> map = new HashMap<>();
+        if (JWTUtils.isVerify(token)) {
+            map.put("status", "200");
+            Claims claims = JWTUtils.parseJWT(token);
+            map.put("username", claims.get("username").toString());
+            map.put("userId", claims.get("openId").toString());
+            map.put("imageUrl", claims.get("imageUrl").toString());
+        }
+        else map.put("status", "400");
+        return map;
     }
 
 }

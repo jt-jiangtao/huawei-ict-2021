@@ -34,4 +34,7 @@ public interface PublishMapper {
 
     @Update("UPDATE find SET `delete` = #{operation} WHERE loss_id = #{id};")
     int deleteInfo(int id, int operation);
+
+    @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND CONCAT(IFNULL(`age`,''),IFNULL(`loss_time`,''),IFNULL(`loss_location`,''),IFNULL(`name`,''),IFNULL(`sex`,''),IFNULL(`detail_characters`,''),IFNULL(`case_detail`,''))  LIKE  #{key} ORDER BY loss_time;")
+    List<LossSimpleInfo.DatabaseItem> selectByKeyWord(String key);
 }
