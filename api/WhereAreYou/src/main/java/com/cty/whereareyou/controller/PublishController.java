@@ -70,4 +70,29 @@ public class PublishController {
         if (code == 1) return new UnifyResponse(12105);
         return new UnifyResponse(12206);
     }
+
+    @GetMapping("/collect/add")
+    public Object collectAdd(String id, String event){
+        return publishService.collectAdd(id, event);
+    }
+
+    @GetMapping("/collect/remove")
+    public Object collectRemove(String id, String event){
+        return publishService.collectRemove(id, event);
+    }
+
+    @GetMapping("/is_collect")
+    public Object isCollect(String id, String event){
+        return publishService.isCollect(id, event);
+    }
+
+    @GetMapping("/collect/number")
+    public Object collectNumber(String id){
+        return publishService.collectNumber(id);
+    }
+
+    @GetMapping("/collect/simple_info")
+    public Object collectSimpleInfoByUser(String id){
+        return publishService.collectSimpleInfoByUser(id);
+    }
 }

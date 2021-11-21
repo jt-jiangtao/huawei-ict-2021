@@ -12,7 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * @Author: jiangtao
@@ -113,5 +117,59 @@ public class PublishServiceImpl implements PublishService {
         int code = publishMapper.deleteInfo(id, 0);
         sqlSession.commit();
         return code;
+    }
+
+    @Override
+    public Object collectAdd(String id, String event) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, Integer> map = new HashMap<>();
+        if (publishMapper.isCollect(id, event) <= 0){
+            map.put("status", publishMapper.collectAdd(id, event));
+            sqlSession.commit();
+        }
+        map.put("status", 0);
+        return map;
+    }
+
+    @Override
+    public Object collectRemove(String id, String event) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("status", publishMapper.collectRemove(id, event));
+        sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Object isCollect(String id, String event) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("status", publishMapper.isCollect(id, event));
+        return map;
+    }
+
+    @Override
+    public Object collectNumber(String id) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("status", publishMapper.collectNumber(id));
+        return map;
+    }
+
+    @Override
+    public Object collectSimpleInfoByUser(String id) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        List<LossSimpleInfo> lossSimpleInfos = new ArrayList<>();
+        List<LossSimpleInfo.DatabaseItem> databaseItems = new ArrayList<>();
+        publishMapper.getEvenIdByUserId(id).forEach(i -> {
+            databaseItems.add(publishMapper.selectItemSimpleInfo(i.toString()));
+        });
+        lossSimpleInfos.add(new LossSimpleInfo(databaseItems));
+        return lossSimpleInfos;
     }
 }

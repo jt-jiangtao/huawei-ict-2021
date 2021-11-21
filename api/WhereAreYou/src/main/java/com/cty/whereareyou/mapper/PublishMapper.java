@@ -1,9 +1,7 @@
 package com.cty.whereareyou.mapper;
 
 import com.cty.whereareyou.entity.publish.*;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -37,4 +35,22 @@ public interface PublishMapper {
 
     @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND CONCAT(IFNULL(`age`,''),IFNULL(`loss_time`,''),IFNULL(`loss_location`,''),IFNULL(`name`,''),IFNULL(`sex`,''),IFNULL(`detail_characters`,''),IFNULL(`case_detail`,''))  LIKE  #{key} ORDER BY loss_time;")
     List<LossSimpleInfo.DatabaseItem> selectByKeyWord(String key);
+
+    @Insert("INSERT INTO event_collect(event_id, user_id) VALUES(#{event}, #{id});")
+    int collectAdd(String id, String event);
+
+    @Delete("DELETE FROM event_collect WHERE event_id = #{event} AND user_id = #{id};")
+    int collectRemove(String id, String event);
+
+    @Select("SELECT COUNT(id) FROM event_collect WHERE event_id = #{event} AND user_id = #{id};")
+    int isCollect(String id, String event);
+
+    @Select("SELECT COUNT(event_id) FROM event_collect WHERE user_id = #{id};")
+    int collectNumber(String id);
+
+    @Select("SELECT event_id FROM event_collect WHERE user_id = #{id};")
+    List<Integer> getEvenIdByUserId(String id);
+
+    @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND find.loss_id = #{id} ORDER BY loss_time;")
+    LossSimpleInfo.DatabaseItem selectItemSimpleInfo(String id);
 }

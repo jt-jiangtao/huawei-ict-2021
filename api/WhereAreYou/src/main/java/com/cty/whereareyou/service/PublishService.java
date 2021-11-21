@@ -30,4 +30,14 @@ public interface PublishService {
     int deleteFromTrash(int id);
 
     int moveFromTrashToNormalORBack(int id);
+
+    Object collectAdd(String id, String event);
+
+    Object collectRemove(String id, String event);
+
+    Object isCollect(String id, String event);
+
+    Object collectNumber(String id);
+
+    Object collectSimpleInfoByUser(String id);
 }
