@@ -34,5 +34,7 @@
         <mapper resource="mapper/SwiperMapper.xml"/>
         <mapper resource="mapper/PublishMapper.xml"/>
         <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/ClewMapper.xml"/>
+        <mapper resource="mapper/ImageMapper.xml"/>
     </mappers>
 </configuration>

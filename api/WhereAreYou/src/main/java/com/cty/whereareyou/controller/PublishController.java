@@ -95,4 +95,22 @@ public class PublishController {
     public Object collectSimpleInfoByUser(String id){
         return publishService.collectSimpleInfoByUser(id);
     }
+
+    @GetMapping("/update/contact")
+    public Object updateContact(String id, String name, String phone, String location, String userId, String relation) {
+        // TODO: update contact
+        return null;
+    }
+
+    @GetMapping("/remove/contact")
+    public Object removeContact(String id, String userId){
+        // TODO: remove contact
+        return null;
+    }
+
+    @GetMapping("/get/contact")
+    public Object getContact(String userId){
+        // TODO: get contact
+        return null;
+    }
 }
