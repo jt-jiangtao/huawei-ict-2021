@@ -1,9 +1,6 @@
 package com.cty.whereareyou.service;
 
-import com.cty.whereareyou.entity.publish.DetailLossInfo;
-import com.cty.whereareyou.entity.publish.LossSimpleInfo;
-import com.cty.whereareyou.entity.publish.SimpleInfo;
-import com.cty.whereareyou.entity.publish.UserLossSimpleInfo;
+import com.cty.whereareyou.entity.publish.*;
 
 import java.util.List;
 
@@ -40,4 +37,12 @@ public interface PublishService {
     Object collectNumber(String id);
 
     Object collectSimpleInfoByUser(String id);
+
+    List<Contact> selectContacts(int user);
+
+    Object removeContact(int id, int userId);
+
+    Object addContact(String name, String phone, String location, String userId, String relation);
+
+    Object updateContact(String id, String name, String phone, String location, String userId, String relation);
 }

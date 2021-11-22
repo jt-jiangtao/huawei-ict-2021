@@ -96,21 +96,23 @@ public class PublishController {
         return publishService.collectSimpleInfoByUser(id);
     }
 
-    @GetMapping("/update/contact")
-    public Object updateContact(String id, String name, String phone, String location, String userId, String relation) {
-        // TODO: update contact
-        return null;
+    @PostMapping("/add/contact")
+    public Object addContact(String name, String phone, String location, String userId, String relation) {
+        return publishService.addContact(name, phone, location, userId, relation);
     }
 
-    @GetMapping("/remove/contact")
-    public Object removeContact(String id, String userId){
-        // TODO: remove contact
-        return null;
+    @PostMapping("/update/contact")
+    public Object updateContact(String id, String name, String phone, String location, String userId, String relation) {
+        return publishService.updateContact(id, name, phone, location, userId, relation);
+    }
+
+    @PostMapping("/remove/contact")
+    public Object removeContact(int id, int userId){
+        return publishService.removeContact(id, userId);
     }
 
     @GetMapping("/get/contact")
-    public Object getContact(String userId){
-        // TODO: get contact
-        return null;
+    public Object getContact(@RequestParam("id") int userId){
+        return publishService.selectContacts(userId);
     }
 }

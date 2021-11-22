@@ -21,7 +21,7 @@ public interface PublishMapper {
     @Select("SELECT id, image_url, `analyze` as type, loss_id FROM images WHERE loss_id = #{id} AND `analyze` = 0;")
     List<Image> selectImagesByLossId(int id);
 
-    @Select("SELECT id, name, phone, location, user_id, relation FROM contact WHERE user_id = #{id};")
+    @Select("SELECT id, name, phone, location, user_id, relation FROM contact WHERE user_id = #{id} AND `delete` = 0;")
     List<Contact> selectContactsByLossId(int id);
 
     @Select("SELECT * FROM find WHERE loss_id = #{id};")
@@ -53,4 +53,22 @@ public interface PublishMapper {
 
     @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND find.loss_id = #{id} ORDER BY loss_time;")
     LossSimpleInfo.DatabaseItem selectItemSimpleInfo(String id);
+
+    @Select("SELECT * FROM contact WHERE user_id = #{user}  AND `delete` = 0;")
+    List<Contact> selectContacts(int user);
+
+    @Select("SELECT COUNT(id) AS number FROM contact WHERE user_id = #{id}  AND `delete` = 0;")
+    int leavePhotoNumber(int user);
+
+    @Select("SELECT COUNT(loss_id) AS number FROM find WHERE user_id = #{user};")
+    int hasLossChild(int user);
+
+    @Update("UPDATE contact SET `delete` = 1 WHERE id = #{id};")
+    int removeContact(int id);
+
+    @Insert("INSERT INTO contact(name, phone, location, user_id, relation) VALUES(#{name}, #{phone}, #{location} , #{userId}, #{relation});")
+    int addContact(String name, String phone, String location, String userId, String relation);
+
+    @Update("UPDATE contact SET name = #{name}, phone = #{phone}, location = #{location} , relation = #{relation} WHERE id = #{id} AND user_id = #{userId};")
+    int updateContact(String id, String name, String phone, String location, String userId, String relation);
 }

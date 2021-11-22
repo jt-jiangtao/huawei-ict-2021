@@ -172,4 +172,48 @@ public class PublishServiceImpl implements PublishService {
         lossSimpleInfos.add(new LossSimpleInfo(databaseItems));
         return lossSimpleInfos;
     }
+
+    @Override
+    public List<Contact> selectContacts(int user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        return publishMapper.selectContacts(user);
+    }
+
+    @Override
+    public Object removeContact(int id, int userId) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, String> map = new HashMap<>();
+        int leavePhotoNumber = publishMapper.leavePhotoNumber(userId);
+        int userLossChildNumber = publishMapper.hasLossChild(userId);
+        if (leavePhotoNumber >= 2 || userLossChildNumber <= 0) {
+            publishMapper.removeContact(id);
+            map.put("status", "200");
+        }else {
+            map.put("status","400");
+        }
+        sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Object addContact(String name, String phone, String location, String userId, String relation) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, String> map = new HashMap<>();
+        map.put("status", publishMapper.addContact(name, phone, location, userId, relation) >= 1 ? "200" : "400");
+        sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Object updateContact(String id, String name, String phone, String location, String userId, String relation) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        Map<String, String> map = new HashMap<>();
+        map.put("status", publishMapper.updateContact(id, name, phone, location, userId, relation) >= 1 ? "200" : "400");
+        sqlSession.commit();
+        return map;
+    }
 }
