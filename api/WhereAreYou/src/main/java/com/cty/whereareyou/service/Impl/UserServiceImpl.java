@@ -2,10 +2,12 @@ package com.cty.whereareyou.service.Impl;
 
 import com.cty.whereareyou.entity.huaweiserverreturn.TokenReturn;
 import com.cty.whereareyou.entity.huaweiserverreturn.UserInfo;
+import com.cty.whereareyou.entity.user.InsertUserBack;
 import com.cty.whereareyou.mapper.UserMapper;
 import com.cty.whereareyou.service.HuaweiInteractionService;
 import com.cty.whereareyou.service.UserService;
 import com.cty.whereareyou.utils.JWTUtils;
+import com.cty.whereareyou.utils.UsernameUtils;
 import io.jsonwebtoken.Claims;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -44,29 +46,28 @@ public class UserServiceImpl implements UserService {
         if (tokenReturn.getAccessToken() == null) return false;
         UserInfo userInfo = huaweiInteractionService.getUserInfo(tokenReturn.getAccessToken(), 1);
         if (userInfo.getOpenID() == null) return false;
-        if (existUser(userInfo.getOpenID())){
+        int id = existUser(userInfo.getOpenID());
+        if (id >= 1){
             boolean status = updateUserInfo(tokenReturn.getRefreshToken(), userInfo.getDisplayName(), userInfo.getHeadPictureURL(), userInfo.getOpenID());
             if (!status) return false;
         }else {
-            boolean status = insertUser(tokenReturn.getRefreshToken(), userInfo.getDisplayName(), userInfo.getHeadPictureURL(), userInfo.getOpenID());
-            if (!status) return false;
+            InsertUserBack back = insertUser(tokenReturn.getRefreshToken(), userInfo.getDisplayName(), userInfo.getHeadPictureURL(), userInfo.getOpenID());
+            if (!back.isStatus()) return false;
         }
         String token = JWTUtils.createJWT(1000L * 60 * 60 * 24 * 180, userInfo.getOpenID(), userInfo.getHeadPictureURL(), userInfo.getDisplayName());
         Map<String,String> map = new HashMap<>();
         map.put("token", token);
-        map.put("userId", userInfo.getOpenID());
+        map.put("userId", UsernameUtils.transformToUsername(id));
         map.put("imageUrl", userInfo.getHeadPictureURL());
         map.put("username", userInfo.getDisplayName());
         return map;
     }
 
     @Override
-    public boolean existUser(String id) {
+    public int existUser(String id) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        int num = userMapper.existUser(id);
-        if (num >= 1) return true;
-        return false;
+        return userMapper.existUser(id);
     }
 
     @Override
@@ -79,12 +80,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean insertUser(String refreshToken, String displayName, String headPictureUrl, String openId) {
+    public InsertUserBack insertUser(String refreshToken, String displayName, String headPictureUrl, String openId) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
-        int status = userMapper.insertUser(refreshToken, displayName, headPictureUrl, openId);
+        UserInfo userInfo = new UserInfo();
+        int status = userMapper.insertUser(refreshToken, displayName, headPictureUrl, openId, userInfo);
         sqlSession.commit();
-        return status == 1;
+        return new InsertUserBack(userInfo.getId(), status >= 1);
     }
 
     @Override

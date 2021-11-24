@@ -1,5 +1,6 @@
 package com.cty.whereareyou.service;
 
+import com.cty.whereareyou.entity.user.InsertUserBack;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -10,11 +11,11 @@ public interface UserService {
 
     Object login(String code);
 
-    boolean existUser(String id);
+    int existUser(String id);
 
     boolean updateUserInfo(String refreshToken, String displayName, String headPictureUrl, String openId);
 
-    boolean insertUser(String refreshToken, String displayName, String headPictureUrl, String openId);
+    InsertUserBack insertUser(String refreshToken, String displayName, String headPictureUrl, String openId);
 
     Object verify(String token);
 }

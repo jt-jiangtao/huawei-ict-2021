@@ -35,6 +35,7 @@ public class SearchServiceImpl implements SearchService {
                 log.info(image.getImageUrl() + " compare complete, similarity = " + similarity);
             });
         }).start();
+        // TODO: 保存数据,推送消息
     }
 
     @Override
@@ -47,5 +48,6 @@ public class SearchServiceImpl implements SearchService {
                 log.info(image.getImageUrl() + " compare complete, similarity = " + similarity);
             });
         }).start();
+        // TODO: 保存数据,推送消息
     }
 }

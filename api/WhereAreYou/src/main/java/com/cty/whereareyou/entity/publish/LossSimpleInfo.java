@@ -77,6 +77,9 @@ public class LossSimpleInfo {
             this.type = type;
             this.images.add(imageUrl);
         }
+
+        public Item() {
+        }
     }
 
     @Data

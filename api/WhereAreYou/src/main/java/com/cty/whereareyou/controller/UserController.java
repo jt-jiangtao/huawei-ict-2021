@@ -33,5 +33,4 @@ public class UserController {
         return loginService.verify(token);
     }
 
-
 }

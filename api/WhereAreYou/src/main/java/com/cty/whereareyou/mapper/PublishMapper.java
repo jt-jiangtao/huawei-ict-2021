@@ -67,8 +67,12 @@ public interface PublishMapper {
     int removeContact(int id);
 
     @Insert("INSERT INTO contact(name, phone, location, user_id, relation) VALUES(#{name}, #{phone}, #{location} , #{userId}, #{relation});")
-    int addContact(String name, String phone, String location, String userId, String relation);
+    int addContact(String name, String phone, String location, int userId, String relation);
 
     @Update("UPDATE contact SET name = #{name}, phone = #{phone}, location = #{location} , relation = #{relation} WHERE id = #{id} AND user_id = #{userId};")
     int updateContact(String id, String name, String phone, String location, String userId, String relation);
+
+    @Insert("INSERT INTO find(age, loss_time, loss_location, report_police, name, sex, detail_characters, case_detail, type, user_id) VALUES (#{age}, #{lossTime}, #{lossLocation}, #{reportPolice}, #{name}, #{sex}, #{detailCharacters}, #{caseDetail}, #{type}, #{userId});")
+    @Options(useGeneratedKeys = true, keyProperty = "item.lossId", keyColumn = "loss_id")
+    int insertFindInfo(int age, String lossTime, String lossLocation,int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int type, int userId, LossSimpleInfo.Item item);
 }

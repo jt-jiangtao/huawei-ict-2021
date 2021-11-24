@@ -98,7 +98,7 @@ public class PublishController {
 
     @PostMapping("/add/contact")
     public Object addContact(String name, String phone, String location, String userId, String relation) {
-        return publishService.addContact(name, phone, location, userId, relation);
+        return publishService.addContact(name, phone, location, Integer.parseInt(userId.split("@")[1]), relation);
     }
 
     @PostMapping("/update/contact")
@@ -114,5 +114,15 @@ public class PublishController {
     @GetMapping("/get/contact")
     public Object getContact(@RequestParam("id") int userId){
         return publishService.selectContacts(userId);
+    }
+
+    @PostMapping("/commit/child")
+    public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
+        return publishService.commitFindChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts);
+    }
+
+    @PostMapping("/commit/parent")
+    public Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
+        return publishService.commitParent(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts);
     }
 }

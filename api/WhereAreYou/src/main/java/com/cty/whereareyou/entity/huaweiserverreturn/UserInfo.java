@@ -8,6 +8,7 @@ import lombok.Data;
  */
 @Data
 public class UserInfo {
+    private int id;
     private String displayName;
     private String displayNameFlag;
     private String headPictureURL;
@@ -17,5 +18,8 @@ public class UserInfo {
         this.displayName = displayName;
         this.headPictureURL = headPictureURL;
         this.openID = openID;
+    }
+
+    public UserInfo() {
     }
 }

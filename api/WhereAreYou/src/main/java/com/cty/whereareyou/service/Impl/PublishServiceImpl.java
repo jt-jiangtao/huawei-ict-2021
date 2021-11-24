@@ -1,13 +1,18 @@
 package com.cty.whereareyou.service.Impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.cty.whereareyou.entity.publish.*;
 import com.cty.whereareyou.mapper.ArticlesMapper;
+import com.cty.whereareyou.mapper.ImageMapper;
 import com.cty.whereareyou.mapper.PublishMapper;
 import com.cty.whereareyou.service.PublishService;
+import com.cty.whereareyou.service.SearchService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,6 +29,9 @@ import java.util.function.Consumer;
  */
 @Service
 public class PublishServiceImpl implements PublishService {
+    @Autowired
+    private SearchService searchService;
+
     SqlSessionFactory sqlSessionFactory = null;
 
     public PublishServiceImpl() throws IOException {
@@ -198,7 +206,7 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
-    public Object addContact(String name, String phone, String location, String userId, String relation) {
+    public Object addContact(String name, String phone, String location, int userId, String relation) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         Map<String, String> map = new HashMap<>();
@@ -214,6 +222,73 @@ public class PublishServiceImpl implements PublishService {
         Map<String, String> map = new HashMap<>();
         map.put("status", publishMapper.updateContact(id, name, phone, location, userId, relation) >= 1 ? "200" : "400");
         sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Map<String, String> insertFindInfo(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int type, int userId, String images, String contacts) {
+        Map<String, String> map = new HashMap<>();
+
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        ImageMapper imageMapper = sqlSession.getMapper(ImageMapper.class);
+
+        LossSimpleInfo.Item item = new LossSimpleInfo.Item();
+        int publishStatus = publishMapper.insertFindInfo(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, type, userId, item);
+        if (publishStatus <= 0){
+            map.put("status", "400");
+            sqlSession.rollback();
+            return map;
+        }
+        int lossId = item.getLossId();
+
+        if (images.equals("")) images = "[]";
+        List<String> imagesList = JSON.parseArray(images, String.class);
+        for (int i = 0; i < imagesList.size(); i++) {
+            int status = imageMapper.insertImage(userId, imagesList.get(i), 0, lossId);
+            if (status <= 0){
+                map.put("status", "400");
+                sqlSession.rollback();
+                return map;
+            }
+        }
+
+        if (contacts.equals("")) contacts = "[]";
+        List<Contact> contactList =JSON.parseArray(contacts, Contact.class);
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contact = contactList.get(i);
+            int status = publishMapper.addContact(contact.getName(), contact.getPhone(), contact.getLocation(), userId, contact.getRelation());
+            if (status <= 0){
+                map.put("status", "400");
+                sqlSession.rollback();
+                return map;
+            }
+        }
+        map.put("status", "200");
+        map.put("loss_id", String.valueOf(lossId));
+        sqlSession.commit();
+        return map;
+    }
+
+    @Override
+    public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
+        Map<String, String> map = new HashMap<>();
+        map = insertFindInfo(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, 0 , userId, images, contacts);
+//        if (map.get("status").equals("200"))  // TODO: 调用接口生成图片
+        return map;
+    }
+
+    @Override
+    public Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
+        Map<String, String> map = new HashMap<>();
+        map = insertFindInfo(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, 1, userId, images, contacts);
+        int lossId = Integer.parseInt(map.get("loss_id"));
+        if (map.get("status").equals("200")){
+            List<String> imagesList = JSON.parseArray(images, String.class);
+            imagesList.forEach(s -> {
+                searchService.findParent(s, lossId);
+            });
+        }
         return map;
     }
 }
