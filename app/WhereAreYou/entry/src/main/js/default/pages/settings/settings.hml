@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="head">
+        <image src="/common/Icon/left.png" onclick="back"/>
+        <text>设置</text>
+    </div>
+    <list class="list">
+        <list-item class="list-item">
+            <div class="list-group">
+                <text class="list-group-text">注销账号</text>
+                <image class="list-group-right" src="/common/Icon/right.png"/>
+            </div>
+            <div class="exit">
+                <text>退出</text>
+            </div>
+        </list-item>
+    </list>
+</div>

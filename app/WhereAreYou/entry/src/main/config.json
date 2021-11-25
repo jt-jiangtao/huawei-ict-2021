@@ -105,12 +105,15 @@
         "launchType": "singleton"
       },
       {
-        "name": "com.cyj.whereareyou.page.NotificationService",
+        "name": "com.cyj.whereareyou.service.NotificationService",
         "icon": "$media:icon",
         "description": "$string:notifacationservice_description",
         "type": "service",
         "visible": true,
-        "backgroundModes": ["dataTransfer", "location"]
+        "backgroundModes": [
+          "dataTransfer",
+          "location"
+        ]
       }
     ],
     "js": [
@@ -124,24 +127,22 @@
           "pages/publish/findParent/findParent",
           "pages/publish/findChild/findChild",
           "pages/articleDetail/articleDetail",
-          "pages/infoDetail/infoDetail"
+          "pages/infoDetail/infoDetail",
+          "pages/searchPage/searchPage",
+          "pages/list/lossList/lossList",
+          "pages/list/articlesList/articlesList",
+          "pages/list/clewList/clewList",
+          "pages/list/notificationList/notificationList",
+          "pages/list/contactList/contactList",
+          "pages/settings/settings",
+          "pages/notification/clewDetail/clewDetail",
+          "pages/notification/findDetail/findDetail"
         ],
         "name": "default",
         "window": {
           "designWidth": 720,
           "autoDesignWidth": true
         }
-      },
-      {
-        "pages": [
-          "pages/index/index"
-        ],
-        "name": "widget",
-        "window": {
-          "designWidth": 720,
-          "autoDesignWidth": true
-        },
-        "type": "form"
       }
     ],
     "reqPermissions": [

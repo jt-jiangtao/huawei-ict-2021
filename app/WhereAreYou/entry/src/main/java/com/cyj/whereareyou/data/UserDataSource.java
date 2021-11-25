@@ -1,5 +1,14 @@
-package com.cyj.whereareyou;
+package com.cyj.whereareyou.data;
 
-public class userDataSource {
-    public static String userId;
+import com.cyj.whereareyou.websocket.WebsocketClientManager;
+
+import java.util.UUID;
+
+public class UserDataSource {
+    public static String userId = "init@" + UUID.randomUUID();
+
+    public static void setUserId(String userId) {
+        UserDataSource.userId = userId;
+        WebsocketClientManager.reconnectClient();
+    }
 }

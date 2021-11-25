@@ -1,0 +1,70 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+}
+
+.head {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+}
+.head image{
+    width: 20px;
+    height: 20px;
+}
+
+.head text{
+    font-size: 18px;
+    text-align: center;
+    margin-left: -20px;
+    flex: 1;
+}
+
+.list{
+    flex: 1
+}
+
+.list-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.list-group{
+    height: 50px;
+    background-color: white;
+    margin-top: 1px;
+    padding: 0% 20px;
+    display: flex;
+    align-items: center;
+}
+
+.list-group .list-group-text{
+    font-size: 15px;
+    flex: 1;
+}
+
+.list-group .list-group-right{
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.exit{
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exit text{
+    font-size: 15px;
+    color: #c7000b;
+}

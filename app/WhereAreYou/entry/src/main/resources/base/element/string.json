@@ -71,6 +71,14 @@
     {
       "name": "notifacationservice_description",
       "value": "hap sample empty service"
+    },
+    {
+      "name": "search_description",
+      "value": "JS_Empty Ability"
+    },
+    {
+      "name": "entry_search",
+      "value": "entry_search"
     }
   ]
 }

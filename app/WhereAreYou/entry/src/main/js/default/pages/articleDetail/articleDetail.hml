@@ -15,5 +15,15 @@
                 <text>{{detailInfo.content}}</text>
             </div>
         </list-item>
+        <list-item class="operation">
+            <div class="operation-item">
+                <image src="/common/Icon/like.png"/>
+                <text>喜欢 3</text>
+            </div>
+            <div class="operation-item">
+                <image src="/common/Icon/collect.png"/>
+                <text>收藏 3</text>
+            </div>
+        </list-item>
     </list>
 </div>

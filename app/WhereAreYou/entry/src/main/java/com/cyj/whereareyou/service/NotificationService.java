@@ -1,4 +1,4 @@
-package com.cyj.whereareyou.page;
+package com.cyj.whereareyou.service;
 
 import com.cyj.whereareyou.websocket.WebsocketClientManager;
 import ohos.aafwk.ability.Ability;
@@ -42,6 +42,7 @@ public class NotificationService extends Ability {
 
     @Override
     public void onCommand(Intent intent, boolean restart, int startId) {
+
     }
 
     @Override

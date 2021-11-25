@@ -1,6 +1,8 @@
 package com.cyj.whereareyou.service;
 
+import com.cyj.whereareyou.data.UserDataSource;
 import com.cyj.whereareyou.service.support.RequestCode;
+import com.cyj.whereareyou.service.support.RequestParam;
 import com.cyj.whereareyou.websocket.WebsocketClientManager;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
@@ -93,6 +95,21 @@ public class OpenUIService extends Ability {
                             .build();
                     intent.setOperation(operation);
                     startAbility(intent);
+                    break;
+                }
+                case RequestCode.SET_USER_ID:{
+                    String dataStr = data.readString();
+                    RequestParam param = new RequestParam();
+                    try {
+                        param = ZSONObject.stringToClass(dataStr, RequestParam.class);
+                    } catch (RuntimeException e) {
+                        HiLog.error(LABEL, "convert failed.");
+                    }
+                    UserDataSource.setUserId(param.getUserId());
+                    Map<String, Object> result = new HashMap<String, Object>();
+                    result.put("code", SUCCESS);
+                    result.put("abilityResult", param.getUserId());
+                    reply.writeString(ZSONObject.toZSONString(result));
                     break;
                 }
             }

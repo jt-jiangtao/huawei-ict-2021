@@ -1,5 +1,7 @@
 package com.cyj.whereareyou.websocket;
 
+import com.cyj.whereareyou.data.UserDataSource;
+import com.cyj.whereareyou.service.NotificationService;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
@@ -17,7 +19,7 @@ public class WebsocketClientManager {
 
     public static MessageWebsocketClient client;
 
-    public static String address = "ws://8.136.37.208:8080/api/websocket/12";
+    public static String address = "ws://8.136.37.208:8080/api/websocket/";
 
     public static void reconnectClient() {
         if (client != null){
@@ -25,11 +27,13 @@ public class WebsocketClientManager {
         }
         client = null;
         try {
-            client = new MessageWebsocketClient(new URI(address), new Draft_6455());
+            if (! UserDataSource.userId.startsWith("init@")){
+                client = new MessageWebsocketClient(new URI(address + UserDataSource.userId), new Draft_6455());
+                client.connect();
+            }
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        client.connect();
     }
 
     private static void closeConnect() {

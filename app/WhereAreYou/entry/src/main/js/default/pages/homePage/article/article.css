@@ -71,7 +71,7 @@
 .articles-content .article .article-pic{
     padding: 10px;
     object-fit: cover;
-    width: 35%;
+    width: 150px;
     border-radius: 10px;
 }
 .articles-content .article .article-pic-no-width{

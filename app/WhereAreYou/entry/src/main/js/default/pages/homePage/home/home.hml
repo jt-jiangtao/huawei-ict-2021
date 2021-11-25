@@ -1,7 +1,7 @@
 <div class="container" id="container">
     <div class="header">
         <image class="notification" src="/common/Icon/notification.png" />
-        <div class="div-search">
+        <div class="div-search" onclick="redirectToSearch()">
             <image class="image-search" src="/common/Icon/search.png"></image>
             <text>孩子走丢怎么办?</text>
         </div>

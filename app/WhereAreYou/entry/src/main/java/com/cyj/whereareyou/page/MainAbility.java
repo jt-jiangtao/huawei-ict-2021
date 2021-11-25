@@ -30,7 +30,7 @@ public class MainAbility extends AceAbility {
         Operation operation = new Intent.OperationBuilder()
                 .withDeviceId("")
                 .withBundleName("com.cyj.whereareyou")
-                .withAbilityName("com.cyj.whereareyou.page.NotificationService")
+                .withAbilityName("com.cyj.whereareyou.service.NotificationService")
                 .build();
         intent1.setOperation(operation);
         startAbility(intent1);

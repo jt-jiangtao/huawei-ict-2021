@@ -6,7 +6,7 @@
         <image class="logo" src="/common/svg/hw_24x24_logo.png"/>
         <text>华为账号登录</text>
     </div>
-    <div class="visitor-login" onclick="cancelAuthorization">
+    <div class="visitor-login" onclick="back()">
         <image class="logo" src="/common/svg/visitor.png"/>
         <text>游客登录</text>
     </div>

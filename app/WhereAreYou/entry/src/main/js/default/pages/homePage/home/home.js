@@ -22,6 +22,11 @@ export default {
             }
         });
     },
+    redirectToSearch(){
+        router.push({
+            uri: "pages/searchPage/searchPage"
+        });
+    },
     onTextClick() {
         this.$element("apiMenu").show({x: 365, y: 30});
     },
@@ -30,7 +35,7 @@ export default {
             case "1":
                 console.info("here--")
                 router.push({
-                    uri: 'pages/login/login'
+                    uri: 'pages/publish/findChild/findChild'
                 });
                 break;
             case "2":

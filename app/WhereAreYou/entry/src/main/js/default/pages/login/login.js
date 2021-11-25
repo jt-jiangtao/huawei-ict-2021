@@ -1,53 +1,59 @@
 import { HuaweiIdAuthParamsHelper, HuaweiIdAuthManager,AuthHuaweiId, OPENID,  PROFILE, GAMES } from '@hmscore/hms-jsb-account'
-import fetch from '@system.fetch';
-import CODE from '../../support/request_code.js'
 import FA from '../../support/fa_request.js'
-import {getLossDetailInfo} from '../../fetch/lossInfo.js'
+import {login} from '../../fetch/login.js'
+import {storageSet, storageGet} from '../../publicData/index.js'
+import router from '@system.router';
+import my from '../../pages/homePage/my/my.js'
+import fetch from '@system.fetch';
+import storage from '@system.storage';
+import request from '../../utils/toJavaUserDataSource.js'
 
 export default {
     data: {
         authHuaweiId: null
     },
     login(){
-//        this.request(CODE.TAKE_PHOTO)
-//        fetch.fetch({
-//            url: `https://api.jiangtao.website/api/articles/get_simple_info`,
-//            success: function(response) {
-//                console.info("fetch success");
-//                console.info(response)
-//            },
-//            fail: function(error) {
-//                console.info("fetch fail");
-//                console.info(error)
-//            }
-//        });
-//        let that = this
-//        var signInOption = new HuaweiIdAuthParamsHelper().setProfile().setAuthorizationCode().build();
-        // HuaweiIdAuthManager.getAuthApi方法返回huaweiIdAuth对象，在huaweiIdAuth对象中调用huaweiIdAuth.silentSignIn方法
-//        HuaweiIdAuthManager.getAuthApi().getSignInIntent(signInOption).then((result)=>{
-//            that.authHuaweiId = result
-            //登录成功，获取用户的华为帐号信息
-//            console.info("silentSignIn success");
-//            console.info("openId:" + result.getOpenId());
-//            console.info("unionId:" + result.getUnionId());
-//            console.info("昵称:" + result.getDisplayName());
-//            console.info("头像:" + result.getAvatarUri());
-//            console.info("Scope集合:" + result.getAuthorizedScopes());
-//            console.info("用户的授权码:" + result.getServerAuthCode());
-//            console.info("邮箱地址:" + result.getEmail());
-//            console.info("帐号的ID Token:" + result.getIdToken());
-//            console.info("用户的名字:" + result.getGivenName());
-//            console.info("用户的姓氏:" + result.getFamilyName());
-//        }).catch((error)=>{
-            //登录失败
-//            console.error("silentSignIn fail");
-//            console.error(JSON.stringify(error));
-//        });
+        let that = this
+        var signInOption = new HuaweiIdAuthParamsHelper().setProfile().setAuthorizationCode().build();
+        HuaweiIdAuthManager.getAuthApi().getSignInIntent(signInOption).then(function(result){
+            that.authHuaweiId = result
+            console.error(result.getServerAuthCode().replace(/\+/g, '%2B'))
+            login(result.getServerAuthCode().replace(/\+/g, '%2B')).then(function(data){
+                console.info(data)
+                let token = JSON.parse(data.data).data.token
+                let userId = JSON.parse(data.data).data.userId
+                let imageUrl = JSON.parse(data.data).data.imageUrl
+                let username = JSON.parse(data.data).data.username
+                storage.set({
+                    key: "token",
+                    value: token
+                })
+                storage.set({
+                    key: "userId",
+                    value: userId
+                })
+                storage.set({
+                    key: "imageUrl",
+                    value: imageUrl
+                })
+                request(userId)
+                storage.set({
+                    key: "username",
+                    value: username
+                })
+                that.back()
+            }).catch(error=>{
+                console.error(error)
+            })
+        }).catch((error)=>{
+            console.error("silentSignIn fail");
+            console.error(JSON.stringify(error));
+        });
     },
     cancelAuthorization(){
-        // HuaweiIdAuthManager.getAuthApi方法返回huaweiIdAuth对象，在huaweiIdAuth对象中调用huaweiIdAuth.cancelAuthorization方法
+//         HuaweiIdAuthManager.getAuthApi方法返回huaweiIdAuth对象，在huaweiIdAuth对象中调用huaweiIdAuth.cancelAuthorization方法
         HuaweiIdAuthManager.getAuthApi().cancelAuthorization().then((result)=>{
-            //帐号取消授权成功
+//            帐号取消授权成功
             console.info("cancelAuthorization success");
             console.info(JSON.stringify(result));
         }).catch((error) => {
@@ -55,6 +61,13 @@ export default {
             console.error("cancelAuthorization fail");
             console.error(JSON.stringify(error));
         });
+    },
+    back(){
+        router.back()
+        //TODO: 存在一个bug,即登录成功后只有一个view
+//        router.replace({
+//            uri: 'pages/index/index'
+//        });
     },
     request: async function(request_code) {
         var actionData = {};
@@ -83,5 +96,44 @@ export default {
         } else {
             console.error('plus error code:' + JSON.stringify(ret.code));
         }
+    },
+    setData(token, userId, imageUrl, username){
+        return new Promise(resolve=>{
+                resolve()
+        }).then(()=>{
+            return new Promise(resolve=>{
+                storage.set({
+                    key: "token",
+                    value: token,
+                    complete: function(){
+                        resolve()
+                    }
+                })
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                storage.set({
+                    key: "userId",
+                    value: userId,
+                    complete: function(){
+                        resolve()
+                    }
+                })
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                storageSet("imageUrl", imageUrl).then(data=>{
+                    console.error(data)
+                    resolve()
+                })
+            })
+        }).then(()=>{
+            return new Promise(resolve=>{
+                storageSet("username", username).then(data=>{
+                    console.error(data)
+                    resolve()
+                })
+            })
+        })
     }
 }

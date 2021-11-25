@@ -30,3 +30,33 @@ export function getLossDetailInfo(id){
         })
     })
 }
+
+export function getLossSimpleInfoByUser(id){
+    let url = baseUrl + "/loss/user/" + id
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function searchByKeyword(key){
+    let url = baseUrl + "/loss/key?key=" + key
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}

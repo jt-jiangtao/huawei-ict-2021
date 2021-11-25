@@ -1,3 +1,7 @@
+import my from '../homePage/my/my.js'
+import {storageSet, storageGet} from '../../publicData/index.js'
+import {userGUID} from '../../utils/uuid.js'
+
 export default {
     data() {
         return {
@@ -33,6 +37,7 @@ export default {
         }
     },
     onInit() {
+
     },
     changeTabIndex(e) {
         for (let i = 0; i < this.tabbardata.length; i++) {

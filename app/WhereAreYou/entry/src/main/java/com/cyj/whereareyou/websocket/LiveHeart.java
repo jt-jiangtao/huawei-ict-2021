@@ -1,5 +1,7 @@
 package com.cyj.whereareyou.websocket;
 
+import com.cyj.whereareyou.data.UserDataSource;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,7 +13,7 @@ public class LiveHeart {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                client.send("{\"userId\": \"12\", \"type\": \"HEART\"}");
+                client.send("{'userId': '" + UserDataSource.userId + "', 'type': 'HEART'}");
                 System.out.println("heart -->");
             }
         },0, 1000 * 3);
