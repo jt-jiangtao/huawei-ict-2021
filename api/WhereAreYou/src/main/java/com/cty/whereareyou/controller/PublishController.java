@@ -3,6 +3,7 @@ package com.cty.whereareyou.controller;
 import com.cty.whereareyou.core.UnifyResponse;
 import com.cty.whereareyou.entity.publish.LossSimpleInfo;
 import com.cty.whereareyou.service.PublishService;
+import com.cty.whereareyou.utils.UsernameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -112,8 +113,8 @@ public class PublishController {
     }
 
     @GetMapping("/get/contact")
-    public Object getContact(@RequestParam("id") int userId){
-        return publishService.selectContacts(userId);
+    public Object getContact(@RequestParam("id") String userId){
+        return publishService.selectContacts(UsernameUtils.transformToId(userId));
     }
 
     @PostMapping("/commit/child")

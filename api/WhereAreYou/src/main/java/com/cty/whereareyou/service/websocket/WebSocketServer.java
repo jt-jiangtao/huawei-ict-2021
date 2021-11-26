@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
  * @Author: jiangtao
  * @Date: 2021/11/18 21:32
  */
+// TODO: Message push
 @ServerEndpoint("/websocket/{userId}")
 @Component
 @Slf4j

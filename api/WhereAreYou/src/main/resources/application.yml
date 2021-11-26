@@ -2,6 +2,10 @@ spring:
   web:
     resources:
       static-locations: classpath:/resources/,classpath:/static/,classpath:/config/,classpath:/mapper/
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 server:
   servlet:
