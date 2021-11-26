@@ -108,8 +108,8 @@ public class PublishController {
     }
 
     @PostMapping("/remove/contact")
-    public Object removeContact(int id, int userId){
-        return publishService.removeContact(id, userId);
+    public Object removeContact(int id, String userId){
+        return publishService.removeContact(id, UsernameUtils.transformToId(userId));
     }
 
     @GetMapping("/get/contact")
@@ -118,12 +118,12 @@ public class PublishController {
     }
 
     @PostMapping("/commit/child")
-    public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
-        return publishService.commitFindChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts);
+    public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, String userId, String images, String contacts) {
+        return publishService.commitFindChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, UsernameUtils.transformToId(userId), images, contacts);
     }
 
     @PostMapping("/commit/parent")
-    public Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
-        return publishService.commitParent(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts);
+    public Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, String userId, String images, String contacts) {
+        return publishService.commitParent(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail,  UsernameUtils.transformToId(userId), images, contacts);
     }
 }
