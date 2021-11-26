@@ -1,12 +1,12 @@
 <div class="container" id="container">
     <div class="header">
-        <image class="notification" src="/common/Icon/notification.png" />
+        <image class="notification" onclick="redirect('pages/list/notificationList/notificationList')" src="/common/Icon/notification.png" />
         <div class="div-search" onclick="redirectToSearch()">
             <image class="image-search" src="/common/Icon/search.png"></image>
             <text>孩子走丢怎么办?</text>
         </div>
         <div class="add-wrapper">
-            <image class="publish" onclick="onTextClick" src="/common/Icon/add.png" />
+            <image class="publish" onclick="onTextClick" src="/common/Icon/addto.png" />
             <menu id="apiMenu" onselected="onMenuSelected">
                 <option value="1">找孩子</option>
                 <option value="2">找父母</option>
@@ -41,7 +41,7 @@
                 </grid-row>
             </grid-container>
         </list-item>
-        <list-item class="divider-list-item">
+        <list-item class="divider-list-item" clickeffect="false">
             <div class="divider-wrapper">
                 <divider class="divider" vertical="false"></divider>
                 <text>求助</text>

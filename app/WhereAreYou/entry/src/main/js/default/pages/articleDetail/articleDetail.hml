@@ -5,7 +5,7 @@
         <image class="more" src="/common/Icon/more.png"/>
     </div>
     <list class="list">
-        <list-item class="article">
+        <list-item class="article" clickeffect="false">
             <text class="title">
                 {{detailInfo.title}}
             </text>
@@ -15,7 +15,7 @@
                 <text>{{detailInfo.content}}</text>
             </div>
         </list-item>
-        <list-item class="operation">
+        <list-item class="operation" clickeffect="false">
             <div class="operation-item">
                 <image src="/common/Icon/like.png"/>
                 <text>喜欢 3</text>

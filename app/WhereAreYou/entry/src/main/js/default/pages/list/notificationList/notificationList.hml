@@ -1,5 +1,11 @@
 <div class="container">
-    <text class="title">
-        Hello {{ title }}
-    </text>
+    <div class="head">
+        <image src="/common/Icon/left.png" onclick="back"/>
+        <text>通知</text>
+    </div>
+    <list class="list">
+        <list-item class="list-item" clickeffect="false">
+
+        </list-item>
+    </list>
 </div>

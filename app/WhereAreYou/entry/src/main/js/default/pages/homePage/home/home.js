@@ -1,11 +1,13 @@
 import router from '@system.router';
 import {getSwiperInfo} from '../../../fetch/swiper.js'
 import {getSimpleInfo} from '../../../fetch/lossInfo.js'
+import storage from '@system.storage';
 
 export default {
     data: {
         swiperInfo: null,
-        lossListInfo: null
+        lossListInfo: null,
+        userId: ""
     },
     redirectToSwiperDetail(url){
         console.info(url)
@@ -27,23 +29,46 @@ export default {
             uri: "pages/searchPage/searchPage"
         });
     },
+    redirect(uri){
+      router.push({
+          uri
+      })
+    },
     onTextClick() {
         this.$element("apiMenu").show({x: 365, y: 30});
     },
     onMenuSelected(e){
-        switch(e.value){
-            case "1":
-                console.info("here--")
-                router.push({
-                    uri: 'pages/publish/findChild/findChild'
-                });
-                break;
-            case "2":
-                router.push({
-                    uri: 'pages/publish/findParent/findParent'
-                });
-                break;
+        if (this.userId.startsWith("user@")) {
+            switch(e.value){
+                case "1":
+                    console.info("here--")
+                    router.push({
+                        uri: 'pages/publish/findTest/findTest'
+                    });
+                    break;
+                case "2":
+                    router.push({
+                        uri: 'pages/publish/findParent/findParent'
+                    });
+                    break;
+            }
+        }else{
+            router.push({
+                uri: 'pages/login/login'
+            })
         }
+    },
+    onPageShow(){
+        let that = this
+        storage.get({
+            key: "userId",
+            success: function (data) {
+                that.userId = data
+            },
+            fail(data){
+                console.error(data)
+            }
+        })
     },
     onInit(){
         let that = this

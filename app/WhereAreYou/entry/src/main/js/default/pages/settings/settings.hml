@@ -4,7 +4,7 @@
         <text>设置</text>
     </div>
     <list class="list">
-        <list-item class="list-item">
+        <list-item class="list-item" clickeffect="false">
             <div class="list-group">
                 <text class="list-group-text">注销账号</text>
                 <image class="list-group-right" src="/common/Icon/right.png"/>

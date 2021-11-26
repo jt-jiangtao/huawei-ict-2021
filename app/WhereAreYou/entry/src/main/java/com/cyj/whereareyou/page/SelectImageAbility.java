@@ -50,7 +50,7 @@ public class SelectImageAbility extends Ability {
                 FileInputStream fis = new FileInputStream(fd);
                 byte[] b = new byte[fis.available()];
                 fis.read(b);
-                File saveFile = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsoluteFile(), "IMG_" + System.currentTimeMillis() + ".jpg");
+                File saveFile = new File(getCacheDir().getAbsoluteFile(), "IMG_" + System.currentTimeMillis() + ".jpg");
                 filename = saveFile.getAbsolutePath();
                 FileOutputStream output = new FileOutputStream(saveFile);
                 output.write(b);

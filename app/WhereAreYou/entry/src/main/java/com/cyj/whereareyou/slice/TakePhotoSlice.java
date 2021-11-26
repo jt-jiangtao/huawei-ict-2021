@@ -127,7 +127,7 @@ public class TakePhotoSlice extends AbilitySlice {
     }
 
     private void saveImage(ImageReceiver receiver) {
-        File saveFile = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES).getAbsoluteFile(), "IMG_" + System.currentTimeMillis() + ".jpg");
+        File saveFile = new File(getCacheDir().getAbsoluteFile(), "IMG_" + System.currentTimeMillis() + ".jpg");
         ohos.media.image.Image image = receiver.readNextImage();
         ohos.media.image.Image.Component component = image.getComponent(ImageFormat.ComponentType.JPEG);
         byte[] bytes = new byte[component.remaining()];

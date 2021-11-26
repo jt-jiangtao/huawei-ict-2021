@@ -4,7 +4,8 @@
         <input id="input" class="input" type="text" value="" maxlength="20"
                headericon="/common/Icon/search.png" placeholder="请输入关键字    " onchange="change">
         </input>
-        <button class="search-button"onclick="search()">搜索</button>
+<!--        <search hint="请输入搜索内容" searchbutton="搜索" @search="search"></search>-->
+        <button class="search-button" onclick="search()">搜索</button>
     </div>
     <list class="list" clickeffect="false">
         <list-item class="content-list" clickeffect="false">

@@ -60,3 +60,24 @@ export function searchByKeyword(key){
         })
     })
 }
+
+export function commitChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts){
+    let url = baseUrl + "/loss/commit/child"
+    let data = "age=" + age + "&lossTime=" + lossTime + "&lossLocation=" + lossLocation + "&reportPolice="
+                + reportPolice + "&name=" + name + "&sex=" + sex + "&detailCharacters=" + detailCharacters
+                + "&caseDetail=" + caseDetail + "&userId=" + userId + "&images=" + JSON.stringify(images)
+                + "&contacts=[" + JSON.stringify(contacts) + "]"
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            method: "POST",
+            url,
+            data,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}

@@ -36,7 +36,7 @@
                                 hours="24"
                                 lunarswitch="true"
                                 onchange="datetimeonchange"
-                                class="pickerdatetime"></picker>
+                                class="pickerdatetime"/>
                     </div>
                 </div>
                 <div class="row">

@@ -21,6 +21,19 @@ export default {
             uri: 'pages/settings/settings'
         })
     },
+    redirect(uri){
+        router.push({
+            uri
+        })
+    },
+    redirectToLossList(type){
+      router.push({
+          uri: 'pages/list/lossList/lossList',
+          params: {
+              type
+          }
+      })
+    },
     onPageShow(){
         this.refresh()
     },

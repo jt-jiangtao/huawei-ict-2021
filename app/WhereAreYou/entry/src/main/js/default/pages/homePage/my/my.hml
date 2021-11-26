@@ -5,7 +5,7 @@
         </div>
         <div class="head-right">
             <image class="setting-icon" onclick="toSettingPage" src="/common/Icon/setting.png"/>
-            <image class="notification-icon" src="/common/Icon/notification.png"/>
+            <image class="notification-icon" onclick="redirect('pages/list/notificationList/notificationList')" src="/common/Icon/notification.png"/>
         </div>
     </div>
     <list>
@@ -25,15 +25,15 @@
             <div class="my-publish">
                 <text class="title">发布信息</text>
                 <div class="publish-wrapper-info">
-                    <div class="findChild publish-item">
+                    <div class="findChild publish-item" onclick="redirectToLossList(1)">
                         <text class="publish-item-title">找孩子</text>
                         <text class="publish-item-number">0</text>
                     </div>
-                    <div class="findParent publish-item">
+                    <div class="findParent publish-item" onclick="redirectToLossList(2)">
                         <text class="publish-item-title">找父母</text>
                         <text class="publish-item-number">0</text>
                     </div>
-                    <div class="findParent publish-item">
+                    <div class="findParent publish-item" onclick="redirect('pages/list/clewList/clewList')">
                         <text class="publish-item-title">提供线索</text>
                         <text class="publish-item-number">0</text>
                     </div>
@@ -44,11 +44,11 @@
             <div class="my-publish">
                 <text class="title">关注信息</text>
                 <div class="publish-wrapper-info">
-                    <div class="findChild publish-item">
+                    <div class="findChild publish-item"  onclick="redirectToLossList(3)">
                         <text class="publish-item-title">收藏信息</text>
                         <text class="publish-item-number">0</text>
                     </div>
-                    <div class="findParent publish-item">
+                    <div class="findParent publish-item" onclick="redirect('pages/list/articlesList/articlesList')">
                         <text class="publish-item-title">收藏文章</text>
                         <text class="publish-item-number">0</text>
                     </div>
@@ -57,12 +57,12 @@
         </list-item>
         <list-item clickeffect="false">
             <div class="tool-list">
-                <div class="tool-item">
+                <div class="tool-item" onclick="redirect('pages/list/notificationList/notificationList')">
                     <image class="tool-item-img" src="/common/Icon/notification.png"/>
                     <text class="tool-item-text">我的通知</text>
                     <image class="tool-item-right" src="/common/Icon/right.png"/>
                 </div>
-                <div class="tool-item">
+                <div class="tool-item" onclick="redirect('pages/list/contactList/contactList')">
                     <image class="tool-item-img edit" src="/common/Icon/edit.png"/>
                     <text class="tool-item-text">地址管理</text>
                     <image class="tool-item-right" src="/common/Icon/right.png"/>
