@@ -12,8 +12,15 @@ public interface ClewService {
 
     Object provideClew(int fromUser, int toUser, String clew);
 
+    Object insertNotification(int fromUser, int toUser, String clew, String type);
+
     boolean updateSendStatus(int id);
+
+    boolean updateSeenStatus(int id);
 
     List<Clew> selectNotSendClew();
 
+    List<Clew> selectUserNotification(int user);
+
+    List<Clew> selectUserNotSendNotification(int user);
 }

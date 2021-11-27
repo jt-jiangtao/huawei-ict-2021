@@ -257,11 +257,13 @@ public class PublishServiceImpl implements PublishService {
         List<Contact> contactList =JSON.parseArray(contacts, Contact.class);
         for (int i = 0; i < contactList.size(); i++) {
             Contact contact = contactList.get(i);
-            int status = publishMapper.addContact(contact.getName(), contact.getPhone(), contact.getLocation(), userId, contact.getRelation());
-            if (status <= 0){
-                map.put("status", "400");
-                sqlSession.rollback();
-                return map;
+            if (!contact.getPhone().equals("") && !contact.getPhone().isEmpty()) {
+                int status = publishMapper.addContact(contact.getName(), contact.getPhone(), contact.getLocation(), userId, contact.getRelation());
+                if (status <= 0){
+                    map.put("status", "400");
+                    sqlSession.rollback();
+                    return map;
+                }
             }
         }
         map.put("status", "200");

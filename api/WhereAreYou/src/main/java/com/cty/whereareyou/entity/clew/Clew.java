@@ -11,5 +11,9 @@ public class Clew {
     private int id;
     private int fromUser;
     private int toUser;
-    private String clew;
+    private String content;
+    private String send;
+    private String seen;
+    private String type;
+    private String time;
 }

@@ -2,12 +2,14 @@ package com.cty.whereareyou.controller;
 
 import com.cty.whereareyou.core.UnifyResponse;
 import com.cty.whereareyou.entity.publish.LossSimpleInfo;
+import com.cty.whereareyou.service.ClewService;
 import com.cty.whereareyou.service.PublishService;
 import com.cty.whereareyou.utils.UsernameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author: jiangtao
@@ -17,6 +19,9 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/loss")
 public class PublishController {
+    @Autowired
+    private ClewService clewService;
+
     @Autowired
     private PublishService publishService;
 
@@ -119,11 +124,19 @@ public class PublishController {
 
     @PostMapping("/commit/child")
     public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, String userId, String images, String contacts) {
-        return publishService.commitFindChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, UsernameUtils.transformToId(userId), images, contacts);
+        Map<String, String> map = (Map<String, String>) publishService.commitFindChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, UsernameUtils.transformToId(userId), images, contacts);
+        if (map.get("status").equals("200")){
+            clewService.insertNotification(-1 , UsernameUtils.transformToId(userId), "您已提交信息，请耐心等待~", "SYSTEM");
+        }
+        return map;
     }
 
     @PostMapping("/commit/parent")
     public Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, String userId, String images, String contacts) {
-        return publishService.commitParent(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail,  UsernameUtils.transformToId(userId), images, contacts);
+        Map<String, String> map = (Map<String, String>) publishService.commitParent(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, UsernameUtils.transformToId(userId), images, contacts);
+        if (map.get("status").equals("200")){
+            clewService.insertNotification(-1 , UsernameUtils.transformToId(userId), "您已提交信息，请耐心等待~", "SYSTEM");
+        }
+        return map;
     }
 }

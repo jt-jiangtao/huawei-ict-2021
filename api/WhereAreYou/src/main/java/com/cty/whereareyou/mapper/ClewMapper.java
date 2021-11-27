@@ -1,10 +1,7 @@
 package com.cty.whereareyou.mapper;
 
 import com.cty.whereareyou.entity.clew.Clew;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -15,13 +12,22 @@ import java.util.List;
 @Mapper
 public interface ClewMapper {
 
-    @Insert("INSERT INTO clew(from_user, to_user, clew) VALUES(#{fromUser}, #{toUser}, #{clew});")
-    int insertItem(int fromUser, int toUser, String clew);
+    @Insert("INSERT INTO notification(from_user, to_user, content, type, time) VALUES(#{fromUser}, #{toUser}, #{clew}, #{type}, #{time});")
+    @Options(useGeneratedKeys = true, keyProperty = "param.id", keyColumn = "id")
+    int insertItem(int fromUser, int toUser, String clew, String type, Clew param, String time);
 
-    @Update("UPDATE clew SET send = 1 WHERE id = #{id};")
+    @Update("UPDATE notification SET send = 1 WHERE id = #{id};")
     int updateSendStatus(int id);
 
-    @Select("SELECT * FROM clew WHERE send = 0;")
-    List<Clew> selectNotSendClew();
+    @Update("UPDATE notification SET seen = 1 WHERE id = #{id};")
+    int updateSeenStatus(int id);
 
+    @Select("SELECT * from notification WHERE to_user = #{user};")
+    List<Clew> selectUserNotification(int user);
+
+    @Select("SELECT * FROM notification WHERE send = 0;")
+    List<Clew> selectNotSendNotification();
+
+    @Select("SELECT * FROM notification WHERE send = 0 AND to_user = #{user};")
+    List<Clew> selectUserNotSendNotification(int user);
 }
