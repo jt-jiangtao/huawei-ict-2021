@@ -79,6 +79,14 @@
     {
       "name": "entry_search",
       "value": "entry_search"
+    },
+    {
+      "name": "notificationdata_description",
+      "value": "hap sample empty provider"
+    },
+    {
+      "name": "notificationbridge_description",
+      "value": "hap sample empty service"
     }
   ]
 }

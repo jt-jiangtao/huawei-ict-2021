@@ -1,5 +1,7 @@
 package com.cyj.whereareyou.websocket;
 
+import com.cyj.whereareyou.service.NotificationService;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -17,7 +19,7 @@ public class Reconnect {
             @Override
             public void run() {
                 System.out.println("reconnect-->");
-                WebsocketClientManager.reconnectClient();
+                NotificationService.reconnectClient();
             }
         }, 1000 * 30 , 1000 * 30);
     }

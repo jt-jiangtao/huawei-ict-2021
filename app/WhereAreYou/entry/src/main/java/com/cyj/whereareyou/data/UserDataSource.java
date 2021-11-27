@@ -1,5 +1,6 @@
 package com.cyj.whereareyou.data;
 
+import com.cyj.whereareyou.service.NotificationService;
 import com.cyj.whereareyou.websocket.WebsocketClientManager;
 
 import java.util.UUID;
@@ -9,6 +10,6 @@ public class UserDataSource {
 
     public static void setUserId(String userId) {
         UserDataSource.userId = userId;
-        WebsocketClientManager.reconnectClient();
+        NotificationService.reconnectClient();
     }
 }

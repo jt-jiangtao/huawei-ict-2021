@@ -114,6 +114,24 @@
           "dataTransfer",
           "location"
         ]
+      },
+      {
+        "name": "com.cyj.whereareyou.data.NotificationData",
+        "icon": "$media:icon",
+        "description": "$string:notificationdata_description",
+        "type": "data",
+        "uri": "dataability://com.cyj.whereareyou.data.NotificationData",
+        "permissions": [
+          "ohos.dataability.CustomPermission",
+          "com.cyj.whereareyou.data.DataAbilityShellProvider.PROVIDER"
+        ]
+      },
+      {
+        "name": "com.cyj.whereareyou.service.NotificationBridge",
+        "icon": "$media:icon",
+        "description": "$string:notificationbridge_description",
+        "launchType": "singleton",
+        "type": "service"
       }
     ],
     "js": [
@@ -174,6 +192,14 @@
           ],
           "when": "inuse"
         }
+      },
+      {
+        "name": "ohos.dataability.CustomPermission"
+      }
+    ],
+    "defPermissions": [
+      {
+        "name": "com.cyj.whereareyou.data.DataAbilityShellProvider.PROVIDER"
       }
     ]
   }
