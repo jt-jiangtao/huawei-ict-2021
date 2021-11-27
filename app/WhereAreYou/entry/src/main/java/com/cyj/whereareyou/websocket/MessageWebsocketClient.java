@@ -2,6 +2,7 @@ package com.cyj.whereareyou.websocket;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.cyj.whereareyou.data.UserDataSource;
 import com.cyj.whereareyou.websocket.push.NotificationManager;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
@@ -32,6 +33,7 @@ public class MessageWebsocketClient extends WebSocketClient {
             Reconnect.resetEvent();
         }else if (type != null && type.equals("NOTIFICATION")){
             NotificationManager.push(jsonObject);
+            send("{'userId': '" + UserDataSource.userId + "', 'type': 'CONFIRM_INFO', 'messageId': '" + jsonObject.getInteger("id") + "'}");
         }
     }
 

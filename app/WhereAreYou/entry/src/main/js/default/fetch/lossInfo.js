@@ -61,8 +61,8 @@ export function searchByKeyword(key){
     })
 }
 
-export function commitChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts){
-    let url = baseUrl + "/loss/commit/child"
+export function commitInfo(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, userId, images, contacts, type){
+    let url = baseUrl + "/loss/commit/" + (type === "CHILD" ? 'child' : 'parent')
     let data = "age=" + age + "&lossTime=" + lossTime + "&lossLocation=" + lossLocation + "&reportPolice="
                 + reportPolice + "&name=" + name + "&sex=" + sex + "&detailCharacters=" + detailCharacters
                 + "&caseDetail=" + caseDetail + "&userId=" + userId + "&images=" + JSON.stringify(images)

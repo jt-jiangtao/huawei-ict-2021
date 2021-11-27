@@ -43,12 +43,18 @@ export default {
                 case "1":
                     console.info("here--")
                     router.push({
-                        uri: 'pages/publish/findTest/findTest'
+                        uri: 'pages/find/find',
+                        params: {
+                            type: "CHILD"
+                        }
                     });
                     break;
                 case "2":
                     router.push({
-                        uri: 'pages/publish/findParent/findParent'
+                        uri: 'pages/find/find',
+                        params: {
+                            type: "PARENT"
+                        }
                     });
                     break;
             }

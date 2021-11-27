@@ -155,7 +155,8 @@
           "pages/settings/settings",
           "pages/notification/clewDetail/clewDetail",
           "pages/notification/findDetail/findDetail",
-          "pages/publish/findTest/findTest"
+          "pages/publish/findTest/findTest",
+          "pages/find/find"
         ],
         "name": "default",
         "window": {
