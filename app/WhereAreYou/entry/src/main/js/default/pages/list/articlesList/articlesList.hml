@@ -5,7 +5,15 @@
     </div>
     <list class="list">
         <list-item class="list-item" clickeffect="false">
-
+            <div class="articles-content">
+                <div for="{{article in articles}}" class="article" onclick="redirectToDetail(article.id)">
+                    <div class="title-author">
+                        <text class="title">{{article.title}}</text>
+                        <text class="author">@{{article.author}}</text>
+                    </div>
+                    <image class="{{article.headPicture == '' ? 'article-pic-no-width' : 'article-pic'}}" src="{{article.headPicture}}"/>
+                </div>
+            </div>
         </list-item>
     </list>
 </div>

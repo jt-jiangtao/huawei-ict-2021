@@ -5,55 +5,76 @@ import {verify} from '../../../fetch/login.js';
 import request from '../../../utils/toJavaUserDataSource.js';
 
 export default {
-    data:{
+    data: {
         isLog: false,
         imageUrl: null,
         username: "",
-        token: ""
+        token: "",
+        userId: ''
     },
-    toLogPage(){
+    toLogPage() {
         router.push({
             uri: 'pages/login/login'
         });
     },
-    toSettingPage(){
-        router.push({
-            uri: 'pages/settings/settings'
-        })
+    toSettingPage() {
+        if (this.userId.startsWith("user@")) {
+            router.push({
+                uri: 'pages/settings/settings'
+            })
+        }else {
+            router.push({
+                uri: 'pages/login/login'
+            })
+        }
     },
-    redirect(uri){
-        router.push({
-            uri
-        })
+    redirect(uri) {
+        if (this.userId.startsWith("user@")) {
+            router.push({
+                uri
+            })
+        }else {
+            router.push({
+                uri: 'pages/login/login'
+            })
+        }
     },
-    redirectToLossList(type){
-      router.push({
-          uri: 'pages/list/lossList/lossList',
-          params: {
-              type
-          }
-      })
+    redirectToLossList(type) {
+        if (this.userId.startsWith("user@")) {
+            router.push({
+                uri: 'pages/list/lossList/lossList',
+                params: {
+                    type
+                }
+            })
+        }else {
+            router.push({
+                uri: 'pages/login/login'
+            })
+        }
     },
-    onPageShow(){
+    onPageShow() {
         this.refresh()
     },
-    refresh(){
+    refresh() {
         let that = this
         storage.get({
             key: "userId",
             success: function (data) {
-                if(data === ""){
+                if (data === "") {
                     let uuid = userGUID()
+                    that.userId = uuid
                     request(uuid)
                     storage.set({
                         key: "userId",
                         value: uuid
                     })
-                }else{
+                } else {
+                    that.userId = data
                     request(data)
                 }
             },
-            fail(data){
+            fail(data) {
                 console.error(data)
             }
         })
@@ -62,7 +83,7 @@ export default {
             success: function (data) {
                 that.username = data
             },
-            fail(data){
+            fail(data) {
                 console.error(data)
             }
         })
@@ -71,7 +92,7 @@ export default {
             success: function (data) {
                 that.imageUrl = data
             },
-            fail(data){
+            fail(data) {
                 console.error(data)
             }
         })
@@ -79,15 +100,26 @@ export default {
             key: "token",
             success: function (data) {
                 that.token = data
-                if(data !== ''){
-                    verify(data).then(data=>{
+                if (data !== '') {
+                    verify(data).then(data => {
                         if (JSON.parse(data.data).data.status === "200") that.isLog = true;
                     })
                 }
             },
-            fail(data){
+            fail(data) {
                 console.error(data)
             }
         })
     },
+    manageContact() {
+        if (this.userId.startsWith("user@")) {
+            router.push({
+                uri: 'pages/list/contactList/contactList'
+            })
+        }else {
+            router.push({
+                uri: 'pages/login/login'
+            })
+        }
+    }
 }

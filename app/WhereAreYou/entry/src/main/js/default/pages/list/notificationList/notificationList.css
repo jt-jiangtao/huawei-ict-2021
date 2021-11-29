@@ -30,6 +30,74 @@
 }
 
 .list-item{
+    margin-top: 2px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+    height: 65px;
+}
+
+.list-item .left{
+    border-radius: 25px;
+    width: 58px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.list-item .left text{
+    text-align: center;
+    font-weight: 500;
+    font-size: 13px;
+    color: white;
+}
+
+.list-item .right{
+    flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.list-item .right .title-time{
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.list-item .right .title-time .title{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.list-item .right .title-time .title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-item .right .title-time .not_read{
+    width: 5px;
+    height: 5px;
+    border-radius: 3px;
+    background-color: #b40707;
+    margin-right: 5px;
+}
+
+.list-item .right .title-time .time{
+    font-size: 13px;
+    color: #989898;
+}
+
+.list-item .right .content{
+    height: 30px;
+    font-size: 13px;
+    color: #989898;
+    max-lines: 1;
+    text-overflow: ellipsis;
+    padding-right: 20px;
 }

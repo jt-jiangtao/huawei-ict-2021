@@ -81,3 +81,48 @@ export function commitInfo(age, lossTime, lossLocation, reportPolice, name, sex,
         })
     })
 }
+
+export function isCollect(id, event){
+    let url = baseUrl + "/loss/is_collect?id=" + id + "&event=" + event + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function collectAdd(id, event){
+    let url = baseUrl + "/loss/collect/add?id=" + id + "&event=" + event + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function collectRemove(id, event){
+    let url = baseUrl + "/loss/collect/remove?id=" + id + "&event=" + event + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}

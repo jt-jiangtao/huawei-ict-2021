@@ -33,12 +33,13 @@
     height: 100%;
     width: 80px;
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: row;
 }
 
 .head .head-right .setting-icon{
+    margin-right: 10px;
     width: 18px;
     object-fit: contain;
     height: 18px;

@@ -1,5 +1,45 @@
 <div class="container">
-    <text class="title">
-        Hello {{ title }}
-    </text>
+    <div class="head">
+        <image src="/common/Icon/left.png" onclick="back"/>
+        <text>提供线索</text>
+    </div>
+    <list class="list">
+        <list-item class="list-item" clickeffect="false">
+            <div class="input-container">
+                <div class="title">
+                    <text class="title-left">线索</text>
+                    <text class="title-right">*</text>
+                </div>
+                <textarea onchange="contentChange" class="des" type="text" placeholder="请输入线索"
+                          class="input"/>
+            </div>
+            <div class="input-container">
+                <div class="title">
+                    <text class="title-left">照片</text>
+                </div>
+                <div class="images">
+                    <div class="upload-image select" for="{{ (key, item) in imagesList }}">
+                        <image src="{{ item }}"/>
+                        <image onclick="deleteImage(key)" class="close"
+                               src="/common/Icon/close-square-fill.png"/>
+                    </div>
+                    <div class="select" onclick="selectImage()">
+                        <image src="/common/Icon/add.png"/>
+                    </div>
+                    <dialog id="simpledialog" class="dialog-main" oncancel="cancelDialog">
+                        <div class="dialog-div">
+                            <div class="inner-txt">
+                                <text onclick="takePhoto">拍照</text>
+                                <divider class="divider" vertical="false"></divider>
+                                <text onclick="selectPhoto">从图库选择</text>
+                            </div>
+                        </div>
+                    </dialog>
+                </div>
+            </div>
+        </list-item>
+        <list-item  class="list-item button-group" clickeffect="false">
+            <text style="background-color: {{can ? '#516ecc' : '#bfbfbf'}};" class="button" onclick="provideClew">发布</text>
+        </list-item>
+    </list>
 </div>

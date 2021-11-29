@@ -4,8 +4,17 @@
         <text>联系方式</text>
     </div>
     <list class="list">
-        <list-item class="list-item" clickeffect="false">
-
+        <list-item for="{{item in contacts}}" class="list-item" clickeffect="false">
+            <div class="left">
+                <text class="ex-location">{{item.name}}({{item.relation}}) {{item.phone}}</text>
+                <text class="location">{{item.location}}</text>
+            </div>
+            <div class="edit-container">
+                <image onclick="edit(item)" class="edit" src="/common/Icon/edit.png"></image>
+            </div>
         </list-item>
     </list>
+    <div class="add" onclick="add">
+        <text>添加联系方式</text>
+    </div>
 </div>

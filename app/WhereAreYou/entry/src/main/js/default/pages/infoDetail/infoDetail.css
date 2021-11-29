@@ -2,9 +2,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background-color: #f8f8f8;
 }
 
 .head {
+    background-color: white;
     display: flex;
     width: 100%;
     height: 50px;
@@ -30,60 +32,71 @@
 }
 
 .list {
+    background-color: #f8f8f8;
     flex: 1;
 }
 
 .swipers{
-    border-radius: 10px;
-    margin: 0 15px;
     height: 50%;
 }
 
 .swipers image{
-    border-radius: 10px;
     object-fit: cover;
 }
 
 .detail-info{
+    padding: 15px;
+    background-color: white;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 25px 25px 0 0;
     box-shadow: 0 0 20px 0 #80afbbcc;
-    margin: 20px 15px 20px 15px;
-    padding: 20px;
     display: flex;
     flex-direction: column;
 }
 
 .detail-info .title{
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 16px;
+    font-weight: 600;
     margin-bottom: 8px;
 }
 
 .divider{
+    align-self: flex-end;
+    width: 235px;
+    margin-right: 10px;
     background-color: #e1e1e1;
-    margin-bottom: 8px;
 }
 
 .status {
     width: 100%;
     display: flex;
-    height: 40px;
+    flex-direction: column;
+}
+
+.content-wrapper{
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .status .status-title,.content-wrapper .content-title{
     width: 80px;
-    font-size: 16px;
-    color: #8c8c8c;
-    margin-right: 5px;
-    text-align: right;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.status .status-title{
+    font-size: 24px;
+    font-weight: 500;
 }
 
 .content-wrapper .content{
-    width: 205px;
+    width: 235px;
 }
 
 .status .status-list{
+    margin: 5px 0;
     flex: 1;
     display: flex;
     flex-direction: row;
@@ -91,11 +104,10 @@
 }
 
 .status .status-list .status-item{
-    height: 25px;
     border-radius: 5px;
-    font-size: 11px;
+    font-size: 8px;
     background-color: #1a000000;
-    padding: 2px 4px;
+    padding: 5px 4px;
     display: flex;
     background-color: #f26b44;
     color: white;
@@ -105,28 +117,79 @@
 .content-wrapper {
     width: 100%;
     display: flex;
-    margin-top: 8px;
 }
 
 .content-wrapper .content{
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .tools{
+    background-color: white;
     width: 100%;
-    height: 60px;
+    height: 55px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 20px;
     box-shadow: 0 0 5px 0 #b3afbbcc;
 }
 
+.tools image{
+    width: 27px;
+    height: 27px;
+}
+
 .tools .clue{
-    font-size: 18px;
-    width: 110px;
+    font-size: 14px;
+    width: 90px;
     height: 40px;
     background-color: #eb410e;
     text-align: center;
     border-radius: 10px;
     color: white;
+}
+
+.more-info{
+    width: 100%;
+    background-color: white;
+    margin-top: 10px;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.more-info .title{
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.more-info .content{
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.contacts{
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts .contact{
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts .contact .contact-item{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contact-item-title{
+    font-size: 16px;
+    width: 40px;
+}
+
+.contact-item-content{
+    font-size: 16px;
 }

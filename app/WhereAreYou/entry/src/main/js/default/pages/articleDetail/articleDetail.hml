@@ -16,13 +16,15 @@
             </div>
         </list-item>
         <list-item class="operation" clickeffect="false">
-            <div class="operation-item">
-                <image src="/common/Icon/like.png"/>
-                <text>喜欢 3</text>
+            <div onclick="clickLike" class="operation-item">
+                <image if="{{!isLike}}" src="/common/Icon/like.png"/>
+                <image else src="/common/Icon/like_active.png"/>
+                <text>喜欢 {{likeNum}}</text>
             </div>
-            <div class="operation-item">
-                <image src="/common/Icon/collect.png"/>
-                <text>收藏 3</text>
+            <div onclick="clickCollect" class="operation-item">
+                <image if="{{ !isCollect }}" src="/common/Icon/collect.png"/>
+                <image else src="/common/Icon/collect_active.png"/>
+                <text>收藏 {{collectNum}}</text>
             </div>
         </list-item>
     </list>

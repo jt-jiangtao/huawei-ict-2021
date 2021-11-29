@@ -1,6 +1,6 @@
 <div class="container" id="container">
     <div class="header">
-        <image class="notification" onclick="redirect('pages/list/notificationList/notificationList')" src="/common/Icon/notification.png" />
+        <image class="notification" onclick="redirectToNotification" src="/common/Icon/notification.png" />
         <div class="div-search" onclick="redirectToSearch()">
             <image class="image-search" src="/common/Icon/search.png"></image>
             <text>孩子走丢怎么办?</text>

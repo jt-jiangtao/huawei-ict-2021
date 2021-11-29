@@ -1,5 +1,44 @@
 <div class="container">
-    <text class="title">
-        Hello {{ title }}
-    </text>
+    <div class="head">
+        <image src="/common/Icon/left.png" onclick="back"/>
+        <text>{{this.operation === 'EDIT' ? '编辑联系方式' : '添加联系方式'}}</text>
+    </div>
+    <list class="list">
+        <list-item class="list-item" clickeffect="false">
+            <div class="input-container">
+                <div class="title">
+                    <text class="title-left">关系</text>
+                    <text class="title-right">*</text>
+                </div>
+                <input onchange="relationChange" value="{{relation}}" maxlength="128" type="text" placeholder="请输入关系" class="input"/>
+            </div>
+            <div class="input-container">
+                <div class="title">
+                    <text class="title-left">姓名</text>
+                    <text class="title-right">*</text>
+                </div>
+                <input onchange="nameCChange" value="{{name}}" maxlength="128" type="text" placeholder="请输入姓名" class="input"/>
+            </div>
+            <div class="input-container">
+                <div class="title">
+                    <text class="title-left">联系方式</text>
+                    <text class="title-right">*</text>
+                </div>
+                <input onchange="phoneChange" value="{{phone}}" maxlength="128" type="text" placeholder="请输入联系方式" class="input"/>
+            </div>
+            <div class="input-container">
+                <div class="title">
+                    <text class="title-left">家庭住址</text>
+                    <text class="title-right">*</text>
+                </div>
+                <input onchange="locationCChange" value="{{location}}" maxlength="128" type="text" placeholder="请输入家庭住址"
+                       class="input"/>
+            </div>
+        </list-item>
+        <list-item class="list-item button-group" clickeffect="false">
+            <text style="background-color: {{can ? '#516ecc' : '#bfbfbf'}};" if="{{this.operation === 'EDIT'}}" class="button" onclick="edit">保存</text>
+            <text if="{{this.operation === 'EDIT'}}" class="button delete" onclick="delete">删除</text>
+            <text style="background-color: {{can ? '#516ecc' : '#bfbfbf'}};" if="{{this.operation !== 'EDIT'}}" class="button" onclick="add">添加</text>
+        </list-item>
+    </list>
 </div>

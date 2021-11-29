@@ -1,16 +1,164 @@
 .container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    left: 0px;
-    top: 0px;
-    width: 454px;
-    height: 454px;
+    flex-direction: column;
+    background-color: #f8f8f8;
 }
 
-.title {
-    font-size: 30px;
+.head {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    flex-direction: row;
+    align-items: center;
+    background-color: white;
+}
+.head image{
+    width: 20px;
+    height: 20px;
+}
+
+.head text{
+    font-size: 18px;
     text-align: center;
-    width: 200px;
+    margin-left: -20px;
+    flex: 1;
+}
+
+.list{
+    flex: 1
+}
+
+.list-item{
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container {
+    padding: 10px 15px;
+    margin-top: 1px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.first-input-container{
+    margin-top: 12px;
+}
+
+.input-container .title{
+    margin-bottom: 5px;
+}
+
+.input-container text{
+    font-size: 14px;
+}
+
+.input-container .title .title-left{
+    font-size: 15px;
+}
+
+.input-container .title .title-right{
+    font-size: 16px;
+    color: red;
+    margin-left: 5px;
+}
+
+.input-container .input{
+    height: 30px;
+    font-size: 14px;
+    padding: 0px;
+    background-color: white;
+    border-radius: 0px;
+}
+
+.input-container .des{
     height: 100px;
+    font-size: 14px;
+    padding: 0px;
+    background-color: white;
+    border-radius: 0px;
+}
+
+.input-container .images{
+    margin-top: 8px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.input-container .images .select{
+    margin-right: 12px;
+    margin-bottom: 10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+    background-color: #f8f8f8;
+    border: 1px dashed #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-container .images .select image{
+    width: 40px;
+    height: 40px;
+    opacity: .8;
+}
+
+.input-container .images .select .close{
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    border-radius: 10px 0 0 0;
+}
+
+.input-container .images .upload-image image{
+    border-radius: 6px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.inner-txt{
+    padding: 0px 10%;
+    display: flex;
+    height: 120px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inner-txt .divider{
+    background-color: #e1e1e1;
+}
+
+.inner-txt text{
+    text-align: center;
+    height: 50px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.button-group{
+    display: flex;
+    align-items: center;
+}
+
+.list-item .button{
+    margin: 0px 20px;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    text-align: center;
+    color: white;
+    margin-top: 15px;
 }

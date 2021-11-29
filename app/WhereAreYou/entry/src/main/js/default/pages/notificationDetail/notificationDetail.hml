@@ -1,5 +1,13 @@
 <div class="container">
-    <text class="title">
-        Hello {{ title }}
-    </text>
+    <div class="head">
+        <image src="/common/Icon/left.png" onclick="back"/>
+        <text>{{getTitle()}}</text>
+    </div>
+    <list class="list">
+         <list-item class="list-item" clickeffect="false">
+             <text class="title">{{getTitle()}}</text>
+             <text class="time">{{this.item.time}}</text>
+             <text class="content">{{this.item.content}}</text>
+         </list-item>
+    </list>
 </div>

@@ -142,8 +142,6 @@
           "pages/homePage/article/article",
           "pages/homePage/home/home",
           "pages/homePage/my/my",
-          "pages/publish/findParent/findParent",
-          "pages/publish/findChild/findChild",
           "pages/articleDetail/articleDetail",
           "pages/infoDetail/infoDetail",
           "pages/searchPage/searchPage",
@@ -153,10 +151,10 @@
           "pages/list/notificationList/notificationList",
           "pages/list/contactList/contactList",
           "pages/settings/settings",
-          "pages/notification/clewDetail/clewDetail",
-          "pages/notification/findDetail/findDetail",
-          "pages/publish/findTest/findTest",
-          "pages/find/find"
+          "pages/find/find",
+          "pages/notificationDetail/notificationDetail",
+          "pages/contactEdit/contactEdit",
+          "pages/publishClew/publishClew"
         ],
         "name": "default",
         "window": {

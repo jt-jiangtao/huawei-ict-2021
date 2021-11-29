@@ -68,3 +68,33 @@
     font-size: 15px;
     color: #c7000b;
 }
+
+
+.dialog-div {
+    padding: 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 180px;
+}
+
+.cancel-tips{
+    margin-top: 20px;
+    width: 100%;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.inner-btn {
+    width: 400px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.btn-txt {
+    background-color: #F2F2F2;
+    text-color: #0D81F2;
+}

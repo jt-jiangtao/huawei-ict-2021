@@ -5,13 +5,35 @@
     </div>
     <list class="list">
         <list-item class="list-item" clickeffect="false">
-            <div class="list-group">
+            <div class="list-group" onclick="cancelRegister()">
                 <text class="list-group-text">注销账号</text>
                 <image class="list-group-right" src="/common/Icon/right.png"/>
             </div>
-            <div class="exit">
-                <text>退出</text>
+            <div class="exit" onclick="logout()">
+                <text>退出登陆</text>
             </div>
         </list-item>
     </list>
+    <dialog id="cancel-dialog" class="dialog-main">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="cancel-tips">确认取消授权，注销账号</text>
+            </div>
+            <div class="inner-btn">
+                <button type="capsule" value="取消" onclick="cancelCD" class="btn-txt"></button>
+                <button type="capsule" value="确认" onclick="setCD" class="btn-txt"></button>
+            </div>
+        </div>
+    </dialog>
+    <dialog id="out-dialog" class="dialog-main">
+        <div class="dialog-div">
+            <div class="inner-txt">
+                <text class="cancel-tips">确认退出登陆</text>
+            </div>
+            <div class="inner-btn">
+                <button type="capsule" value="取消" onclick="cancelOut" class="btn-txt"></button>
+                <button type="capsule" value="确认" onclick="setOut" class="btn-txt"></button>
+            </div>
+        </div>
+    </dialog>
 </div>

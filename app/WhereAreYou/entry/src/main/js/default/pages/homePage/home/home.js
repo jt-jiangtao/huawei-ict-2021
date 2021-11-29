@@ -94,5 +94,16 @@ export default {
             console.info("fail-->")
             console.log(error);
         })
+    },
+    redirectToNotification(){
+        if (this.userId.startsWith("user@")) {
+            router.push({
+                uri: 'pages/list/notificationList/notificationList'
+            })
+        }else {
+            router.push({
+                uri: 'pages/login/login'
+            })
+        }
     }
 }

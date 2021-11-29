@@ -4,7 +4,7 @@
             <text>我的</text>
         </div>
         <div class="head-right">
-            <image class="setting-icon" onclick="toSettingPage" src="/common/Icon/setting.png"/>
+            <image if="{{token !== '' && isLog === true}}" class="setting-icon" onclick="toSettingPage" src="/common/Icon/setting.png"/>
             <image class="notification-icon" onclick="redirect('pages/list/notificationList/notificationList')" src="/common/Icon/notification.png"/>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <list-item clickeffect="false">
             <div class="user">
                 <image src="{{ imageUrl || '/common/Icon/default-head.png' }}"/>
-                <div if="{{isLog === true}}" class="username-tags">
+                <div if="{{token !== '' && isLog === true}}" class="username-tags">
                     <text class="username">{{username}}</text>
                     <div class="tags">
                         <text>已认证</text>
@@ -62,12 +62,12 @@
                     <text class="tool-item-text">我的通知</text>
                     <image class="tool-item-right" src="/common/Icon/right.png"/>
                 </div>
-                <div class="tool-item" onclick="redirect('pages/list/contactList/contactList')">
+                <div class="tool-item" onclick="manageContact">
                     <image class="tool-item-img edit" src="/common/Icon/edit.png"/>
-                    <text class="tool-item-text">地址管理</text>
+                    <text class="tool-item-text">联系方式</text>
                     <image class="tool-item-right" src="/common/Icon/right.png"/>
                 </div>
-                <div class="tool-item" onclick="toSettingPage">
+                <div if="{{token !== '' && isLog === true}}" class="tool-item" onclick="toSettingPage">
                     <image class="tool-item-img edit" src="/common/Icon/setting.png"/>
                     <text class="tool-item-text">设置</text>
                     <image class="tool-item-right" src="/common/Icon/right.png"/>

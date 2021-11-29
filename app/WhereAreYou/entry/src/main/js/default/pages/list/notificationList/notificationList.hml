@@ -4,8 +4,18 @@
         <text>通知</text>
     </div>
     <list class="list">
-        <list-item class="list-item" clickeffect="false">
-
+        <list-item for="{{item in notifications}}" class="list-item" onclick="detail(item)">
+            <div class="left"  style="background-color: {{item.fromUser === -1 ? '#c8000b' : '#516ecc'}};"><text>{{item.fromUser === -1 ? '系统' : '用户'}}</text></div>
+            <div class="right">
+                <div class="title-time">
+                    <div class="title-container">
+                        <div if="{{item.seen === '0'}}" class="not_read"></div>
+                        <text class="title">{{ getTitle(item.type) }}</text>
+                    </div>
+                    <text class="time">{{item.time }}</text>
+                </div>
+                <text class="content">{{item.content}}</text>
+            </div>
         </list-item>
     </list>
 </div>
