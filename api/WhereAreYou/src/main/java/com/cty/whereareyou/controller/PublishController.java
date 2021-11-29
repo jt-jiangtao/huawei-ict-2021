@@ -104,12 +104,12 @@ public class PublishController {
 
     @PostMapping("/add/contact")
     public Object addContact(String name, String phone, String location, String userId, String relation) {
-        return publishService.addContact(name, phone, location, Integer.parseInt(userId.split("@")[1]), relation);
+        return publishService.addContact(name, phone, location, UsernameUtils.transformToId(userId), relation);
     }
 
     @PostMapping("/update/contact")
     public Object updateContact(String id, String name, String phone, String location, String userId, String relation) {
-        return publishService.updateContact(id, name, phone, location, userId, relation);
+        return publishService.updateContact(id, name, phone, location,  UsernameUtils.transformToId(userId), relation);
     }
 
     @PostMapping("/remove/contact")

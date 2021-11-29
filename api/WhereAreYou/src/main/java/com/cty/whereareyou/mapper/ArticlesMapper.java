@@ -24,34 +24,34 @@ public interface ArticlesMapper {
     Article selectArticleById(int id);
 
     @Insert("INSERT INTO article_likes(article_id, user_id) VALUES (#{article}, #{user});")
-    int addLike(String article, String user);
+    int addLike(String article, int user);
 
     @Delete("DELETE FROM article_likes WHERE article_id = #{article} AND user_id = #{user};")
-    int removeLike(String article, String user);
+    int removeLike(String article, int user);
 
     @Select("SELECT COUNT(like_id) as number FROM article_likes WHERE article_id = #{article} AND user_id = #{user};")
-    int isLike(String article, String user);
+    int isLike(String article, int user);
 
     @Select("SELECT COUNT(like_id) as number FROM article_likes WHERE article_id = #{article};")
     int likeNumber(String article);
 
     @Insert("INSERT INTO article_collect(article_id, user_id) VALUES(#{article}, #{user});")
-    int addCollect(String article, String user);
+    int addCollect(String article, int user);
 
     @Delete("DELETE FROM article_collect WHERE article_id = #{article} AND user_id = #{user};")
-    int removeCollect(String article, String user);
+    int removeCollect(String article, int user);
 
     @Select("SELECT COUNT(id) as number FROM article_collect WHERE article_id = #{article} AND user_id = #{user};")
-    int isCollect(String article, String user);
+    int isCollect(String article, int user);
 
     @Select("SELECT COUNT(id) as number FROM article_collect WHERE article_id = #{article};")
     int collectNumber(String article);
 
     @Select("SELECT COUNT(id) as number FROM article_collect WHERE user_id = #{user};")
-    int getUserCollectNumber(String user);
+    int getUserCollectNumber(int user);
 
     @Select("SELECT article_id as number FROM article_collect WHERE user_id = #{user};")
-    List<Integer> getUserCollect(String user);
+    List<Integer> getUserCollect(int user);
 
     @Select("SELECT id, sort_id, title, author, head_picture FROM articles WHERE id = #{id};")
     ArticleNoContent selectArticleSimpleInfoById(int id);

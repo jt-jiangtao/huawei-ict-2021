@@ -8,6 +8,7 @@ import com.cty.whereareyou.mapper.ImageMapper;
 import com.cty.whereareyou.mapper.PublishMapper;
 import com.cty.whereareyou.service.PublishService;
 import com.cty.whereareyou.service.SearchService;
+import com.cty.whereareyou.utils.UsernameUtils;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -132,11 +133,12 @@ public class PublishServiceImpl implements PublishService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         Map<String, Integer> map = new HashMap<>();
-        if (publishMapper.isCollect(id, event) <= 0){
-            map.put("status", publishMapper.collectAdd(id, event));
-            sqlSession.commit();
+        if (publishMapper.isCollect(UsernameUtils.transformToId(id), event) <= 0){
+            map.put("status", publishMapper.collectAdd(UsernameUtils.transformToId(id), event));
+        }else {
+            map.put("status", 0);
         }
-        map.put("status", 0);
+        sqlSession.commit();
         return map;
     }
 
@@ -145,7 +147,11 @@ public class PublishServiceImpl implements PublishService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         Map<String, Integer> map = new HashMap<>();
-        map.put("status", publishMapper.collectRemove(id, event));
+        if (publishMapper.isCollect(UsernameUtils.transformToId(id), event) >= 1){
+            map.put("status", publishMapper.collectRemove(UsernameUtils.transformToId(id), event));
+        }else{
+            map.put("status", 0);
+        }
         sqlSession.commit();
         return map;
     }
@@ -154,8 +160,8 @@ public class PublishServiceImpl implements PublishService {
     public Object isCollect(String id, String event) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
-        Map<String, Integer> map = new HashMap<>();
-        map.put("status", publishMapper.isCollect(id, event));
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("status", publishMapper.isCollect(UsernameUtils.transformToId(id), event) >= 1 ? true : false);
         return map;
     }
 
@@ -164,7 +170,7 @@ public class PublishServiceImpl implements PublishService {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         Map<String, Integer> map = new HashMap<>();
-        map.put("status", publishMapper.collectNumber(id));
+        map.put("status", publishMapper.collectNumber(UsernameUtils.transformToId(id)));
         return map;
     }
 
@@ -174,8 +180,8 @@ public class PublishServiceImpl implements PublishService {
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         List<LossSimpleInfo> lossSimpleInfos = new ArrayList<>();
         List<LossSimpleInfo.DatabaseItem> databaseItems = new ArrayList<>();
-        publishMapper.getEvenIdByUserId(id).forEach(i -> {
-            databaseItems.add(publishMapper.selectItemSimpleInfo(i.toString()));
+        publishMapper.getEvenIdByUserId(UsernameUtils.transformToId(id)).forEach(i -> {
+            databaseItems.add(publishMapper.selectItemSimpleInfo(i));
         });
         lossSimpleInfos.add(new LossSimpleInfo(databaseItems));
         return lossSimpleInfos;
@@ -216,7 +222,7 @@ public class PublishServiceImpl implements PublishService {
     }
 
     @Override
-    public Object updateContact(String id, String name, String phone, String location, String userId, String relation) {
+    public Object updateContact(String id, String name, String phone, String location, int userId, String relation) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         Map<String, String> map = new HashMap<>();

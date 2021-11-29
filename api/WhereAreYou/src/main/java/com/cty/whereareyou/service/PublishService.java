@@ -45,7 +45,7 @@ public interface PublishService {
 
     Object addContact(String name, String phone, String location, int userId, String relation);
 
-    Object updateContact(String id, String name, String phone, String location, String userId, String relation);
+    Object updateContact(String id, String name, String phone, String location, int userId, String relation);
 
     Map<String,String> insertFindInfo(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int type, int userId, String images, String contacts);
 

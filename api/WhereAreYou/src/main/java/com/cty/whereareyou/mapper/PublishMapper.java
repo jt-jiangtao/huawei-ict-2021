@@ -37,22 +37,22 @@ public interface PublishMapper {
     List<LossSimpleInfo.DatabaseItem> selectByKeyWord(String key);
 
     @Insert("INSERT INTO event_collect(event_id, user_id) VALUES(#{event}, #{id});")
-    int collectAdd(String id, String event);
+    int collectAdd(int id, String event);
 
     @Delete("DELETE FROM event_collect WHERE event_id = #{event} AND user_id = #{id};")
-    int collectRemove(String id, String event);
+    int collectRemove(int id, String event);
 
     @Select("SELECT COUNT(id) FROM event_collect WHERE event_id = #{event} AND user_id = #{id};")
-    int isCollect(String id, String event);
+    int isCollect(int id, String event);
 
     @Select("SELECT COUNT(event_id) FROM event_collect WHERE user_id = #{id};")
-    int collectNumber(String id);
+    int collectNumber(int id);
 
     @Select("SELECT event_id FROM event_collect WHERE user_id = #{id};")
-    List<Integer> getEvenIdByUserId(String id);
+    List<Integer> getEvenIdByUserId(int id);
 
     @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND find.loss_id = #{id} ORDER BY loss_time;")
-    LossSimpleInfo.DatabaseItem selectItemSimpleInfo(String id);
+    LossSimpleInfo.DatabaseItem selectItemSimpleInfo(int id);
 
     @Select("SELECT * FROM contact WHERE user_id = #{user}  AND `delete` = 0;")
     List<Contact> selectContacts(int user);
@@ -70,7 +70,7 @@ public interface PublishMapper {
     int addContact(String name, String phone, String location, int userId, String relation);
 
     @Update("UPDATE contact SET name = #{name}, phone = #{phone}, location = #{location} , relation = #{relation} WHERE id = #{id} AND user_id = #{userId};")
-    int updateContact(String id, String name, String phone, String location, String userId, String relation);
+    int updateContact(String id, String name, String phone, String location, int userId, String relation);
 
     @Insert("INSERT INTO find(age, loss_time, loss_location, report_police, name, sex, detail_characters, case_detail, type, user_id) VALUES (#{age}, #{lossTime}, #{lossLocation}, #{reportPolice}, #{name}, #{sex}, #{detailCharacters}, #{caseDetail}, #{type}, #{userId});")
     @Options(useGeneratedKeys = true, keyProperty = "item.lossId", keyColumn = "loss_id")

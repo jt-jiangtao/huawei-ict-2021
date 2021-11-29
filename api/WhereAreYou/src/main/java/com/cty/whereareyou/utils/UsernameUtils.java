@@ -7,6 +7,9 @@ package com.cty.whereareyou.utils;
 public class UsernameUtils {
 
     public static int transformToId(String username) {
+        if (username.startsWith("visitor@")){
+            return 0;
+        }
         return Integer.parseInt(username.split("@")[1]) - 10000000;
     }
 

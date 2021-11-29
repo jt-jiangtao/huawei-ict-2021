@@ -3,6 +3,7 @@ package com.cty.whereareyou.controller;
 import com.cty.whereareyou.core.UnifyResponse;
 import com.cty.whereareyou.entity.article.Article;
 import com.cty.whereareyou.service.ArticlesService;
+import com.cty.whereareyou.utils.UsernameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,17 +33,17 @@ public class ArticlesController {
 
     @GetMapping("/like/add")
     public Object addLike(String article, String user) {
-        return articlesService.addLike(article, user);
+        return articlesService.addLike(article, UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/like/remove")
     public Object removeLike(String article, String user) {
-        return articlesService.removeLike(article, user);
+        return articlesService.removeLike(article, UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/isLike")
     public Object isLike(String article, String user) {
-        return articlesService.isLike(article, user);
+        return articlesService.isLike(article, UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/like/number")
@@ -51,18 +52,18 @@ public class ArticlesController {
     }
 
     @GetMapping("/collect/add")
-    public Object addCollect(String article, String user) {
-        return articlesService.addCollect(article, user);
+    public Object addCollect(String article,  String user) {
+        return articlesService.addCollect(article, UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/collect/remove")
     public Object removeCollect(String article, String user) {
-        return articlesService.removeCollect(article, user);
+        return articlesService.removeCollect(article, UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/isCollect")
     public Object isCollect(String article, String user) {
-        return articlesService.isCollect(article, user);
+        return articlesService.isCollect(article, UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/collect/number")
@@ -72,16 +73,16 @@ public class ArticlesController {
 
     @GetMapping("/collect/user/number")
     public Object getUserCollectNumber(String user) {
-        return articlesService.getUserCollectNumber(user);
+        return articlesService.getUserCollectNumber(UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/collect/user/info")
     public Object getUserCollectInfo(String user) {
-        return articlesService.getUserCollectInfo(user);
+        return articlesService.getUserCollectInfo(UsernameUtils.transformToId(user));
     }
 
     @GetMapping("/article/lc_info")
     public Object getArticleLikeCollectInfo(String article, String user){
-        return articlesService.getArticleLikeCollectInfo(article, user);
+        return articlesService.getArticleLikeCollectInfo(article, UsernameUtils.transformToId(user));
     }
 }

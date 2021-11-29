@@ -13,25 +13,25 @@ public interface ArticlesService {
 
     Article selectArticleById(int id);
 
-    Object addLike(String article, String user);
+    Object addLike(String article, int user);
 
-    Object removeLike(String article, String user);
+    Object removeLike(String article, int user);
 
-    Object isLike(String article, String user);
+    Object isLike(String article, int user);
 
     Object likeNumber(String article);
 
-    Object addCollect(String article, String user);
+    Object addCollect(String article, int user);
 
-    Object removeCollect(String article, String user);
+    Object removeCollect(String article, int user);
 
-    Object isCollect(String article, String user);
+    Object isCollect(String article, int user);
 
     Object collectNumber(String article);
 
-    Object getUserCollectNumber(String user);
+    Object getUserCollectNumber(int user);
 
-    Object getUserCollectInfo(String user);
+    Object getUserCollectInfo(int user);
 
-    Object getArticleLikeCollectInfo(String article, String user);
+    Object getArticleLikeCollectInfo(String article, int user);
 }
