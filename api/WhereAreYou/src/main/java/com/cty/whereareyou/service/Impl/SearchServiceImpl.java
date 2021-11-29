@@ -42,12 +42,15 @@ public class SearchServiceImpl implements SearchService {
     public void findParent(String url, int id) {
         new Thread(()->{
             List<Image> images = imageService.searchAllImageExceptSelf(id);
-            images.forEach(image -> {
+            for (int i = 0; i < images.size(); i++) {
+                Image image = new Image();
                 log.info(image.getImageUrl() + " are compare......");
                 double similarity = compareFaceService.compareFaceByUrlSolution(url, image.getImageUrl());
                 log.info(image.getImageUrl() + " compare complete, similarity = " + similarity);
-            });
+            }
         }).start();
         // TODO: 保存数据,推送消息
     }
+
+
 }

@@ -18,6 +18,9 @@ public interface PublishMapper {
     @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 ORDER BY loss_time;")
     List<LossSimpleInfo.DatabaseItem> selectAllSimpleInfo();
 
+    @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND find.user_id = #{user} AND type = #{type} ORDER BY loss_time;")
+    List<LossSimpleInfo.DatabaseItem> getByUser(int user, int type);
+
     @Select("SELECT id, image_url, `analyze` as type, loss_id FROM images WHERE loss_id = #{id} AND `analyze` = 0;")
     List<Image> selectImagesByLossId(int id);
 

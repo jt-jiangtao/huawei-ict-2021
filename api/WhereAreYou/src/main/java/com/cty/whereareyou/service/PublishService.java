@@ -17,6 +17,10 @@ public interface PublishService {
 
     LossSimpleInfo selectByKey(String key);
 
+    LossSimpleInfo getChildByUser(String user);
+
+    LossSimpleInfo getParentByUser(String user);
+
     DetailLossInfo selectDetailLossById(int id);
 
     UserLossSimpleInfo selectAllSimpleInfoByUserOfFindChild(int id);

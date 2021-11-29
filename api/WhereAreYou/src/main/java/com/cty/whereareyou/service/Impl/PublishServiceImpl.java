@@ -58,11 +58,29 @@ public class PublishServiceImpl implements PublishService {
         return new LossSimpleInfo(items);
     }
 
+
+
     @Override
     public LossSimpleInfo selectByKey(String key) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
         List<LossSimpleInfo.DatabaseItem> items = publishMapper.selectByKeyWord("%" + key + "%");
+        return new LossSimpleInfo(items);
+    }
+
+    @Override
+    public LossSimpleInfo getChildByUser(String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        List<LossSimpleInfo.DatabaseItem> items = publishMapper.getByUser(UsernameUtils.transformToId(user), 0);
+        return new LossSimpleInfo(items);
+    }
+
+    @Override
+    public LossSimpleInfo getParentByUser(String user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        List<LossSimpleInfo.DatabaseItem> items = publishMapper.getByUser(UsernameUtils.transformToId(user), 1);
         return new LossSimpleInfo(items);
     }
 

@@ -7,6 +7,8 @@ package com.cty.whereareyou.utils;
 public class UsernameUtils {
 
     public static int transformToId(String username) {
+        // 游客统一为0
+        // 系统统一为 -1
         if (username.startsWith("visitor@")){
             return 0;
         }
