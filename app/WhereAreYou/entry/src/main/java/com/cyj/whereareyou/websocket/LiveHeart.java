@@ -14,8 +14,10 @@ public class LiveHeart {
             @Override
             public void run() {
                 try {
-                    client.send("{'userId': '" + UserDataSource.userId + "', 'type': 'HEART'}");
-                    System.out.println("heart -->");
+                    if (client != null){
+                        client.send("{'userId': '" + UserDataSource.userId + "', 'type': 'HEART'}");
+                        System.out.println("heart -->");
+                    }
                 }catch (Exception e){
                     e.printStackTrace();
                 }

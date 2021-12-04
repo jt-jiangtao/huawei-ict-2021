@@ -34,6 +34,8 @@ export default {
                     that.title = "收藏信息"
                     getLossCollectByUser(that.userId).then(data=>{
                         that.content = JSON.parse(data.data).data[0].items
+                    }).catch(error=>{
+                        console.log(error)
                     })
                 }
             },

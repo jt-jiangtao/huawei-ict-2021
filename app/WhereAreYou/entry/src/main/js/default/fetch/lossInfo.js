@@ -2,7 +2,7 @@ import fetch from '@system.fetch';
 import {baseUrl} from './support.js';
 
 export function getSimpleInfo() {
-    let url = baseUrl + "/loss/simple_info"
+    let url = baseUrl + "/loss/simple_info" + "?time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,
@@ -17,7 +17,7 @@ export function getSimpleInfo() {
 }
 
 export function getLossDetailInfo(id){
-    let url = baseUrl + "/loss/detail/" + id
+    let url = baseUrl + "/loss/detail/" + id + "?time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,
@@ -32,7 +32,7 @@ export function getLossDetailInfo(id){
 }
 
 export function getLossSimpleInfoByUser(id){
-    let url = baseUrl + "/loss/user/" + id
+    let url = baseUrl + "/loss/user/" + id + "?time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,
@@ -47,7 +47,7 @@ export function getLossSimpleInfoByUser(id){
 }
 
 export function searchByKeyword(key){
-    let url = baseUrl + "/loss/key?key=" + key
+    let url = baseUrl + "/loss/key?key=" + key + "&time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,

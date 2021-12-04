@@ -35,9 +35,10 @@ export default {
                 duration: 3000,
             });
             let that = this
-            setInterval(function(){
-                that.setOut()
-            }, 3000)
+//            setInterval(function(){
+//                that.setOut()
+//            }, 3000)
+            that.setOut()
         }).catch((error) => {
             // 帐号取消授权失败
             console.error("cancelAuthorization fail");

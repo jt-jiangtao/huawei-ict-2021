@@ -193,6 +193,8 @@
     margin-top: 3px;
     font-size: 13px;
     line-height: 18px;
+    max-lines: 1;
+    text-overflow: ellipsis;
 }
 
 .badge {

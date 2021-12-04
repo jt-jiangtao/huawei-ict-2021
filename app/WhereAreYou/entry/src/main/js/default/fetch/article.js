@@ -2,7 +2,7 @@ import fetch from '@system.fetch';
 import {baseUrl} from './support.js';
 
 export function getArticleSimpleInfo() {
-    let url = baseUrl + "/articles/get_simple_info"
+    let url = baseUrl + "/articles/get_simple_info" + "?time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,
@@ -16,7 +16,7 @@ export function getArticleSimpleInfo() {
     })
 }
 export function getArticleDetailInfo(id) {
-    let url = baseUrl + "/articles/get/" + id
+    let url = baseUrl + "/articles/get/" + id + "?time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,
@@ -30,7 +30,7 @@ export function getArticleDetailInfo(id) {
     })
 }
 export function getArticleLikeCollectInfo(article, user) {
-    let url = baseUrl + "/articles/article/lc_info?article=" + article + "&user=" + user
+    let url = baseUrl + "/articles/article/lc_info?article=" + article + "&user=" + user + "&time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,

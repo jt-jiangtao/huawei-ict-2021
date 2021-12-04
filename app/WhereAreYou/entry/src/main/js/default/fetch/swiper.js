@@ -2,7 +2,7 @@ import fetch from '@system.fetch';
 import {baseUrl} from './support.js';
 
 export function getSwiperInfo() {
-    let url = baseUrl + "/articles/get"
+    let url = baseUrl + "/articles/get" + "?time=" + new Date().getUTCMilliseconds()
     return new Promise((resolve, reject) => {
         fetch.fetch({
             url,

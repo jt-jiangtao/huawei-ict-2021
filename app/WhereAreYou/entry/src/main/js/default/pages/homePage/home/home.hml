@@ -54,7 +54,7 @@
             <list-item class="content-wrapper" clickeffect="false">
                 <div class="content">
                     <div class="left">
-                        <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 == 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
+                        <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 != 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
                             <image src="{{item.images[0]}}"/>
                             <div class="content-text">
                                 <text>姓名: {{item.name}}</text>
@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="right">
-                        <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 != 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
+                        <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 == 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
                             <image src="{{item.images[0]}}"/>
                             <div class="content-text">
                                 <text>姓名: {{item.name}}</text>

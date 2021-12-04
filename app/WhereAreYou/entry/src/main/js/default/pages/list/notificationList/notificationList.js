@@ -34,7 +34,7 @@ export default {
         if (type === "SYSTEM") {
             return "系统消息"
         }else if (type === "FIND") {
-            return "数据库匹配成功，请验证"
+            return "数据库匹配成功"
         }else{
             return "用户提供线索"
         }
