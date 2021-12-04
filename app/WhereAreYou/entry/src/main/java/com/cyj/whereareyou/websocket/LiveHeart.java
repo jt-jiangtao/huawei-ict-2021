@@ -13,8 +13,12 @@ public class LiveHeart {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                client.send("{'userId': '" + UserDataSource.userId + "', 'type': 'HEART'}");
-                System.out.println("heart -->");
+                try {
+                    client.send("{'userId': '" + UserDataSource.userId + "', 'type': 'HEART'}");
+                    System.out.println("heart -->");
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         },0, 1000 * 3);
     }

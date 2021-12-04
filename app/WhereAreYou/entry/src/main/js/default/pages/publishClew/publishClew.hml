@@ -39,7 +39,7 @@
             </div>
         </list-item>
         <list-item  class="list-item button-group" clickeffect="false">
-            <text style="background-color: {{can ? '#516ecc' : '#bfbfbf'}};" class="button" onclick="provideClew">发布</text>
+            <text style="background-color: {{can ? '#516ecc' : '#bfbfbf'}};" class="button" onclick="clickProvideClew">发布</text>
         </list-item>
     </list>
 </div>

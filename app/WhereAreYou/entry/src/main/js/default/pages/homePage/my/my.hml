@@ -5,74 +5,79 @@
         </div>
         <div class="head-right">
             <image if="{{token !== '' && isLog === true}}" class="setting-icon" onclick="toSettingPage" src="/common/Icon/setting.png"/>
-            <image class="notification-icon" onclick="redirect('pages/list/notificationList/notificationList')" src="/common/Icon/notification.png"/>
+             <badge class="badge" visible="{{hasMessage}}" count="0">
+                <image class="notification-icon" onclick="redirect('pages/list/notificationList/notificationList')" src="/common/Icon/notification.png"/>
+             </badge>
         </div>
     </div>
-    <list>
-        <list-item clickeffect="false">
-            <div class="user">
-                <image src="{{ imageUrl || '/common/Icon/default-head.png' }}"/>
-                <div if="{{token !== '' && isLog === true}}" class="username-tags">
-                    <text class="username">{{username}}</text>
-                    <div class="tags">
-                        <text>已认证</text>
+    <refresh refreshing="{{refreshM}}" onrefresh="refreshFunc">
+        <list>
+            <list-item clickeffect="false">
+                <div class="user">
+                    <image src="{{ imageUrl || '/common/Icon/default-head.png' }}"/>
+                    <div if="{{token !== '' && isLog === true}}" class="username-tags">
+                        <text class="username">{{username}}</text>
+                        <div class="tags">
+                            <text>已认证</text>
+                        </div>
+                    </div>
+                    <text else class="log-button" onclick="toLogPage()">登录</text>
+                </div>
+            </list-item>
+            <list-item  clickeffect="false">
+                <div class="my-publish">
+                    <text class="title">发布信息</text>
+                    <div class="publish-wrapper-info">
+                        <div class="findChild publish-item" onclick="redirectToLossList(1)">
+                            <text class="publish-item-title">找孩子</text>
+                            <text class="publish-item-number">{{findChildrenNumber}}</text>
+                        </div>
+                        <div class="findParent publish-item" onclick="redirectToLossList(2)">
+                            <text class="publish-item-title">找父母</text>
+                            <text class="publish-item-number">{{findParentNumber}}</text>
+                        </div>
+                    <!--                    <div class="findParent publish-item" onclick="redirect('pages/list/clewList/clewList')">-->
+                    <!--                        <text class="publish-item-title">我的线索</text>-->
+                    <!--                        <text class="publish-item-number">0</text>-->
+                    <!--                    </div>-->
                     </div>
                 </div>
-                <text else class="log-button" onclick="toLogPage()">登录</text>
-            </div>
-        </list-item>
-        <list-item  clickeffect="false">
-            <div class="my-publish">
-                <text class="title">发布信息</text>
-                <div class="publish-wrapper-info">
-                    <div class="findChild publish-item" onclick="redirectToLossList(1)">
-                        <text class="publish-item-title">找孩子</text>
-                        <text class="publish-item-number">0</text>
-                    </div>
-                    <div class="findParent publish-item" onclick="redirectToLossList(2)">
-                        <text class="publish-item-title">找父母</text>
-                        <text class="publish-item-number">0</text>
-                    </div>
-                    <div class="findParent publish-item" onclick="redirect('pages/list/clewList/clewList')">
-                        <text class="publish-item-title">提供线索</text>
-                        <text class="publish-item-number">0</text>
+            </list-item>
+            <list-item  clickeffect="false">
+                <div class="my-publish">
+                    <text class="title">关注信息</text>
+                    <div class="publish-wrapper-info">
+                        <div class="findChild publish-item"  onclick="redirectToLossList(3)">
+                            <text class="publish-item-title">收藏信息</text>
+                            <text class="publish-item-number">{{collect_event_num}}</text>
+                        </div>
+                        <div class="findParent publish-item" onclick="redirect('pages/list/articlesList/articlesList')">
+                            <text class="publish-item-title">收藏文章</text>
+                            <text class="publish-item-number">{{collect_article_num}}</text>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </list-item>
-        <list-item  clickeffect="false">
-            <div class="my-publish">
-                <text class="title">关注信息</text>
-                <div class="publish-wrapper-info">
-                    <div class="findChild publish-item"  onclick="redirectToLossList(3)">
-                        <text class="publish-item-title">收藏信息</text>
-                        <text class="publish-item-number">0</text>
+            </list-item>
+            <list-item clickeffect="false">
+                <div class="tool-list">
+                    <div class="tool-item" onclick="redirect('pages/list/notificationList/notificationList')">
+                        <image class="tool-item-img" src="/common/Icon/notification.png"/>
+                        <text class="tool-item-text">我的通知</text>
+                        <div class="unseen" if="{{hasMessage}}"></div>
+                        <image class="tool-item-right" src="/common/Icon/right.png"/>
                     </div>
-                    <div class="findParent publish-item" onclick="redirect('pages/list/articlesList/articlesList')">
-                        <text class="publish-item-title">收藏文章</text>
-                        <text class="publish-item-number">0</text>
+                    <div class="tool-item" onclick="manageContact">
+                        <image class="tool-item-img edit" src="/common/Icon/edit.png"/>
+                        <text class="tool-item-text">联系方式</text>
+                        <image class="tool-item-right" src="/common/Icon/right.png"/>
+                    </div>
+                    <div if="{{token !== '' && isLog === true}}" class="tool-item" onclick="toSettingPage">
+                        <image class="tool-item-img edit" src="/common/Icon/setting.png"/>
+                        <text class="tool-item-text">设置</text>
+                        <image class="tool-item-right" src="/common/Icon/right.png"/>
                     </div>
                 </div>
-            </div>
-        </list-item>
-        <list-item clickeffect="false">
-            <div class="tool-list">
-                <div class="tool-item" onclick="redirect('pages/list/notificationList/notificationList')">
-                    <image class="tool-item-img" src="/common/Icon/notification.png"/>
-                    <text class="tool-item-text">我的通知</text>
-                    <image class="tool-item-right" src="/common/Icon/right.png"/>
-                </div>
-                <div class="tool-item" onclick="manageContact">
-                    <image class="tool-item-img edit" src="/common/Icon/edit.png"/>
-                    <text class="tool-item-text">联系方式</text>
-                    <image class="tool-item-right" src="/common/Icon/right.png"/>
-                </div>
-                <div if="{{token !== '' && isLog === true}}" class="tool-item" onclick="toSettingPage">
-                    <image class="tool-item-img edit" src="/common/Icon/setting.png"/>
-                    <text class="tool-item-text">设置</text>
-                    <image class="tool-item-right" src="/common/Icon/right.png"/>
-                </div>
-            </div>
-        </list-item>
-    </list>
+            </list-item>
+        </list>
+    </refresh>
 </div>

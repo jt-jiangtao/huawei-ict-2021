@@ -81,9 +81,9 @@
 .cancel-tips{
     margin-top: 20px;
     width: 100%;
-    font-size: 22px;
+    font-size: 21px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .inner-btn {
@@ -97,4 +97,5 @@
 .btn-txt {
     background-color: #F2F2F2;
     text-color: #0D81F2;
+    width: 100px;
 }

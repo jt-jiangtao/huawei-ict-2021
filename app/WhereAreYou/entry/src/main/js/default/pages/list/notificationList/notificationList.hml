@@ -4,7 +4,7 @@
         <text>通知</text>
     </div>
     <list class="list">
-        <list-item for="{{item in notifications}}" class="list-item" onclick="detail(item)">
+        <list-item for="{{item in notifications}}" if="{{notifications.length !== 0}}" class="list-item" onclick="detail(item)">
             <div class="left"  style="background-color: {{item.fromUser === -1 ? '#c8000b' : '#516ecc'}};"><text>{{item.fromUser === -1 ? '系统' : '用户'}}</text></div>
             <div class="right">
                 <div class="title-time">
@@ -14,7 +14,13 @@
                     </div>
                     <text class="time">{{item.time }}</text>
                 </div>
-                <text class="content">{{item.content}}</text>
+                <text class="content">{{getContent(item.content)}}</text>
+            </div>
+        </list-item>
+        <list-item else>
+            <div class="none" else>
+                <image src="/common/Icon/none.png"></image>
+                <text>暂无通知</text>
             </div>
         </list-item>
     </list>

@@ -3,7 +3,8 @@ import {getArticleSimpleInfo} from '../../../fetch/article.js'
 
 export default {
     data: {
-        items: [{}]
+        items: [{}],
+        refresh: false
     },
     redirectToDetail(id) {
         router.push({
@@ -24,5 +25,13 @@ export default {
         }).catch(error=>{
             console.error(error)
         })
+    },
+    refreshFunc(e) {
+        var that = this;
+        that.onInit()
+        that.refresh = e.refreshing;
+        setTimeout(function(){
+            that.refresh = false;
+        }, 2000)
     }
 }

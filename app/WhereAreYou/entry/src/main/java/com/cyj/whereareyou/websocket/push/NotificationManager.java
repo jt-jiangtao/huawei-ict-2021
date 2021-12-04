@@ -7,6 +7,7 @@ import com.cyj.whereareyou.service.NotificationBridge;
 import ohos.aafwk.ability.DataAbilityHelper;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
+import ohos.event.intentagent.IntentAgent;
 import ohos.event.notification.NotificationHelper;
 import ohos.event.notification.NotificationRequest;
 import ohos.rpc.RemoteException;
@@ -19,7 +20,10 @@ public class NotificationManager {
     }
 
     public static void notificationClew(String m, JSONObject msg){
+
+
         NotificationRequest request = new NotificationRequest();
+//        request.setIntentAgent();
         NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
         if (msg.getString("n_type").equals("CLEW")){
             content.setTitle("用户提供线索").setText(m);
@@ -30,6 +34,7 @@ public class NotificationManager {
         }
         NotificationRequest.NotificationContent notificationContent = new NotificationRequest.NotificationContent(content);
         request.setContent(notificationContent);
+
 
         try {
             NotificationHelper.publishNotification(request);

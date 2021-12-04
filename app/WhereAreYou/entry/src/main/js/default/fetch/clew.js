@@ -3,7 +3,7 @@ import {baseUrl} from './support.js';
 
 export function provideClew(fromUser, toUser, clew) {
     // -2表示匿名用户
-    let from = (fromUser.startsWith("user@") ? fromUser.split("@")[1] : -2);
+    let from = (fromUser.startsWith("user@") ? fromUser.split("@")[1] - 10000000 : -2);
     let to_n = toUser + 10000000
     let to = "user@" + to_n
     let url = baseUrl + "/clew/send"
@@ -12,6 +12,21 @@ export function provideClew(fromUser, toUser, clew) {
             method: "POST",
             url,
             data: "fromUser=" + from + "&toUser=" + to + "&clew=" + clew,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function unSeen(userId) {
+    let url = baseUrl + "/clew/unseen?userId=" + userId + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
             success: function(data){
                 resolve(data)
             },

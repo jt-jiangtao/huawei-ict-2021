@@ -147,14 +147,14 @@
           "pages/searchPage/searchPage",
           "pages/list/lossList/lossList",
           "pages/list/articlesList/articlesList",
-          "pages/list/clewList/clewList",
           "pages/list/notificationList/notificationList",
           "pages/list/contactList/contactList",
           "pages/settings/settings",
           "pages/find/find",
           "pages/notificationDetail/notificationDetail",
           "pages/contactEdit/contactEdit",
-          "pages/publishClew/publishClew"
+          "pages/publishClew/publishClew",
+          "pages/list/lossItem/lossItem"
         ],
         "name": "default",
         "window": {

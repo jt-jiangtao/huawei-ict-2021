@@ -1,19 +1,21 @@
 <div class="container">
-    <list class="title">
-        <list-item for="{{item in items}}" class="first-item" clickeffect="false">
-            <div class="articles">
-                <text>{{item.sortTitle}}</text>
-                <divider class="divider" vertical="false"></divider>
-                <div class="articles-content">
-                    <div for="{{article in item.items}}" class="article" onclick="redirectToDetail(article.articleId)">
-                        <div class="title-author">
-                            <text class="title">{{article.articleTitle}}</text>
-                            <text class="author">@{{article.author}}</text>
+    <refresh refreshing="{{refresh}}" onrefresh="refreshFunc">
+        <list class="title">
+            <list-item for="{{item in items}}" class="first-item" clickeffect="false">
+                <div class="articles">
+                    <text>{{item.sortTitle}}</text>
+                    <divider class="divider" vertical="false"></divider>
+                    <div class="articles-content">
+                        <div for="{{article in item.items}}" class="article" onclick="redirectToDetail(article.articleId)">
+                            <div class="title-author">
+                                <text class="title">{{article.articleTitle}}</text>
+                                <text class="author">@{{article.author}}</text>
+                            </div>
+                            <image class="{{article.headPicture == '' ? 'article-pic-no-width' : 'article-pic'}}" src="{{article.headPicture}}"/>
                         </div>
-                        <image class="{{article.headPicture == '' ? 'article-pic-no-width' : 'article-pic'}}" src="{{article.headPicture}}"/>
                     </div>
                 </div>
-            </div>
-        </list-item>
-    </list>
+            </list-item>
+        </list>
+    </refresh>
 </div>

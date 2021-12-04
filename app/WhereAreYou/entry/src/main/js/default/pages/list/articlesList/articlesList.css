@@ -80,3 +80,23 @@
     width: 0%;
     border-radius: 10px;
 }
+
+.none{
+    margin-top: 100px;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.none image{
+    width: 40px;
+    height: 40px;
+}
+
+.none text{
+    font-size: 16px;
+    margin-top: 10px;
+}

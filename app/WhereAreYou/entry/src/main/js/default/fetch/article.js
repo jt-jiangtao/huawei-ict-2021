@@ -114,3 +114,18 @@ export function getUserCollectInfo(user) {
         })
     })
 }
+
+export function getUserCollectNumber(user) {
+    let url = baseUrl + "/articles/collect/user/number?user=" + user + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}

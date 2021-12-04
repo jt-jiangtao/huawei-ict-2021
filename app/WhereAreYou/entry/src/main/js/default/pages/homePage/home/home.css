@@ -14,8 +14,8 @@
 }
 
 .header .notification{
-    width: 45px;
-    height: 60%;
+/*    width: 45px;*/
+/*    height: 60%;*/
     object-fit: contain;
 }
 
@@ -193,4 +193,12 @@
     margin-top: 3px;
     font-size: 13px;
     line-height: 18px;
+}
+
+.badge {
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    margin-right: 20px;
+    object-fit: contain;
 }

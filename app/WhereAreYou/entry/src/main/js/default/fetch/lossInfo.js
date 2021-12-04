@@ -126,3 +126,78 @@ export function collectRemove(id, event){
         })
     })
 }
+
+export function getSimpleInfoNumber(id){
+    let url = baseUrl + "/loss/user?id=" + id + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function collectNumber(id){
+    let url = baseUrl + "/loss/collect/number?id=" + id + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function getLossCollectByUser(id){
+    let url = baseUrl + "/loss/collect/simple_info?id=" + id + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function getLossChildByUser(user){
+    let url = baseUrl + "/loss/get/child?user=" + user + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}
+
+export function getLossParentByUser(user){
+    let url = baseUrl + "/loss/get/parent?user=" + user + "&time=" + new Date().getUTCMilliseconds()
+    return new Promise((resolve, reject) => {
+        fetch.fetch({
+            url,
+            success: function(data){
+                resolve(data)
+            },
+            fail: function(error){
+                reject(error)
+            }
+        })
+    })
+}

@@ -18,14 +18,5 @@ export default {
     },
     change(e){
         this.searchValue = e.value
-    },
-    redirectToDetail(param) {
-        console.info(param)
-        router.push({
-            uri: 'pages/infoDetail/infoDetail',
-            params: {
-                id: param
-            }
-        });
-    },
+    }
 }

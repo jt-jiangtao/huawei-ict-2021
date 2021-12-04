@@ -7,7 +7,8 @@ export default {
         lossId: 1,
         detailInfo: {},
         images: [{}],
-        isCollect: false
+        isCollect: false,
+        refresh: false
     },
     back(){
         router.back()
@@ -61,5 +62,13 @@ export default {
                 to: that.detailInfo.userId
             }
         })
+    },
+    refreshFunc(e) {
+        var that = this;
+        that.onInit()
+        that.refresh = e.refreshing;
+        setTimeout(function(){
+            that.refresh = false;
+        }, 2000)
     }
 }

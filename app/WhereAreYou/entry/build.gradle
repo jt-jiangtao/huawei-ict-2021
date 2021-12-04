@@ -8,9 +8,9 @@ ohos {
     signingConfigs {
         debug {
             storeFile file('F:\\huawei-ict-other\\debug_key\\debug.p12')
-            storePassword '0000001959C37E85C9F1295B529F9F6CA807D5FF9E45C6246AC3F324285DBAA72E436C7D7C3E46053F'
+            storePassword '000000196E8AC404C5EEEBFBEB6900CDCAD917F6CE28EB69C31C3EBC257FCE86B8E5436912F7533C96'
             keyAlias = 'debug'
-            keyPassword '000000190663564CFB53C7C47ACF903A2549BEFB9E185099009EB0BB2572C19D3EC70F186CF73E34D8'
+            keyPassword '0000001971786AE2D57D691E20F7344BF8A3D3BC4E60693F967CD5DFC15C53EBDE8B9A27E61994D1CF'
             signAlg = 'SHA256withECDSA'
             profile file('F:\\huawei-ict-other\\debug_key\\debug_v1Debug.p7b')
             certpath file('F:\\huawei-ict-other\\debug_key\\debug_v1.cer')

@@ -1,6 +1,8 @@
 <div class="container" id="container">
     <div class="header">
-        <image class="notification" onclick="redirectToNotification" src="/common/Icon/notification.png" />
+        <badge class="badge" visible="{{hasMessage}}" count="0">
+            <image class="notification" onclick="redirectToNotification" src="/common/Icon/notification.png" />
+        </badge>
         <div class="div-search" onclick="redirectToSearch()">
             <image class="image-search" src="/common/Icon/search.png"></image>
             <text>孩子走丢怎么办?</text>
@@ -13,64 +15,66 @@
             </menu>
         </div>
     </div>
-    <list class="list" clickeffect="false">
-        <list-item class="list-swipers" clickeffect="false">
-            <swiper autoplay="true" class="swipers">
-                <image for="{{ item in swiperInfo }}" tid="{{item.id}}" class="banner-image" src="{{item.picture}}" onclick="redirectToSwiperDetail(item.router)"></image>
-            </swiper>
-        </list-item>
-        <list-item clickeffect="false">
-            <grid-container>
-                <grid-row class="list-row">
-                    <grid-col class="list-col">
-                        <image class="child" src="/common/Icon/list_child.png"/>
-                        <text>找孩子</text>
-                    </grid-col>
-                    <grid-col  class="list-col">
-                        <image class="parent" src="/common/Icon/list_parent.png"/>
-                        <text>找父母</text>
-                    </grid-col>
-                    <grid-col class="list-col">
-                        <image class="em" src="/common/Icon/list_em.png"/>
-                        <text>紧急通知</text>
-                    </grid-col>
-                    <grid-col  class="list-col">
-                        <image class="article" src="/common/Icon/list_article.png"/>
-                        <text>文章</text>
-                    </grid-col>
-                </grid-row>
-            </grid-container>
-        </list-item>
-        <list-item class="divider-list-item" clickeffect="false">
-            <div class="divider-wrapper">
-                <divider class="divider" vertical="false"></divider>
-                <text>求助</text>
-                <divider class="divider" vertical="false"></divider>
-            </div>
-        </list-item>
-        <list-item class="content-wrapper" clickeffect="false">
-            <div class="content">
-                <div class="left">
-                    <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 == 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
-                        <image src="{{item.images[0]}}"/>
-                        <div class="content-text">
-                            <text>姓名: {{item.name}}</text>
-                            <text>失踪地点: {{item.lossLocation}}</text>
-                            <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
-                        </div>
-                        </div>
+    <refresh refreshing="{{refresh}}" onrefresh="refreshFunc">
+        <list class="list" clickeffect="false">
+            <list-item class="list-swipers" clickeffect="false">
+                <swiper autoplay="true" class="swipers">
+                    <image for="{{ item in swiperInfo }}" tid="{{item.id}}" class="banner-image" src="{{item.picture}}" onclick="redirectToSwiperDetail(item.router)"></image>
+                </swiper>
+            </list-item>
+        <!--        <list-item clickeffect="false">-->
+        <!--            <grid-container>-->
+        <!--                <grid-row class="list-row">-->
+        <!--                    <grid-col class="list-col">-->
+        <!--                        <image class="child" src="/common/Icon/list_child.png"/>-->
+        <!--                        <text>找孩子</text>-->
+        <!--                    </grid-col>-->
+        <!--                    <grid-col  class="list-col">-->
+        <!--                        <image class="parent" src="/common/Icon/list_parent.png"/>-->
+        <!--                        <text>找父母</text>-->
+        <!--                    </grid-col>-->
+        <!--                    <grid-col class="list-col">-->
+        <!--                        <image class="em" src="/common/Icon/list_em.png"/>-->
+        <!--                        <text>紧急通知</text>-->
+        <!--                    </grid-col>-->
+        <!--                    <grid-col  class="list-col">-->
+        <!--                        <image class="article" src="/common/Icon/list_article.png"/>-->
+        <!--                        <text>文章</text>-->
+        <!--                    </grid-col>-->
+        <!--                </grid-row>-->
+        <!--            </grid-container>-->
+        <!--        </list-item>-->
+            <list-item class="divider-list-item" clickeffect="false">
+                <div class="divider-wrapper">
+                    <divider class="divider" vertical="false"></divider>
+                    <text>求助</text>
+                    <divider class="divider" vertical="false"></divider>
                 </div>
-                <div class="right">
-                    <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 != 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
-                        <image src="{{item.images[0]}}"/>
-                        <div class="content-text">
-                            <text>姓名: {{item.name}}</text>
-                            <text>失踪地点: {{item.lossLocation}}</text>
-                            <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
+            </list-item>
+            <list-item class="content-wrapper" clickeffect="false">
+                <div class="content">
+                    <div class="left">
+                        <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 == 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
+                            <image src="{{item.images[0]}}"/>
+                            <div class="content-text">
+                                <text>姓名: {{item.name}}</text>
+                                <text>失踪地点: {{item.lossLocation}}</text>
+                                <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div for="{{(index, item) in lossListInfo}}" if="{{ index % 2 != 1 }}" class="content-item" onclick="redirectToDetail(item.lossId)">
+                            <image src="{{item.images[0]}}"/>
+                            <div class="content-text">
+                                <text>姓名: {{item.name}}</text>
+                                <text>失踪地点: {{item.lossLocation}}</text>
+                                <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </list-item>
-    </list>
+            </list-item>
+        </list>
+    </refresh>
 </div>

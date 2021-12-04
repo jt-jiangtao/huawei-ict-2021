@@ -2,82 +2,83 @@
     <div class="head">
         <image src="/common/Icon/left.png" onclick="back"/>
         <text>失踪儿童</text>
-        <image class="more" src="/common/Icon/more.png" onclick="back"/>
     </div>
-    <list class="list">
-        <list-item clickeffect="false">
-            <swiper autoplay="false" class="swipers">
-                <image for="{{item in images}}" tid="{{item.id}}" class="banner-image" src="{{item.imageUrl}}"></image>
-            </swiper>
-        </list-item>
-        <list-item clickeffect="false" style="display: flex;flex-direction: column;">
-            <div class="detail-info">
-                <div class="status">
-                    <text class="status-title">{{detailInfo.name}}</text>
-                    <div class="status-list">
-                        <text class="status-item">{{detailInfo.type === 0 ? '寻找父母' : '寻找孩子'}}</text>
-                        <text class="status-item">寻找中</text>
-                        <text if="{{ detailInfo.reportPolice === 1 }}" class="status-item">已报案</text>
-                    </div>
-                </div>
-                <div class="content-wrapper">
-                    <text class="content-title">年龄</text>
-                    <text class="content">{{detailInfo.age}}</text>
-                </div>
-                <div class="content-wrapper">
-                    <text class="content-title">性别</text>
-                    <text class="content">{{detailInfo.sex}}</text>
-                </div>
-<!--                <divider class="divider" vertical="false"></divider>-->
-                <div class="content-wrapper">
-                    <text class="content-title">走失时间</text>
-                    <text class="content">{{detailInfo.lossTime}}</text>
-                </div>
-<!--                <divider class="divider" vertical="false"></divider>-->
-                <div class="content-wrapper" style="align-items: flex-start;">
-                    <text class="content-title">走失地点</text>
-                    <text class="content">{{detailInfo.lossLocation}}</text>
-                </div>
-            </div>
-        </list-item>
-        <list-item clickeffect="false" style="display: flex;flex-direction: column;background-color: #f8f8f8;">
-            <div class="more-info">
-                <text class="title">详细特征</text>
-                <text class="content">{{detailInfo.detailCharacters}}</text>
-            </div>
-        </list-item>
-        <list-item clickeffect="false" style="display: flex;flex-direction: column;">
-            <div class="more-info">
-                <text class="title">事件详情</text>
-                <text class="content">{{detailInfo.caseDetail}}</text>
-            </div>
-        </list-item>
-        <list-item clickeffect="false" style="display: flex;flex-direction: column;margin-bottom: 20px;">
-            <div class="more-info">
-                <text class="title">联系人</text>
-                <div class="contacts">
-                    <div class="contact"  for="{{contact in detailInfo.contacts}}">
-                        <div class="contact-item" style="margin-top: 20px;">
-                            <text class="contact-item-title">姓名</text>
-                            <text class="contact-item-content">{{contact.name}}</text>
-                        </div>
-                        <div class="contact-item">
-                            <text class="contact-item-title">电话</text>
-                            <text class="contact-item-content">{{contact.phone}}</text>
-                        </div>
-                        <div class="contact-item">
-                            <text class="contact-item-title">住址</text>
-                            <text class="contact-item-content">{{contact.location}}</text>
-                        </div>
-                        <div class="contact-item">
-                            <text class="contact-item-title">关系</text>
-                            <text class="contact-item-content">{{contact.relation}}</text>
+    <refresh refreshing="{{refresh}}" onrefresh="refreshFunc">
+        <list class="list">
+            <list-item clickeffect="false">
+                <swiper autoplay="false" class="swipers">
+                    <image for="{{item in images}}" tid="{{item.id}}" class="banner-image" src="{{item.imageUrl}}"></image>
+                </swiper>
+            </list-item>
+            <list-item clickeffect="false" style="display: flex;flex-direction: column;">
+                <div class="detail-info">
+                    <div class="status">
+                        <text class="status-title">{{detailInfo.name}}</text>
+                        <div class="status-list">
+                            <text class="status-item">{{detailInfo.type === 0 ? '寻找父母' : '寻找孩子'}}</text>
+                            <text class="status-item">寻找中</text>
+                            <text if="{{ detailInfo.reportPolice === 1 }}" class="status-item">已报案</text>
                         </div>
                     </div>
+                    <div class="content-wrapper">
+                        <text class="content-title">年龄</text>
+                        <text class="content">{{detailInfo.age}}</text>
+                    </div>
+                    <div class="content-wrapper">
+                        <text class="content-title">性别</text>
+                        <text class="content">{{detailInfo.sex}}</text>
+                    </div>
+                <!--                <divider class="divider" vertical="false"></divider>-->
+                    <div class="content-wrapper">
+                        <text class="content-title">走失时间</text>
+                        <text class="content">{{detailInfo.lossTime}}</text>
+                    </div>
+                <!--                <divider class="divider" vertical="false"></divider>-->
+                    <div class="content-wrapper" style="align-items: flex-start;">
+                        <text class="content-title">走失地点</text>
+                        <text class="content">{{detailInfo.lossLocation}}</text>
+                    </div>
                 </div>
-            </div>
-        </list-item>
-    </list>
+            </list-item>
+            <list-item clickeffect="false" style="display: flex;flex-direction: column;background-color: #f8f8f8;">
+                <div class="more-info">
+                    <text class="title">详细特征</text>
+                    <text class="content">{{detailInfo.detailCharacters}}</text>
+                </div>
+            </list-item>
+            <list-item clickeffect="false" style="display: flex;flex-direction: column;">
+                <div class="more-info">
+                    <text class="title">事件详情</text>
+                    <text class="content">{{detailInfo.caseDetail}}</text>
+                </div>
+            </list-item>
+            <list-item clickeffect="false" style="display: flex;flex-direction: column;margin-bottom: 20px;">
+                <div class="more-info">
+                    <text class="title">联系人</text>
+                    <div class="contacts">
+                        <div class="contact"  for="{{contact in detailInfo.contacts}}">
+                            <div class="contact-item" style="margin-top: 20px;">
+                                <text class="contact-item-title">姓名</text>
+                                <text class="contact-item-content">{{contact.name}}</text>
+                            </div>
+                            <div class="contact-item">
+                                <text class="contact-item-title">电话</text>
+                                <text class="contact-item-content">{{contact.phone}}</text>
+                            </div>
+                            <div class="contact-item">
+                                <text class="contact-item-title">住址</text>
+                                <text class="contact-item-content">{{contact.location}}</text>
+                            </div>
+                            <div class="contact-item">
+                                <text class="contact-item-title">关系</text>
+                                <text class="contact-item-content">{{contact.relation}}</text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </list-item>
+        </list>
+    </refresh>
     <div class="tools">
         <image onclick="chickCollect" if="{{!isCollect}}" src="/common/Icon/collect.png"></image>
         <image onclick="chickCollect" else src="/common/Icon/collect_active.png"></image>

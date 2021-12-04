@@ -1,18 +1,24 @@
 import router from '@system.router';
 import {getSwiperInfo} from '../../../fetch/swiper.js'
 import {getSimpleInfo} from '../../../fetch/lossInfo.js'
+import {unSeen} from '../../../fetch/clew.js'
 import storage from '@system.storage';
+import prompt from '@system.prompt';
 
 export default {
     data: {
         swiperInfo: null,
         lossListInfo: null,
-        userId: ""
+        userId: "",
+        hasMessage: true,
+        refresh: false
     },
     redirectToSwiperDetail(url){
-        console.info(url)
         router.push({
-            uri: url
+            uri: url.split("?")[0],
+            params: {
+                id: url.split("?")[1]
+            }
         });
     },
     redirectToDetail(param) {
@@ -37,6 +43,7 @@ export default {
     onTextClick() {
         this.$element("apiMenu").show({x: 365, y: 30});
     },
+
     onMenuSelected(e){
         if (this.userId.startsWith("user@")) {
             switch(e.value){
@@ -66,10 +73,20 @@ export default {
     },
     onPageShow(){
         let that = this
+        that.hasMessage = false
         storage.get({
             key: "userId",
             success: function (data) {
                 that.userId = data
+                if (data.startsWith("user@")){
+                    unSeen(data).then(data=>{
+                        if(JSON.parse(data.data).data !== 0){
+                            that.hasMessage = true
+                        }else{
+                            that.hasMessage = false
+                        }
+                    })
+                }
             },
             fail(data){
                 console.error(data)
@@ -105,5 +122,14 @@ export default {
                 uri: 'pages/login/login'
             })
         }
+    },
+    refreshFunc(e) {
+        var that = this;
+        that.onInit()
+        that.onPageShow()
+        that.refresh = e.refreshing;
+        setTimeout(function(){
+            that.refresh = false;
+        }, 2000)
     }
 }

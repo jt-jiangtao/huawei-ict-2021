@@ -5,7 +5,7 @@
     </div>
     <list class="list">
         <list-item class="list-item" clickeffect="false">
-            <div class="articles-content">
+            <div if="{{articles.length !== 0}}" class="articles-content">
                 <div for="{{article in articles}}" class="article" onclick="redirectToDetail(article.id)">
                     <div class="title-author">
                         <text class="title">{{article.title}}</text>
@@ -13,6 +13,10 @@
                     </div>
                     <image class="{{article.headPicture == '' ? 'article-pic-no-width' : 'article-pic'}}" src="{{article.headPicture}}"/>
                 </div>
+            </div>
+            <div class="none" else>
+                <image src="/common/Icon/none.png"></image>
+                <text>暂无收藏</text>
             </div>
         </list-item>
     </list>

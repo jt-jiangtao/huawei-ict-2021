@@ -51,5 +51,8 @@ export default {
                 item
             }
         })
+    },
+    getContent(content){
+        return JSON.parse(content).content
     }
 }

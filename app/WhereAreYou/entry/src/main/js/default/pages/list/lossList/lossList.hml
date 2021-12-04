@@ -1,11 +1,12 @@
+<element name="item" src="../lossItem/lossItem.hml"></element>
 <div class="container">
     <div class="head">
         <image src="/common/Icon/left.png" onclick="back"/>
-        <text>失踪人员</text>
+        <text>{{title}}</text>
     </div>
     <list class="list">
         <list-item class="list-item" clickeffect="false">
-
+            <item items="{{content}}"></item>
         </list-item>
     </list>
 </div>

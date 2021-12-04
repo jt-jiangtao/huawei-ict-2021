@@ -96,7 +96,7 @@ export default {
             this.can = true
         }
     },
-    provideClew(){
+    clickProvideClew(){
         if (this.can) {
             let clew = {
                 content: this.content,

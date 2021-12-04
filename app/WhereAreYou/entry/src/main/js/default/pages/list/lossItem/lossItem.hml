@@ -1,5 +1,16 @@
 <div class="container">
-    <text class="title">
-        Hello {{ title }}
-    </text>
+    <div for="item in items" if="{{items.length !== 0}}" class="loss_info_container" onclick="redirectToDetail(item.lossId)">
+        <div class="image_container">
+            <image src="{{item.images[0]}}"></image>
+        </div>
+        <div class="info">
+            <text>姓名: {{item.name}}</text>
+            <text>失踪地点: {{item.lossLocation}}</text>
+            <text>失踪时间: {{item.lossTime.split(" ")[0]}}</text>
+        </div>
+    </div>
+    <div class="none" else>
+        <image src="/common/Icon/none.png"></image>
+        <text>暂无数据</text>
+    </div>
 </div>

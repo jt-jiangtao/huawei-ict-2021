@@ -7,7 +7,17 @@
          <list-item class="list-item" clickeffect="false">
              <text class="title">{{getTitle()}}</text>
              <text class="time">{{this.item.time}}</text>
-             <text class="content">{{this.item.content}}</text>
+             <text class="content">{{jsonData.content}}</text>
+             <image class="image-item" for="{{image in jsonData.images}}" src="{{image}}"></image>
          </list-item>
+        <list-item if="{{jsonData.contacts !== '' && jsonData.contacts !== undefined && jsonData.contacts.length !== 0}}" class="list-item" clickeffect="false">
+            <text class="contacts-title">联系方式</text>
+        </list-item>
+        <list-item for="{{item in jsonData.contacts}}" class="list-item contacts" clickeffect="false">
+            <div class="left">
+                <text class="ex-location">{{item.name}}({{item.relation}}) {{item.phone}}</text>
+                <text class="location">{{item.location}}</text>
+            </div>
+        </list-item>
     </list>
 </div>
