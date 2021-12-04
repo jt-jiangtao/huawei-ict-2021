@@ -126,7 +126,7 @@ public class PublishController {
     public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, String userId, String images, String contacts) {
         Map<String, String> map = (Map<String, String>) publishService.commitFindChild(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, UsernameUtils.transformToId(userId), images, contacts);
         if (map.get("status").equals("200")) {
-            clewService.insertNotification(-1, UsernameUtils.transformToId(userId), "{'content':'您已提交信息，请耐心等待~'}", "SYSTEM");
+            clewService.insertNotification(-1, UsernameUtils.transformToId(userId), "{\"content\":\"您已提交信息，请耐心等待~\"}", "SYSTEM");
         }
         return map;
     }
@@ -135,7 +135,7 @@ public class PublishController {
     public Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, String userId, String images, String contacts) {
         Map<String, String> map = (Map<String, String>) publishService.commitParent(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, UsernameUtils.transformToId(userId), images, contacts);
         if (map.get("status").equals("200")) {
-            clewService.insertNotification(-1, UsernameUtils.transformToId(userId), "{'content':'您已提交信息，请耐心等待~'}", "SYSTEM");
+            clewService.insertNotification(-1, UsernameUtils.transformToId(userId), "{\"content\":\"您已提交信息，请耐心等待~\"}", "SYSTEM");
         }
         return map;
     }
@@ -149,4 +149,6 @@ public class PublishController {
     public Object getParent(String user){
         return publishService.getParentByUser(user);
     }
+
+
 }

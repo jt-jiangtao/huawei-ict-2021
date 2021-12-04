@@ -22,7 +22,7 @@ public interface ClewMapper {
     @Update("UPDATE notification SET seen = 1 WHERE id = #{id};")
     int updateSeenStatus(int id);
 
-    @Select("SELECT * from notification WHERE to_user = #{user};")
+    @Select("SELECT * from notification WHERE to_user = #{user} ORDER BY time DESC;")
     List<Clew> selectUserNotification(int user);
 
     @Select("SELECT * FROM notification WHERE send = 0;")
@@ -30,4 +30,7 @@ public interface ClewMapper {
 
     @Select("SELECT * FROM notification WHERE send = 0 AND to_user = #{user};")
     List<Clew> selectUserNotSendNotification(int user);
+
+    @Select("SELECT COUNT(id) as number FROM notification WHERE to_user = #{user} AND seen = 0;")
+    int unseenMessage(int user);
 }

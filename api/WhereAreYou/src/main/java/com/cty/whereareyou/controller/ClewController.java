@@ -36,4 +36,9 @@ public class ClewController {
     public Object selectUserNotification(String userId){
         return clewService.selectUserNotification(UsernameUtils.transformToId(userId));
     }
+
+    @GetMapping("/unseen")
+    public Object unseenMessage(String userId){
+        return clewService.unseenMessage(UsernameUtils.transformToId(userId));
+    }
 }

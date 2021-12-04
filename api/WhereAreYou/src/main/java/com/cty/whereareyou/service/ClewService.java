@@ -23,4 +23,6 @@ public interface ClewService {
     List<Clew> selectUserNotification(int user);
 
     List<Clew> selectUserNotSendNotification(int user);
+
+    Object unseenMessage(int user);
 }

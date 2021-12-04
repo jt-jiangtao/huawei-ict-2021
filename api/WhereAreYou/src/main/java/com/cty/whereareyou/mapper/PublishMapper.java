@@ -15,7 +15,7 @@ public interface PublishMapper {
     @Select("SELECT COUNT(CASE WHEN type = 0 THEN 1 END ) as find_children_number ,COUNT(CASE WHEN type = 1 THEN 1 END ) as find_parent_number FROM find WHERE user_id = #{userId};")
     SimpleInfo selectUserSimpleInfo(int userId);
 
-    @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 ORDER BY loss_time;")
+    @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 ORDER BY loss_time DESC;")
     List<LossSimpleInfo.DatabaseItem> selectAllSimpleInfo();
 
     @Select("SELECT find.loss_id, age, loss_time, loss_location, name, sex, type, image_url FROM find, images WHERE find.loss_id = images.loss_id AND images.analyze = 0 AND find.user_id = #{user} AND type = #{type} ORDER BY loss_time;")
@@ -77,5 +77,8 @@ public interface PublishMapper {
 
     @Insert("INSERT INTO find(age, loss_time, loss_location, report_police, name, sex, detail_characters, case_detail, type, user_id) VALUES (#{age}, #{lossTime}, #{lossLocation}, #{reportPolice}, #{name}, #{sex}, #{detailCharacters}, #{caseDetail}, #{type}, #{userId});")
     @Options(useGeneratedKeys = true, keyProperty = "item.lossId", keyColumn = "loss_id")
-    int insertFindInfo(int age, String lossTime, String lossLocation,int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int type, int userId, LossSimpleInfo.Item item);
+    int insertFindInfo(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int type, int userId, LossSimpleInfo.Item item);
+
+    @Select("SELECT user_id FROM find WHERE loss_id = #{loss};")
+    int findUserIdByLossId(int loss);
 }

@@ -130,4 +130,11 @@ public class ClewServiceImpl implements ClewService {
         ClewMapper clewMapper = sqlSession.getMapper(ClewMapper.class);
         return clewMapper.selectUserNotSendNotification(user);
     }
+
+    @Override
+    public Object unseenMessage(int user) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        ClewMapper clewMapper = sqlSession.getMapper(ClewMapper.class);
+        return clewMapper.unseenMessage(user);
+    }
 }

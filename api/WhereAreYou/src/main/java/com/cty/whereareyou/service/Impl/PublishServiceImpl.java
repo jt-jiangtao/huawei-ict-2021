@@ -317,4 +317,18 @@ public class PublishServiceImpl implements PublishService {
         }
         return map;
     }
+
+    @Override
+    public List<Contact> selectContactsByLossId(int id) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        return publishMapper.selectContactsByLossId(id);
+    }
+
+    @Override
+    public int findUserIdByLossId(int loss) {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        PublishMapper publishMapper = sqlSession.getMapper(PublishMapper.class);
+        return publishMapper.findUserIdByLossId(loss);
+    }
 }

@@ -56,4 +56,8 @@ public interface PublishService {
     Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts);
 
     Object commitParent(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts);
+
+    List<Contact> selectContactsByLossId(int id);
+
+    int findUserIdByLossId(int loss);
 }
