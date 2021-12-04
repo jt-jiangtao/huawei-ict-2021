@@ -37,7 +37,10 @@ export default {
         }
     },
     onInit() {
-
+        console.log(this.notification)
+    },
+    onShow(){
+        console.log(this.notification)
     },
     changeTabIndex(e) {
         for (let i = 0; i < this.tabbardata.length; i++) {

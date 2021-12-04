@@ -1,5 +1,6 @@
 package com.cyj.whereareyou.page;
 
+import ohos.aafwk.content.IntentParams;
 import ohos.aafwk.content.Operation;
 import ohos.ace.ability.AceAbility;
 import ohos.aafwk.content.Intent;
@@ -13,6 +14,7 @@ import ohos.hiviewdfx.HiLogLabel;
 import ohos.security.SystemPermission;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class MainAbility extends AceAbility {
     private static final HiLogLabel LABEL = new HiLogLabel(HiLog.LOG_APP, 0, "MY_TAG");
@@ -89,6 +91,13 @@ public class MainAbility extends AceAbility {
 
     @Override
     public void onNewIntent(Intent intent) {
+        if (intent.getParams().getParam("type").equals("notification")){
+            IntentParams params = new IntentParams();
+            params.setParam("item", intent.getStringParam("content"));
+            params.setParam("status", 0);
+            pushPage("pages/notificationDetail/notificationDetail", params);
+        }
+
         // Only response to it when starting from a service widget.
         if (intentFromWidget(intent)) {
             String newWidgetSlice = getRoutePageSlice(intent);
@@ -147,5 +156,4 @@ public class MainAbility extends AceAbility {
             }
         }
     }
-
 }

@@ -2,6 +2,7 @@ package com.cyj.whereareyou.websocket;
 
 import com.cyj.whereareyou.data.UserDataSource;
 import com.cyj.whereareyou.service.NotificationService;
+import ohos.app.Context;
 import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_6455;
@@ -21,7 +22,25 @@ public class WebsocketClientManager {
 
     public static String address = "ws://8.136.37.208:8080/api/websocket/";
 
+    public static Context context;
+
     public static void reconnectClient() {
+        if (client != null){
+            client.close();
+        }
+        client = null;
+        try {
+            if (! UserDataSource.userId.startsWith("init@")){
+                client = new MessageWebsocketClient(new URI(address + UserDataSource.userId), new Draft_6455());
+                client.connect();
+            }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void reconnectClient(Context context) {
+        if (context !=null) WebsocketClientManager.context = context;
         if (client != null){
             client.close();
         }

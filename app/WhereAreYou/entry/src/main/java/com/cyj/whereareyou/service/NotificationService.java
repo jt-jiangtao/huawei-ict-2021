@@ -3,10 +3,14 @@ package com.cyj.whereareyou.service;
 import com.cyj.whereareyou.websocket.WebsocketClientManager;
 import ohos.aafwk.ability.Ability;
 import ohos.aafwk.content.Intent;
+import ohos.aafwk.content.IntentParams;
 import ohos.event.notification.NotificationRequest;
 import ohos.rpc.IRemoteObject;
 import ohos.hiviewdfx.HiLog;
 import ohos.hiviewdfx.HiLogLabel;
+import ohos.utils.zson.ZSONObject;
+
+import java.util.Map;
 
 public class NotificationService extends Ability {
     private static final HiLogLabel LABEL_LOG = new HiLogLabel(3, 0xD001100, "Demo");
@@ -23,7 +27,7 @@ public class NotificationService extends Ability {
 
         // 绑定通知，1005为创建通知时传入的notificationId
 //        keepBackgroundRunning(1005, request);
-        WebsocketClientManager.reconnectClient();
+        WebsocketClientManager.reconnectClient(this);
         super.onStart(intent);
     }
 
@@ -53,6 +57,5 @@ public class NotificationService extends Ability {
     @Override
     public void onDisconnect(Intent intent) {
     }
-
 
 }

@@ -17,7 +17,11 @@ export default {
         }
     },
     onInit(){
-        this.jsonData = JSON.parse(this.item.content)
+        if (this.item.content === undefined) {
+            this.jsonData = JSON.parse(JSON.parse(this.item).content)
+        }else{
+            this.jsonData = JSON.parse(this.item.content)
+        }
     },
     detail(){
         let that = this
