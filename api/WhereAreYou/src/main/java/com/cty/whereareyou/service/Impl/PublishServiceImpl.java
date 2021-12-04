@@ -301,6 +301,14 @@ public class PublishServiceImpl implements PublishService {
         Map<String, String> map = new HashMap<>();
         map = insertFindInfo(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, 0 , userId, images, contacts);
 //        if (map.get("status").equals("200"))  // TODO: 调用接口生成图片
+
+        int lossId = Integer.parseInt(map.get("loss_id"));
+        if (map.get("status").equals("200")){
+            List<String> imagesList = JSON.parseArray(images, String.class);
+            imagesList.forEach(s -> {
+                searchService.findChild(s, lossId);
+            });
+        }
         return map;
     }
 

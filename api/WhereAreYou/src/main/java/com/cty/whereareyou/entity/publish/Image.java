@@ -23,4 +23,7 @@ public class Image {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Integer userId;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private double similarity;
 }

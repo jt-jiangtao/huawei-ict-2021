@@ -16,9 +16,11 @@ public class LossSimpleInfo {
     private List<Item> items = new ArrayList<>();
 
     public LossSimpleInfo(List<DatabaseItem> databaseItems) {
-        databaseItems.forEach(item -> {
+        for (int i = 0; i < databaseItems.size(); i++) {
+            DatabaseItem item = databaseItems.get(i);
+            if (item == null) continue;
             addDataBaseItemToFinalItem(item);
-        });
+        }
     }
 
     private void addDataBaseItemToFinalItem(DatabaseItem item) {

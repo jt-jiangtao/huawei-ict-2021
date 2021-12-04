@@ -123,6 +123,7 @@ public class WebSocketServer {
             webSocketMap.remove(userId);
             //从set中删除
             subOnlineCount();
+            heartConnectTimer.stop();
         }
         log.info("用户退出:"+userId+",当前在线人数为:" + getOnlineCount());
     }
@@ -221,6 +222,12 @@ public class WebSocketServer {
      */
     @OnError
     public void onError(Session session, Throwable error) {
+        if(webSocketMap.containsKey(userId)){
+            webSocketMap.remove(userId);
+            //从set中删除
+            subOnlineCount();
+            heartConnectTimer.stop();
+        }
         log.error("用户错误:"+this.userId+",原因:"+error.getMessage());
         error.printStackTrace();
     }

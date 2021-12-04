@@ -13,7 +13,7 @@ public interface ImageService {
 
     Object insertGenerateImage(int user, String image, int loss);
 
-    List<Image> searchRawImage(int id);
+    List<Image> searchRawImage(int id, int user_id);
 
-    List<Image> searchAllImageExceptSelf(int id);
+    List<Image> searchAllImageExceptSelf(int id, int user_id);
 }

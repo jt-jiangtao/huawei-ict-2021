@@ -55,16 +55,16 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public List<Image> searchRawImage(int id) {
+    public List<Image> searchRawImage(int id, int user_id) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ImageMapper imageMapper = sqlSession.getMapper(ImageMapper.class);
-        return imageMapper.searchRawImage(id);
+        return imageMapper.searchRawImage(id, user_id);
     }
 
     @Override
-    public List<Image> searchAllImageExceptSelf(int id) {
+    public List<Image> searchAllImageExceptSelf(int id, int user_id) {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         ImageMapper imageMapper = sqlSession.getMapper(ImageMapper.class);
-        return imageMapper.searchAllImageExceptSelf(id);
+        return imageMapper.searchAllImageExceptSelf(id, user_id);
     }
 }
