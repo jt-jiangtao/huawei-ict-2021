@@ -5,7 +5,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.cyj.whereareyou.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @Author: jiangtao
@@ -90,5 +93,29 @@ public class TestController {
         jsonObjectC.put("images", images);
         clewService.insertNotification(-1, 13, jsonObjectC.toJSONString(), "FIND");
         return jsonObjectC;
+    }
+
+    @GetMapping("/r")
+    public Object request() {
+        String url = "http://123.60.110.121:8080/";
+        RestTemplate restTemplate = new RestTemplate();
+        LinkedMultiValueMap body=new LinkedMultiValueMap();
+        body.add("url","https://image.jiangtao.website/raw/0_2_raw_1.jpg");
+        body.add("user_id","user@10000013");
+        body.add("loss_id",19);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        HttpEntity httpEntity = new HttpEntity(body,headers);
+        try {
+            //使用 exchange 发送请求，以String的类型接收返回的数据
+            //ps，我请求的数据，其返回是一个json
+            ResponseEntity<String> strbody = restTemplate.exchange(url, HttpMethod.POST,httpEntity,String.class);
+            //解析返回的数据
+            return strbody.getBody();
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        return  null;
     }
 }

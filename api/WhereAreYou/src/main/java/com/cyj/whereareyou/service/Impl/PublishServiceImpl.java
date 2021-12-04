@@ -5,6 +5,7 @@ import com.cyj.whereareyou.mapper.ImageMapper;
 import com.cyj.whereareyou.mapper.PublishMapper;
 import com.cyj.whereareyou.service.PublishService;
 import com.cyj.whereareyou.service.SearchService;
+import com.cyj.whereareyou.utils.Request;
 import com.cyj.whereareyou.utils.UsernameUtils;
 import com.cyj.whereareyou.entity.publish.*;
 import org.apache.ibatis.io.Resources;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 /**
  * @Author: jiangtao
@@ -297,9 +299,19 @@ public class PublishServiceImpl implements PublishService {
     public Object commitFindChild(int age, String lossTime, String lossLocation, int reportPolice, String name, String sex, String detailCharacters, String caseDetail, int userId, String images, String contacts) {
         Map<String, String> map = new HashMap<>();
         map = insertFindInfo(age, lossTime, lossLocation, reportPolice, name, sex, detailCharacters, caseDetail, 0 , userId, images, contacts);
-//        if (map.get("status").equals("200"))  // TODO: 调用接口生成图片
 
         int lossId = Integer.parseInt(map.get("loss_id"));
+
+        // TODO: 调用接口生成图片
+//        if (images.equals("")) images = "[]";
+//        String imagesCopy = images;
+//        new Thread(() -> {
+//            List<String> imagesList = JSON.parseArray(imagesCopy, String.class);
+//            imagesList.forEach(s -> {
+//                Request.requestPictureGenerate(s ,UsernameUtils.transformToUsername(userId), lossId);
+//            });
+//        }).start();
+
         if (map.get("status").equals("200")){
             List<String> imagesList = JSON.parseArray(images, String.class);
             imagesList.forEach(s -> {

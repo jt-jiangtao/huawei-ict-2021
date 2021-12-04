@@ -22,8 +22,11 @@
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
                 <property name="url" value="jdbc:mysql://8.136.37.208:3306/whereareyou?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>
+<!--                <property name="url" value="jdbc:mysql://119.3.233.82:3306/whereareyou?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false"/>-->
                 <property name="username" value="WhereAreYou"/>
+<!--                <property name="username" value="whereareyou"/>-->
                 <property name="password" value="WhereAreYou"/>
+<!--                <property name="password" value="whereareyou"/>-->
             </dataSource>
 
         </environment>
