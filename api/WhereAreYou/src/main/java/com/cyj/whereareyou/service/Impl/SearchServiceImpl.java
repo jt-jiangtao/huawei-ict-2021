@@ -99,7 +99,7 @@ public class SearchServiceImpl implements SearchService {
                 }
             });
             if (possibleImages.isEmpty()){
-                sendEmpty(id);
+//                sendEmpty(id);
             }else {
                 sendToFindParent(possibleImages.get(0).getSimilarity(), possibleImages.get(0), id, url, false, 1);
                 sendToFindChild(possibleImages.get(0).getSimilarity(), possibleImages.get(0), id, url, false, 1);

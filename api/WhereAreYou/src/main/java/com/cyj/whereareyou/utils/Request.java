@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 public class Request {
 
     static public Object requestPictureGenerate(String imageUrl, String userId, int lossId){
-        String url = "http://127.0.0.1:8088/test/t";
+        String url = "http://123.60.110.121:8080/";
         RestTemplate restTemplate = new RestTemplate();
         LinkedMultiValueMap body=new LinkedMultiValueMap();
         body.add("url", imageUrl);

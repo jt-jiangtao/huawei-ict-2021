@@ -303,14 +303,14 @@ public class PublishServiceImpl implements PublishService {
         int lossId = Integer.parseInt(map.get("loss_id"));
 
         // TODO: 调用接口生成图片
-//        if (images.equals("")) images = "[]";
-//        String imagesCopy = images;
-//        new Thread(() -> {
-//            List<String> imagesList = JSON.parseArray(imagesCopy, String.class);
-//            imagesList.forEach(s -> {
-//                Request.requestPictureGenerate(s ,UsernameUtils.transformToUsername(userId), lossId);
-//            });
-//        }).start();
+        if (images.equals("")) images = "[]";
+        String imagesCopy = images;
+        new Thread(() -> {
+            List<String> imagesList = JSON.parseArray(imagesCopy, String.class);
+            imagesList.forEach(s -> {
+                Request.requestPictureGenerate(s ,UsernameUtils.transformToUsername(userId), lossId);
+            });
+        }).start();
 
         if (map.get("status").equals("200")){
             List<String> imagesList = JSON.parseArray(images, String.class);
