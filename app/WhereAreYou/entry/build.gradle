@@ -7,13 +7,13 @@ def jsOutputDir = project.file("src/main/js/default/generated").toString()
 ohos {
     signingConfigs {
         debug {
-            storeFile file('F:\\huawei-ict-other\\debug_key\\debug.p12')
-            storePassword '000000196E8AC404C5EEEBFBEB6900CDCAD917F6CE28EB69C31C3EBC257FCE86B8E5436912F7533C96'
-            keyAlias = 'debug'
-            keyPassword '0000001971786AE2D57D691E20F7344BF8A3D3BC4E60693F967CD5DFC15C53EBDE8B9A27E61994D1CF'
+            storeFile file('F:\\huawei-ict-other\\new_key\\key.p12')
+            storePassword '0000001925A5ADAE4F66F2CED203ECA07A7B1EA41F0F1E5F1F56C91F664BF1432660B0FAC930B97C28'
+            keyAlias = 'key'
+            keyPassword '000000197C811DA3142B35495D949F1F90CCB1D00B3BAA129E4739F3AE3CA94899D2F4D3AC4C9704C0'
             signAlg = 'SHA256withECDSA'
-            profile file('F:\\huawei-ict-other\\debug_key\\debug_v1Debug.p7b')
-            certpath file('F:\\huawei-ict-other\\debug_key\\debug_v1.cer')
+            profile file('F:\\huawei-ict-other\\new_key\\new_keyDebug.p7b')
+            certpath file('F:\\huawei-ict-other\\new_key\\new_key.cer')
         }
     }
     compileOptions {

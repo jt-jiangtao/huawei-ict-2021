@@ -1,4 +1,5 @@
 import router from '@system.router';
+import {seen} from '../../fetch/notification.js';
 
 export default {
     data: {
@@ -19,8 +20,18 @@ export default {
     onInit(){
         if (this.item.content === undefined) {
             this.jsonData = JSON.parse(JSON.parse(this.item).content)
+            seen(JSON.parse(this.item).id).then(data=>{
+                console.log(data)
+            }).catch(error=>{
+                console.log(error)
+            })
         }else{
             this.jsonData = JSON.parse(this.item.content)
+            seen(this.item.id).then(data=>{
+                console.log(data)
+            }).catch(error=>{
+                console.log(error)
+            })
         }
     },
     detail(){

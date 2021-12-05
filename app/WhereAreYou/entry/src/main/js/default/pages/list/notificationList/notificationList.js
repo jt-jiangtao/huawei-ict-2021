@@ -40,11 +40,6 @@ export default {
         }
     },
     detail(item){
-        seen(item.id).then(data=>{
-            console.log(data)
-        }).catch(error=>{
-            console.log(error)
-        })
         router.push({
             uri: 'pages/notificationDetail/notificationDetail',
             params: {

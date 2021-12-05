@@ -15,7 +15,7 @@
                     <div class="status">
                         <text class="status-title">{{detailInfo.name}}</text>
                         <div class="status-list">
-                            <text class="status-item">{{detailInfo.type === 0 ? '寻找父母' : '寻找孩子'}}</text>
+                            <text class="status-item">{{detailInfo.type !== 0 ? '寻找父母' : '寻找孩子'}}</text>
                             <text class="status-item">寻找中</text>
                             <text if="{{ detailInfo.reportPolice === 1 }}" class="status-item">已报案</text>
                         </div>

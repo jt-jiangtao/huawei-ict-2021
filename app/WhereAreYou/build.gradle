@@ -5,13 +5,13 @@ apply plugin: 'com.huawei.ohos.app'
 ohos {
     signingConfigs {
         debug {
-            storeFile file('F:\\huawei-ict-other\\debug_key\\debug.p12')
-            storePassword '000000190B5DD39105A2280D882094F8BF6124443A85E0AAFE0627F69E9236877EDED06474F73DBD76'
-            keyAlias = 'debug'
-            keyPassword '00000019426EF5B0677EF172F44E1E549776365F9940C56BD102DA96D290ABC08E44153F67BD22AFAD'
+            storeFile file('F:\\huawei-ict-other\\new_key\\key.p12')
+            storePassword '000000197D2274F775A5805E123FC7EC4EC7783EC71DD018B0982A39F05D676189932E4D7B34764FC0'
+            keyAlias = 'key'
+            keyPassword '000000192B80EA67BDAC69746DEF282213FB3849159C40CE195271246C941B196F874988EEB5584C7D'
             signAlg = 'SHA256withECDSA'
-            profile file('F:\\huawei-ict-other\\debug_key\\debug_v1Debug.p7b')
-            certpath file('F:\\huawei-ict-other\\debug_key\\debug_v1.cer')
+            profile file('F:\\huawei-ict-other\\new_key\\new_keyDebug.p7b')
+            certpath file('F:\\huawei-ict-other\\new_key\\new_key.cer')
         }
     }
     compileSdkVersion 7

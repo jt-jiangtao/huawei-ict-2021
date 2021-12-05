@@ -21,6 +21,7 @@ import ohos.event.notification.NotificationRequest;
 import ohos.rpc.RemoteException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,7 @@ public class NotificationManager {
         JSONObject jsonObject = JSON.parseObject(m);
         NotificationRequest request = new NotificationRequest();
         request.setTapDismissed(true);
+        request.setNotificationId(Integer.valueOf(msg.getString("id")));
 //        request.setIntentAgent();
         NotificationRequest.NotificationNormalContent content = new NotificationRequest.NotificationNormalContent();
         if (msg.getString("n_type").equals("CLEW")){
