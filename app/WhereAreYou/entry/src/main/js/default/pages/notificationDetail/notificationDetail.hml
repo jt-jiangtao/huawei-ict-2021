@@ -6,7 +6,7 @@
     <list class="list">
          <list-item class="list-item" clickeffect="false">
              <text class="title">{{getTitle()}}</text>
-             <text class="time">{{this.item.time}}</text>
+             <text class="time">{{time}}</text>
              <text class="content">{{jsonData.content}}</text>
              <image class="image-item" for="{{image in jsonData.images}}" src="{{image}}"></image>
          </list-item>

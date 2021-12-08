@@ -3,7 +3,8 @@ import {seen} from '../../fetch/notification.js';
 
 export default {
     data: {
-        jsonData: {}
+        jsonData: {},
+        time: ''
     },
     back(){
         router.back()
@@ -33,13 +34,14 @@ export default {
                 console.log(error)
             })
         }
+        this.time = this.jsonData.time
     },
     detail(){
         let that = this
         router.push({
             uri: "pages/infoDetail/infoDetail",
             params: {
-                id: JSON.parse(that.item.content).loss
+                id: that.jsonData.loss
             }
         })
     }

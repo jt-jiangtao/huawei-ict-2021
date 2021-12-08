@@ -91,7 +91,7 @@ public class MainAbility extends AceAbility {
 
     @Override
     public void onNewIntent(Intent intent) {
-        if (intent.getParams().getParam("type").equals("notification")){
+        if (intent.getParams().getParam("type") != null && intent.getParams().getParam("type").equals("notification")){
             IntentParams params = new IntentParams();
             params.setParam("item", intent.getStringParam("content"));
             params.setParam("status", 0);
