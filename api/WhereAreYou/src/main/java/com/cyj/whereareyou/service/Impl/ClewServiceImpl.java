@@ -44,7 +44,10 @@ public class ClewServiceImpl implements ClewService {
         ClewMapper clewMapper = sqlSession.getMapper(ClewMapper.class);
         Map<String, String> map = new HashMap<>();
         Clew clew1 = new Clew();
-        int status = clewMapper.insertItem(fromUser, toUser, clew, "CLEW", clew1, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+
+        JSONObject jsonObjectC = JSON.parseObject(clew);
+        jsonObjectC.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        int status = clewMapper.insertItem(fromUser, toUser, jsonObjectC.toJSONString(), "CLEW", clew1, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         map.put("status", status >= 1 ? "200" : "400");
         map.put("id", String.valueOf(clew1.getId()));
         sqlSession.commit();
@@ -52,7 +55,7 @@ public class ClewServiceImpl implements ClewService {
         JSONObject jsonObject = JSON.parseObject("{}");
         jsonObject.put("fromUser", fromUser);
         jsonObject.put("toUser", UsernameUtils.transformToUsername(toUser));
-        jsonObject.put("content", clew);
+        jsonObject.put("content", jsonObjectC.toJSONString());
         jsonObject.put("type", "NOTIFICATION");
         jsonObject.put("id", map.get("id"));
         jsonObject.put("n_type", "CLEW");
@@ -70,7 +73,10 @@ public class ClewServiceImpl implements ClewService {
         ClewMapper clewMapper = sqlSession.getMapper(ClewMapper.class);
         Map<String, String> map = new HashMap<>();
         Clew clew1 = new Clew();
-        int status = clewMapper.insertItem(fromUser, toUser, clew, type, clew1, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+
+        JSONObject jsonObjectC = JSON.parseObject(clew);
+        jsonObjectC.put("time", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        int status = clewMapper.insertItem(fromUser, toUser, jsonObjectC.toJSONString(), type, clew1, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
         map.put("status", status >= 1 ? "200" : "400");
         map.put("id", String.valueOf(clew1.getId()));
         sqlSession.commit();
@@ -78,7 +84,7 @@ public class ClewServiceImpl implements ClewService {
         JSONObject jsonObject = JSON.parseObject("{}");
         jsonObject.put("fromUser", fromUser);
         jsonObject.put("toUser", UsernameUtils.transformToUsername(toUser));
-        jsonObject.put("content", clew);
+        jsonObject.put("content", jsonObjectC.toJSONString());
         jsonObject.put("type", "NOTIFICATION");
         jsonObject.put("id", map.get("id"));
         jsonObject.put("n_type", type);
